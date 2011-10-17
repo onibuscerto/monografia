@@ -1,8 +1,28 @@
 %----------- Capítulo 3: Especificação do Software -------------
 
 \chapter{Especificação do Software}
+O software em questão consiste em um serviço web que tem como principal funcionalidade responder a rota entre dois pontos informados com menor tempo de viagem utilizando o sistema de transporte público.
 
 \section{Requisitos do Sistema}
+A seguir estão listadas os requisitos do sistema.
+
+\subsection{Requisitos Funcionais}
+\begin{itemize}
+	\item O software deverá retornar para o usuário a rota com menor tempo de viagem entre dois pontos informados.
+	\item O software deverá mostrar a rota resultante desenhada em um mapa, diferenciando as linhas de transporte por cor, e também no formato texto como uma sequência de passos.
+	\item O software deverá receber do usuário os pontos de partida/destino no formato de endereço e/ou marcando-os no mapa.
+	\item O software deverá receber o horário de partida no formato HH:MM.
+	\item O software deverá funcionar independente de qual fonte de dados for escolhida, contudo que esta respeite o padrão GTFS.
+\end{itemize}
+
+\subsection{Requisitos Não-Funcionais}
+\begin{itemize}
+	\item O software deverá ser disponibilizado como livre, possibilitando futuras contribuições.
+	\item O software deverá ser disponibilizado no formato de um serviço web.
+	\item O software devera utilizar o padrão GTFS para o arquivo fonte de dados contendo as rotas do sistema público de transporte de determinada cidade.
+	\item O software deverá ser desenvolvido em linguagem Java e, para o núcleo web, javascript.
+	\item O software deverá utilizar um banco de dados de grafos para armazenamento das rotas do sistema de transporte público.
+\end{itemize}
 
 \section{Arquitetura do Sistema}
 
