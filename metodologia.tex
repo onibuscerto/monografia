@@ -16,6 +16,40 @@
 
 \subsection{Banco de Dados}
 
+% TODO: reforçar o argumento pra usar NoSQL, citar as opções existentes,
+% referenciar a tabela, falar pq FlockDB e alguns outros foram desconsiderados
+
+% falar que todos os bancos da tabela são em Java e, portanto, rodam em todas
+% as plataformas para as quais há implementação da JVM
+
+% falar que InfoGrid e Neo4j na verdade são dual-license e também oferecem
+% uma licença comercial, permitindo que estes sejam utilizados em softwares
+% comerciais
+
+\begin{table}[!htb]
+	\centering
+	\caption{Tabela comparativa entre as opções de Bancos de Dados analisadas}
+	\label{tab:bancos}
+	\begin{tabular}{lcccc}
+		\hline
+		& \textbf{HyperGraphDB} & \textbf{InfoGrid} & \textbf{Neo4j} & \textbf{OrientDB} \\
+		\hline
+		\textbf{Licença} & LGPL & AGLPv3 & AGPLv3 & Apache \\
+		\textbf{Lançado em} & ? & ? & 2007 & ? \\
+		\textbf{Versão estável} & ? & ? & ? & ? \\
+		\textbf{Bindings Java} & Sim & Sim & Sim & Sim \\
+		\textbf{Bindings Python} & Não & Não & Sim & Parcial \\
+		\textbf{Bindings C/C++} & Não & Não & Não & Não \\
+		\textbf{Stand-alone} & Sim & ? & Sim & Sim \\
+		\textbf{Embarcado} & Não & ? & Sim & Sim \\
+		\textbf{Suporte Blueprints} & Não & Não & Sim & Sim \\
+		\hline
+	\end{tabular}
+	\fonte{Autoria pr\'opria.}
+\end{table}
+
+% TODO: argumentar a opção do Neo4j
+
 \subsection{Maven}
 
 \subsection{git}
