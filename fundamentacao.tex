@@ -4,7 +4,29 @@
 
 \section{O Problema do Menor Caminho Multi-Modal}
 
-\section{Banco de Dados NoSQL}
+\section{NoSQL}
+%TODO: citar wikipedia =p
+
+NoSQL, ou ``not only SQL'' (não apenas SQL), é uma classe que agrega vários \sigla{SGBD}{Sistema Gerenciador de Banco de Dados}s com características que os diferem dos SGBDs relacionais comuns.
+Esses sistemas usualmente permitem que dados sejam armazenados de forma menos rígida em comparação a um esquema de tabelas do modelo relacional, e também nem sempre procuram garantir as propriedades ACID (Atomicidade, Consistência, Isolamento e Durabilidade) comuns nas transações de bancos de dados.
+O objetivo desses sistemas é proporcionar um melhor desempenho em algumas aplicações específicas, por exemplo em situações onde existe um grande volume de dados ou de requisições. Esse ganho de desempenho decorre da boa escalabilidade horizontal desses sistemas, ou do fato de eles evitarem junções (produtos cartesianos) entre tabelas.
+
+Existem várias categorias de sistemas NoSQL, de acordo com a implementação e o modo como os dados são armazenados, como por exemplo bancos de dados de documentos, bancos de dados orientados a objetos ou bancos de dados de grafos.
+Destes, apenas os bancos de dados de grafos faz parte do escopo do trabalho.
+
+\subsection{Bancos de Dados de Grafos}
+
+%TODO: referências(wiki)
+
+Bancos de dados de grafos são bancos de dados que armazenam os dados na forma de um grafo. Existem diversos modelos de grafos que podem ser utilizados para este propósito, um exemplo de modelo que bastante utilizado é o dos grafos de propriedades, ou seja, grafos que possuem vértices, arestas e que tanto os vértices quanto as arestas podem possuir propriedades.
+Assim, ao modelar os dados de um sistema em um banco de dados de grafos, os nós representam as entidades do sistema, enquanto as arestas representam as relações entre essas entidades, e as propriedades contém as demais informações sobre essas entidades e suas relações.
+
+%inserir figura e um exemplo
+
+Esses bancos de dados em geral possuem uma melhor escalabilidade do que os bancos de dados relacionais, já que não utilizam operações de junção nas consultas.
+No entanto, sua maior vantagem é que, devido à sua estrutura, são capazes de realizar consultas próprias de grafos de maneira muito mais eficiente, como por exemplo encontrar o menor caminho entre dois nós, ou ainda descobrir se um dado nó é acessível à partir de outro, percorrendo o grafo apenas através de arestas que possuam uma determinada propriedade.
+
+%comentar sobre os bancos existentes, livres ou não, etc?
 
 \section{Desenvolvimento Orientado a Testes}
 
