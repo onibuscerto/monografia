@@ -26,6 +26,16 @@
 % uma licença comercial, permitindo que estes sejam utilizados em softwares
 % comerciais
 
+Como citado anteriormente, os bancos de dados NoSQL permitem que os dados sejam armazenados de uma forma menos rígida que nos bancos de dados relacionais.
+Por este motivo, os bancos de dados NoSQL apresentam uma grande vantagem com relação aos demais para armazenar e extrair informações rapidamente de bases de dados que possam ser modeladas como grafos. % TODO: citar algo
+
+Dada a natureza do problema sendo estudado, naturalmente a equipe optou por utilizar um dos bancos de dados NoSQL que enfatizam em grafos.
+Entre as principais opções disponíveis que foram consideradas para este projeto estão o HyperGraphDB, desenvolvido pela Kobrix Software Inc., o InfoGrid, desenvolvido pela NetMesh Inc., o Neo4j, desenvolvido pela Neo Technology Inc. e o OrientDB, desenvolvido pela Orient Technologies.
+Estes bancos de dados são apresentados na Tabela \ref{tab:bancos}.
+
+Outros bancos de dados disponíveis na Internet também foram inicialmente analisados, como o FlockDB, desenvolvido pela Twitter Inc..
+No entanto, estes foram desconsiderados posteriormente por não possuírem documentação suficiente no momento em que foi dado início ao desenvolvimento do projeto ou focarem demais em um problema específico, como é o caso do próprio FlockDB, que é utilizado para armazenar as relações sociais entre os usuários do serviço do Twitter: ``quem segue quem'' e ``quem é seguido por quem''.
+
 \begin{table}[!htb]
 	\centering
 	\caption{Tabela comparativa entre as opções de Bancos de Dados analisadas}
@@ -48,6 +58,8 @@
 	\end{tabular}
 	\fonte{Autoria pr\'opria.}
 \end{table}
+
+Como é possível ver pela Tabela \ref{tab:bancos}
 
 % TODO: argumentar a opção do Neo4j
 
