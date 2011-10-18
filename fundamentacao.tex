@@ -4,6 +4,16 @@
 
 \section{O Problema do Menor Caminho Multi-Modal}
 
+% citar esse artigo: http://www.scialert.net/fulltext/?doi=jas.2009.3804.3812&org=11#290480_ja
+
+O problema do menor caminho multi-modal consiste em, dada uma rede multi-modal e dois nós nessa rede, a origem e o destino, encontrar o caminho entre a origem e o destino que totaliza o menor custo.
+Em uma rede de transporte multi-modal, os nós correspondem às paradas do sistema de transporte, ou aos pontos de origem de destino do trajeto. As arestas correspondem aos deslocamentos entre os nós da rede, e tem associado um custo em tempo e um modo. Os modem correspondem aos serviços ou meios de deslocamento na rede, como por exemplo caminhada ou uma determinada linha de ônibus.
+Os serviços de transporte operam segundo tabelas de horários, e portanto para resolver o problema também é necessária a informação do horário de partida no nó de origem.
+Uma rede multi-modal pode ser vista como a superposição de diversas redes mono-modais, com a adição de arestas entre elas para representar o tempo de espera associado à troca de serviços.
+
+% vou escrever mais do multi-objetivo depois
+Esse problema pode ser generalizado para o caso onde o interessa não é apenas minimizar o tempo de chegada ao destino, mas também minimizar outros objetivos como o custo total do transporte e o número de trocas de serviços. Esta generalização é o problema do menor caminho multi-objetivo.
+
 \section{NoSQL}
 %TODO: citar wikipedia =p
 
