@@ -4,17 +4,26 @@
 
 \section{Estratégia de Desenvolvimento do Software}
 
-Para o desenvolvimento do software, foi adotada uma estratégia inspirada nos Métodos Ágeis, prezando pela simplicidade e mais por um software funcional do que uma documentação extensa.
-Para garantir a funcionalidade do software, foram periodicamente estabelecidas \emph{milestones} (ou metas) através de reuniões da equipe.
+Tendo em vista que a equipe foi composta por apenas três integrantes, foi adotada uma estratégia de desenvolvimento de software inspirada nos Métodos Ágeis, prezando mais pela simplicidade e por um software funcional do que uma documentação extensa.
+Para garantir a funcionalidade do software, foram periodicamente estabelecidas \emph{milestones} (ou metas) através de reuniões da equipe, cada uma destas correspondendo à uma funcionalidade específica do software.
 
-Além disso, nestas reuniões o grupo analisava a qualidade do código que havia sido escrito até então, em um processo chamado de \emph{code review} (ou revisão de código), bem como o cumprimento das \emph{milestones} previamente estabelecidas.
+Além disso, estas reuniões eram utilizadas para analisar a qualidade do código que havia sido escrito até então, em um processo chamado de \emph{code review} (ou revisão de código), bem como o cumprimento das \emph{milestones} previamente estabelecidas.
 Ao estabelecer novas metas, cada integrante da equipe se responsabilizava por um sub-conjunto destas, de forma que cada um desenvolva uma parte do software que seja, de preferência, do seu interesse.
 
 Para garantir a qualidade do código escrito, foram utilizadas, além do processo de \emph{code review}, ferramentas de desenvolvimento orientado à testes e de cobertura dos testes, as quais serão discutidas em maiores detalhes na seção a seguir.
 
 \subsection{Desenvolvimento Orientado à Testes}
 
-Para reforçar a idéia de qualidade do código do software e tentar minimizar os bugs, optou-se por utilizar o desenvolvimento orientado à testes.
+Para reforçar a idéia de qualidade do código do software, minimizar os \emph{bugs} e manter a simplicidade do código, optou-se por utilizar uma adaptação do processo de desenvolvimento de software orientado à testes.
+
+Como mencionado na fundamentação teórica, o processo de desenvolvimento de software orientado à testes baseia-se na repetição de um pequeno ciclo: inicialmente os desenvolvedores escrevem casos de teste nos quais o software falha, em seguida o código para que o software passe nos novos testes é escrito e, por fim, o código é refatorado para adequar-se aos padrões de código do projeto.
+
+Neste projeto, a equipe optou por adaptar este método, de forma que não seja obrigatório escrever os casos de teste antes das funcionalidades do software, acelerando o processo de desenvolvimento.
+No entanto, todo código escrito deve ser testado adequadamente antes de ser enviado ao sistema de controle de versão, com o objetivo de evitar que \emph{bugs} sejam introduzidos no código versionado.
+
+% falar um pouco mais das vantagens e benefícios do TDD-like
+% http://en.wikipedia.org/wiki/Test-driven_development#Benefits
+
 
 \subsubsection{Cobertura dos Testes}
 
