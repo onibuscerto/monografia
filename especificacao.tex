@@ -27,7 +27,8 @@ A seguir estão listadas os requisitos do sistema.
 
 \section{Arquitetura do Sistema}
 O sistema em questão é composto de quatro núcleos principais: Core, GTFS Importer, Web Service e Cliente. 
-O fluxo padrão do sistema como um todo é mostrado na \ref{fig:arquitetura}.
+O projeto de fluxo padrão do sistema como um todo é mostrado na \ref{fig:arquitetura}.
+
 \begin{figure}[!htb]
 	\centering
 	\includegraphics[width=0.6\textwidth]{./arquitetura.jpg}
@@ -35,6 +36,7 @@ O fluxo padrão do sistema como um todo é mostrado na \ref{fig:arquitetura}.
 	\fonte{Autoria Própria}
 	\label{fig:arquitetura}
 \end{figure}
+
 Primeiramente o usuário informa os pontos de origem e destino para o Cliente marcando-os no mapa disponibilizado ou fornecendo o endereço por extenso nas devidas caixas de texto, juntamente com o horário de partida no formato HH:MM. 
 Feito isso, os dados coletados são enviados ao Web Service através de um HTTP POST. 
 Este é responsável pela execução da query para encontrar a rota contendo o caminho mínimo, sendo o acesso ao banco de dados realizado através dos métodos e entidades contidas no Core.
@@ -44,11 +46,32 @@ Para que qualquer consulta seja bem sucedida, é necessário que o banco de dado
 A seguir uma explicação detalhada de cada módulo do sistema.
 
 \subsection{Core}
-Este módulo contém todas as representações das entidades presentes nos arquivos GTFS bem como métodos para acesso ao banco de dados. 
-Estas entidades consistem em vértices armazenados no banco de dados para grafos, sendo estes mapeados a seus respectivos objetos no sistema.
-São exemplos de entidades as paradas, rotas e horários de partida e chegada de veículos, bem como conexões entre as paradas.
+Este módulo foi projetado para conter todas as representações das entidades que compõem o sistema, bem como suas respectivas factoires e uma classe de controle de acesso ao banco de dados.
+O diagrama de projeto do pacote Core é mostrado na \ref{fig:core}.
 
-Todas as entidades do sistema são criadas no banco de dados através de suas respectivas Factories. 
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[width=1\textwidth]{./CoreDiagram.jpg}
+	\caption[ImgCore]{Visão geral da arquitetura do Core.}
+	\fonte{Autoria Própria}
+	\label{fig:core}
+\end{figure}
+
+Como se pode observar, o Core é composto pelas seguintes entidades:
+
+\begin{itemize}
+	\item Route:
+	\item Trip:
+	\item Location:
+	\item Stop:
+	\item StopTime:
+	\item Connection:
+	\item Calendar:
+\end{itemize}
+
+%DatabaseController: camada de abstração do acesso ao banco de dados (permite a troca do banco de dados).
+%Factories: design pattern.
+%Todas as entidades do sistema são criadas no banco de dados através de suas respectivas Factories. 
 
 
 \subsection{GTFS Importer}
