@@ -1,7 +1,8 @@
 %----------- Capítulo 3: Especificação do Software -------------
 
 \chapter{Especificação do Software}
-O software em questão consiste em um serviço web que tem como principal funcionalidade responder a rota entre dois pontos informados com menor tempo de viagem utilizando o sistema de transporte público.
+O software em questão consiste em um serviço web que tem como principal funcionalidade responder a rota entre dois pontos informados com menor tempo de viagem utilizando o sistema de transporte público. 
+Nas seções a seguir serão apresentados os requisitos do sistema bem como sua arquitetura.
 
 \section{Requisitos do Sistema}
 A seguir estão listadas os requisitos do sistema.
@@ -25,14 +26,43 @@ A seguir estão listadas os requisitos do sistema.
 \end{itemize}
 
 \section{Arquitetura do Sistema}
+O sistema em questão é composto de quatro núcleos principais: Core, GTFS Importer, Web Service e Cliente. 
+O fluxo padrão do sistema como um todo é mostrado na \ref{fig:arquitetura}.
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[width=0.6\textwidth]{./arquitetura.jpg}
+	\caption[ImgArquitetura]{Visão geral da arquitetura do sistema.}
+	\fonte{Autoria Própria}
+	\label{fig:arquitetura}
+\end{figure}
+Primeiramente o usuário informa os pontos de origem e destino para o Cliente marcando-os no mapa disponibilizado ou fornecendo o endereço por extenso nas devidas caixas de texto, juntamente com o horário de partida no formato HH:MM. 
+Feito isso, os dados coletados são enviados ao Web Service através de um HTTP POST. 
+Este é responsável pela execução da query para encontrar a rota contendo o caminho mínimo, sendo o acesso ao banco de dados realizado através dos métodos e entidades contidas no Core.
+Ao terminar de executar a query no banco, o Web Service responde ao Cliente as informações sobre a rota resultantes através de um objeto serializado no formato JSON, sendo estas por fim mostradas para o usuário de duas formas: uma sequência de passos em formato texto e visualmente através do desenho da rota no mapa.
+
+Para que qualquer consulta seja bem sucedida, é necessário que o banco de dados esteja populado com as informações do arquivos no padrão GTFS, população a qual é realizado através do núcleo GTFS Importer.
+A seguir uma explicação detalhada de cada módulo do sistema.
 
 \subsection{Core}
+Este módulo contém todas as representações das entidades presentes nos arquivos GTFS bem como métodos para acesso ao banco de dados. 
+Estas entidades consistem em vértices armazenados no banco de dados para grafos, sendo estes mapeados a seus respectivos objetos no sistema.
+São exemplos de entidades as paradas, rotas e horários de partida e chegada de veículos, bem como conexões entre as paradas.
+
+Todas as entidades do sistema são criadas no banco de dados através de suas respectivas Factories. 
+
 
 \subsection{GTFS Importer}
+Módulo responsável pela importação e mapeamento dos arquivos GTFS para o banco de dados utilizando as entidades e suas respectivas factories contidas no Core. 
 
 \subsection{Web Service}
+Este é o núcleo funcional do sistema.
+Ao receber a informação do Cliente por um HTTP POST, este executa uma query no banco de dados com o objetivo de aquisição do caminho mínimo entre os pontos informados pelo usuário. 
+Esta é executada através dos métodos de acesso ao banco implementados no Core do sistema. 
+Por fim, as informações sobre a rota resultante são retornadas ao Cliente através de um JSON.
 
 \subsection{Cliente Web}
+Responsável por aquisição de dados de entrada do usuário e encaminhamento dos mesmos ao Web Service. 
+Ao receber a resposta contendo as informações do caminho mínimo entre os pontos especificados, o Cliente desenha a rota resultante no mapa e descreve passo-a-passo as ações a serem tomadas para se chegar ao destino.
 
 \section{Considerações}
 
