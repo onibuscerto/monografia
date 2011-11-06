@@ -57,11 +57,11 @@ O diagrama de projeto do pacote \emph{Core} é mostrado na \ref{fig:core}.
 	\label{fig:core}
 \end{figure}
 
-Como se pode observar, o \emph{Core} é composto pelas seguintes entidades advindas do padrão GTFS:
+Como se pode observar, o \emph{Core} é composto pelas seguintes entidades especificadas no padrão GTFS:
 
 \begin{itemize}
 	\item \textbf{Route}: contém informações a respeito de uma linha de transporte público, tais como o nome da rota, o meio de transporte utilizado, e as \emph{Trips} que a compõem.
-	\item \textbf{Trip}: é uma sequência de duas ou mais \emph{StopTime}, ou seja, dois ou mais pontos de parada que ocorrem em um tempo determinado.
+	\item \textbf{Trip}: é uma sequência de duas ou mais \emph{StopTime}, ou seja, dois ou mais pontos de parada de embarque/desembarque que ocorrem em um certo horário determinado.
 	\item \textbf{Location}: consiste em um ponto de coordenadas geográficas e suas respectivas conexões de entrada e saída com outros pontos.
 	\item \textbf{Stop}: é uma \emph{Location} que consiste em um ponto de parada  de veículos para entrada e saída de passageiros.
 	\item \textbf{StopTime}: contém informações de horários de partida e chegada de veículos em uma determinada \emph{Stop} pertencente a uma \emph{Trip}.
@@ -75,7 +75,7 @@ Desta forma, cada entidade do \emph{Core} possui sua respectiva \emph{factory} n
 
 Todos estes objetos são armazenados no banco de dados através da classe \emph{DatabaseController}.
 Esta nada mais é que uma camada de abstração do acesso ao banco, com o objetivo de permitir uma troca do sistema de banco de dados rapidamente caso necessário.
-Além disso, é no \emph{DatabaseController} que foi implementado o al'goritmo principal do sistema para encontrar o caminho mínimo entre os pontos de origem e destino fornecidos pelo usuário.
+Além disso, é no \emph{DatabaseController} que foi implementado o algoritmo principal do sistema para encontrar o caminho com tempo de viagem mínimo entre os pontos de origem e destino fornecidos pelo usuário.
 
 
 \subsection{GTFS Importer}
