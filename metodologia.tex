@@ -69,11 +69,11 @@ Para o processo de revisão de código, foi utilizado o serviço de hospedagem d
 
 \section{Ferramentas Utilizadas}
 
-\subsection{Java}
+\subsection{Linguagem de Programação}
 
-\subsection{Banco de Dados}
+\subsection{Sistema Gerenciador de Banco de Dados}
 
-Como citado anteriormente, os bancos de dados NoSQL permitem que os dados sejam armazenados de uma forma menos rígida que nos bancos de dados relacionais.
+Como citado anteriormente, os SGBDs NoSQL permitem que os dados sejam armazenados de uma forma menos rígida que nos bancos de dados relacionais.
 Por este motivo, os bancos de dados NoSQL apresentam uma grande vantagem com relação aos demais para armazenar e extrair informações rapidamente de bases de dados que possam ser modeladas como grafos. % TODO: citar algo
 
 Dada a natureza do problema sendo estudado, naturalmente a equipe optou por utilizar um dos bancos de dados NoSQL que enfatizam em grafos.
@@ -85,7 +85,7 @@ No entanto, estes foram desconsiderados posteriormente por não possuírem docum
 
 \begin{table}[!htb]
 	\centering
-	\caption{Tabela comparativa entre as opções de Bancos de Dados analisadas}
+	\caption{Tabela comparativa entre as opções de SGBDs disponíveis}
 	\label{tab:bancos}
 	\begin{tabular}{lcccc}
 		\hline
@@ -106,11 +106,11 @@ No entanto, estes foram desconsiderados posteriormente por não possuírem docum
 	\fonte{Autoria pr\'opria.}
 \end{table}
 
-Entre os bancos de dados apresentados na Tabela \ref{tab:bancos}, todos são desenvolvidos em linguagem Java e, portanto rodam em qualquer plataforma que possua uma implementação da \sigla{JVM}{Java Virtual Machine}.
+Entre os SGBDs apresentados na Tabela \ref{tab:bancos}, todos são desenvolvidos em linguagem Java e, portanto rodam em qualquer plataforma que possua uma implementação da \sigla{JVM}{Java Virtual Machine}.
 Além disso, todos eles são disponibilizados através de uma licença de software livre.
 No entanto, os bancos de dados InfoGrid e Neo4j são também distribuídos através de licenças comerciais, sendo a versão livre destes uma versão com menos funcionalidades e sob uma licença, a \sigla{AGPLv3}{Affero General Public License Version 3}, que impede o desenvolvedor de não disponibilizar o código-fonte de um software que utilize o banco de dados. % TODO: verificar se isso que eu falei da AGPLv3 ta certo
 
-Todos os bancos de dados que foram levados em consideração para este projeto apresentavam um conjunto de funcionalidades semelhante.
+Todos os bancos de dados que foram levados em consideração para este projeto apresentavam um conjunto de funcionalidades semelhantes.
 Como todos são desenvolvidos em linguagem Java, todos possuem bindings para esta linguagem, reforçando então ainda mais a escolha por esta linguagem.
 
 Desta forma, os fatores determinantes para a decisão sobre qual banco de dados utilizar, acabaram sendo o suporte dado pela comunidade do mesmo, a documentação e quão frequentes são as atualizações do software, tendo em vista que aqueles que são mais bem atualizados possuem uma comunidade mais ativa.
@@ -119,7 +119,7 @@ O HyperGraphDB foi desconsiderado por não ser atualizado com frequência, dado 
 Já a documentação e suporte da comunidade dos bancos OrientDB e Neo4j mostrou-se muito superior à do InfoGrid, tendo em vista que estes possuem um volume maior de emails nas suas listas de discussões e, portanto, uma comunidade mais ativa.
 
 A decisão final de qual banco de dados utilizar ficou, portanto, entre o Neo4j e o OrientDB.
-Optou-se pelo Neo4j principalmente devido à facilidade de aprendizado da sua \sigla{API}{Application Programming Interface}, que foi mais fácil de ser entendida, na opinião da equipe.
+Optou-se pelo Neo4j principalmente devido à facilidade de aprendizado da sua \sigla{API}{Application Programming Interface}, que possui uma notação mais concisa e com uma curva de aprendizagem adequada, na opinião da equipe.
 Outro ponto positivo com relação ao Neo4j é que ele é mantido por uma grande comunidade de desenvolvedores desde 2003 e é, portanto, um dos projetos livres pioneiros nesta área.
 
 \subsection{Maven}
