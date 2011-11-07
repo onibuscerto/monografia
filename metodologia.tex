@@ -5,29 +5,67 @@
 \section{Estratégia de Desenvolvimento do Software}
 
 Tendo em vista que a equipe foi composta por apenas três integrantes, foi adotada uma estratégia de desenvolvimento de software inspirada nos Métodos Ágeis, prezando mais pela simplicidade e por um software funcional do que uma documentação extensa.
-Para garantir a funcionalidade do software, foram periodicamente estabelecidas \emph{milestones} (ou metas) através de reuniões da equipe, cada uma destas correspondendo à uma funcionalidade específica do software.
 
+Para garantir a funcionalidade do software, foram periodicamente estabelecidas \emph{milestones} (ou metas) através de reuniões da equipe, cada uma destas correspondendo à uma funcionalidade específica do software.
 Além disso, estas reuniões eram utilizadas para analisar a qualidade do código que havia sido escrito até então, em um processo chamado de \emph{code review} (ou revisão de código), bem como o cumprimento das \emph{milestones} previamente estabelecidas.
 Ao estabelecer novas metas, cada integrante da equipe se responsabilizava por um sub-conjunto destas, de forma que cada um desenvolva uma parte do software que seja, de preferência, do seu interesse.
 
-Para garantir a qualidade do código escrito, foram utilizadas, além do processo de \emph{code review}, ferramentas de desenvolvimento orientado à testes e de cobertura dos testes, as quais serão discutidas em maiores detalhes na seção a seguir.
+Para assegurar a qualidade do código escrito, foram utilizadas, além do processo de \emph{code review}, ferramentas de desenvolvimento orientado à testes e de cobertura dos testes, as quais são discutidas em maiores detalhes na seção a seguir.
 
 \subsection{Desenvolvimento Orientado à Testes}
 
 Para reforçar a idéia de qualidade do código do software, minimizar os \emph{bugs} e manter a simplicidade do código, optou-se por utilizar uma adaptação do processo de desenvolvimento de software orientado à testes.
 
+% TODO: referenciar a seção da fundamentação teórica com um label
 Como mencionado na fundamentação teórica, o processo de desenvolvimento de software orientado à testes baseia-se na repetição de um pequeno ciclo: inicialmente os desenvolvedores escrevem casos de teste nos quais o software falha, em seguida o código para que o software passe nos novos testes é escrito e, por fim, o código é refatorado para adequar-se aos padrões de código do projeto.
 
 Neste projeto, a equipe optou por adaptar este método, de forma que não seja obrigatório escrever os casos de teste antes das funcionalidades do software, acelerando o processo de desenvolvimento.
 No entanto, todo código escrito deve ser testado adequadamente antes de ser enviado ao sistema de controle de versão, com o objetivo de evitar que \emph{bugs} sejam introduzidos no código versionado.
 
-% falar um pouco mais das vantagens e benefícios do TDD-like
-% http://en.wikipedia.org/wiki/Test-driven_development#Benefits
+O processo orientado à testes também permitiu que a equipe desenvolvesse o software em passos menores sem sacrificar a eficiência do grupo.
+Os programadores apenas tinham se preocupar em cumprir as metas propostas na última reunião e garantir que o código passe nos testes, focando muito mais no desenvolvimento do código em si e nas funcionalidades desejadas do projeto.
+
+Os casos de testes foram desenvolvidos por todos os membros da equipe, ou seja, não necessariamente por aqueles que desenvolveram uma determinada funcionalidade que seria testada pelos casos de teste em questão.
+Este tipo de abordagem aumenta a confiabilidade dos testes, fazendo com que tanto o software quanto os testes tenham sido analisados por mais de uma pessoa, diminuindo a probabilidade de que erros surjam neste processo.
 
 
 \subsubsection{Cobertura dos Testes}
 
+Como no desenvolvimento orientado à testes os testes são usualmente escritos antes do código do software, não existe código escrito que não seja necessário para passar um teste.
+Desta forma, os testes resultantes do processo de TDD acabam sempre, invariavelmente, aproximando-se de 100\% de cobertura de código durante os testes.
+Ou seja, durante a execução dos testes, praticamente todo o código é percorrido pelos mesmos.
+
+Devido à adaptação feita pela equipe à metodologia de desenvolvimento orientado à testes, a não-obrigatoriedade de escrever os testes antes do código, tornou-se necessário a utilização de uma métrica para analisar se os casos de teste escritos cobrem a maior parte do código escrito possível, com o objetivo de assegurar a qualidade dos testes.
+
+Para analisar a cobertura dos testes escritos, a ferramenta \emph{Cobertura} foi utilizada, a qual é discutida em maiores detalhes na seção \ref{met:Cobertura}.
+
+
 \subsection{Revisão de Código}
+
+% TODO: citar wikipedia aos montes nessa seção
+
+O processo de revisão de código é a examinação sistemática do código-fonte de um programa.
+Este tem o objetivo de encontrar e corrigir erros cometidos durante o desenvolvimento, melhorando tanto a qualidade do software quanto as habilidades e conhecimentos dos programadores da equipe.
+
+Os processos que podem ser utilizados para revisão de código encaixam-se em três categorias principais: programação em pares, revisão de código formal e a revisão de código leve.
+
+% TODO: "tempo total de programador" nao parece ser um termo muito bom
+A programação em pares, amplamente utilizada pelos métodos ágeis, corresponde à um conjunto de técnicas na quais dois programadores trabalham em uma única estação de trabalho: um dos programadores, o \emph{driver}, escreve o código, enquanto o outro, denominado \emph{observer}, revisa cada linha de código digitada.
+Apesar de uma tarefa de programação ser concluída mais rapidamente quando dois programadores colaboram, estas técnicas possuem a desvantagem de aumentar o tempo total para o desenvolvimento do software. % TODO: justificar isso
+Sendo assim, em uma equipe com menos integrantes como é o caso desta, o processo como um todo tornaria-se mais ineficiente, a equipe demoraria mais tempo para concluir o projeto e, por este motivo, a técnica de programação em pares não foi utilizada neste.
+
+As técnicas de revisão de código formais são o método mais tradicional de revisão de código.
+Estas envolvem um detalhado processo com múltiplos participantes e múltiplas fases, sendo o mais comum uma série de reuniões nas quais os desenvolvedores revisam o código linha por linha, geralmente utilizando cópias impressas.
+Apesar de exigirem um grande investimento de tempo, tanto para a organização e planejamento quanto para a execução, as técnicas de revisão de código formais são consideradas efetivas para encontrar problemas no código sob revisão.
+
+Por fim, as técnicas de revisão de código leves possuem um \emph{overhead} menor que as inspeções formais e são geralmente conduzidas como parte normal do processo de desenvolvimento de software.
+Entre os principais exemplos deste tipo de técnica está a revisão de código auxiliada por ferramenta, na qual autores e revisores de código utilizam ferramentas especializadas para \emph{peer code review}, ou seja, revisão de código por pares.
+
+Tendo em vista o tamanho da equipe, optou-se por utilizar a técnica de revisão de código auxiliada por ferramenta, sendo que após cada \emph{commit} no sistema de controle de versões todos os integrantes da equipe analisavam o que foi desenvolvido, fazendo comentários a respeito, sugerindo modificações e discutindo as decisões tomadas.
+Além da revisão de código após os \emph{commits}, as reuniões da equipe também foram utilizadas para revisar o código escrito antes de um grande refatoramento no código do projeto ou de dar início ao desenvolvimento de uma nova importante funcionalidade do software.
+
+Para o processo de revisão de código, foi utilizado o serviço de hospedagem de projetos de desenvolvimento de software GitHub, o qual conta com uma ferramenta de \emph{code review} que será apresentada em maiores detalhes na seção \ref{met:git}.
+
 
 \section{Ferramentas Utilizadas}
 
@@ -86,11 +124,11 @@ Outro ponto positivo com relação ao Neo4j é que ele é mantido por uma grande
 
 \subsection{Maven}
 
-\subsection{git}
+\subsection{git}\label{met:git}
 
 \subsection{JUnit}
 
-\subsection{Cobertura}
+\subsection{Cobertura}\label{met:Cobertura}
 
 \section{Considerações}
 
