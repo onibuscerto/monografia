@@ -61,11 +61,12 @@ Como se pode observar, o \emph{Core} é composto pelas seguintes entidades espec
 
 \begin{itemize}
 	\item \textbf{Route}: contém informações a respeito de uma linha de transporte público, tais como o nome da rota, o meio de transporte utilizado, e as \emph{Trips} que a compõem.
-	\item \textbf{Trip}: é uma sequência de duas ou mais \emph{StopTime}, ou seja, dois ou mais pontos de parada de embarque/desembarque que ocorrem em um certo horário determinado.
+	\item \textbf{Trip}: é uma sequência de duas ou mais entidades \emph{StopTime}, ou seja, dois ou mais pontos de parada de embarque/desembarque que ocorrem em um certo instante de tempo determinado.
 	\item \textbf{Location}: consiste em um ponto de coordenadas geográficas e suas respectivas conexões de entrada e saída com outros pontos.
-	\item \textbf{Stop}: é uma \emph{Location} que consiste em um ponto de parada  de veículos para entrada e saída de passageiros.
+	\item \textbf{Stop}: é um tipo de \emph{Location} que consiste em um ponto de parada  de veículos para entrada e saída de passageiros.
 	\item \textbf{StopTime}: contém informações de horários de partida e chegada de veículos em uma determinada \emph{Stop} pertencente a uma \emph{Trip}.
-	\item \textbf{Connection}: é uma conexão entre dois pontos, podendo ser entre duas \emph{Stops} (\emph{TransporteConnection}) ou entre uma \emph{Stop} e uma \emph{Location} (\emph{WalkingConnection}).
+	\item \textbf{Connection}: consiste em uma conexão entre dois pontos, contendo informações tais como a distância e o custo de tempo entre a origem e destino. 
+					Uma \emph{Connection} pode ser do tipo \emph{TransportConnection} e \emph{WalkingConnection}, sendo que a primeira consiste em uma conexão entre duas entidades \emph{Stop} e a segunda entre uma \emph{Stop} e uma 								\emph{Location}.
 	\item \textbf{Calendar}: especifica quando determinado serviço de transporte começa e termina, bem como os dias da semana nos quais o serviço está disponível.
 \end{itemize}
 
@@ -75,11 +76,43 @@ Desta forma, cada entidade do \emph{Core} possui sua respectiva \emph{factory} n
 
 Todos estes objetos são armazenados no banco de dados através da classe \emph{DatabaseController}.
 Esta nada mais é que uma camada de abstração do acesso ao banco, com o objetivo de permitir uma troca do sistema de banco de dados rapidamente caso necessário.
-Além disso, é no \emph{DatabaseController} que foi implementado o algoritmo principal do sistema para encontrar o caminho com tempo de viagem mínimo entre os pontos de origem e destino fornecidos pelo usuário.
+Além disso, é na classe \emph{DatabaseController} que se encontra o algoritmo principal do sistema para encontrar o caminho com tempo de viagem mínimo entre os pontos de origem e destino fornecidos pelo usuário.
 
 
 \subsection{GTFS Importer}
-Módulo responsável pela importação e mapeamento dos arquivos GTFS para o banco de dados utilizando as entidades e suas respectivas factories contidas no Core. 
+Módulo responsável pela importação e mapeamento dos arquivos GTFS para o banco de dados. 
+Seu principal objetivo é o de adquirir informações dos arquivos GTFS e, utilizando as \emph{factories} respectivas às entidades do \emph{Core}, mapeá-las no banco de dados para grafos, criando as devidas relações entre as entidades. 
+Porém, os arquivos do padrão GTFS contém muita informação opcional para o funcionamento do sistema, sendo que muitas destas nem sempre são disponibilizadas. 
+Desta forma, foi definido que o mínimo de informação necessária para o funcionamento do sistema são os campos obrigatórios do padrão GTFS, os quais são citados na tabela \ref{tab:campos_obrigatorios}.
+
+\begin{table}[!htb]
+	\centering
+	\caption{Campos obrigatórios importados dos arquivos GTFS para funcionamento do sistema}
+	\label{tab:campos_obrigatorios}
+	\begin{tabular}{ll}
+		\hline
+		\textbf{Arquivo} & \textbf{Campos Obrigatórios} \\
+		\hline
+		\textbf{Route} & \emph{route ID}: identifica um trajeto \\
+				    & \emph{short name}: nome abreviado de um trajeto \\
+				    & \emph{long name}: nome completo de um trajeto \\
+		\textbf{Trip} & \emph{trip ID}: identifica uma viagem \\ 
+				& \emph{route ID} \\ 
+				& \emph{service ID}: identifica a disponibilidade do serviço por data \\
+		\textbf{Stop} & \emph{stop ID}: identifica uma parada ou estação \\
+				 & \emph{name}: nome de uma parada ou estação \\
+				 & \emph{latitude, longitude}: coordenadas geográficas da parada ou estação \\
+		\textbf{StopTime} & \emph{trip ID} \\
+				         & \emph{stop ID} \\
+				         & \emph{arrival/departure time}: tempo de chegada/partida do veículo de uma parada \\
+				         & \emph{stop sequence}: ordem das paradas de uma viagem \\
+		\hline
+	\end{tabular}
+	\fonte{\cite{GTFSspecs}}
+\end{table}
+
+Sem essas informações importadas para o banco de dados o sistema é incapaz de cumprir o objetivo de responder a rota ótima entre dois pontos considerando o tempo de viagem.
+
 
 \subsection{Web Service}
 Este é o núcleo funcional do sistema.
