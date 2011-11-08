@@ -2,28 +2,53 @@
 
 \chapter{Especificação do Software}
 O software em questão consiste em um serviço web que tem como principal funcionalidade responder a rota entre dois pontos informados com menor tempo de viagem utilizando o sistema de transporte público. 
-Nas subseções a seguir serão apresentados os requisitos do sistema bem como sua arquitetura.
+Nas subseções a seguir são apresentados os requisitos do sistema bem como o projeto de sua arquitetura.
 
 \section{Requisitos do Sistema}
-O primeiro passo para o desenvolvimento de qualquer sistema computacional é levantar seus requisitos. A seguir estão listadas os requisitos do sistema.
+O primeiro passo para o desenvolvimento de qualquer sistema computacional é levantar seus requisitos. 
+A seguir estão listados os requisitos do sistema.
 
 \subsection{Requisitos Funcionais}
+Os requisitos funcionais visam levantar informações a respeito do sistema proposto quanto às suas funcionalidades, ou seja, é o serviço que se espera fornecer ao usuário final.
+A seguir encontra-se a lista completa de requisitos funcionais deste projeto. 
+
+Quanto à interface do sistema:
 \begin{itemize}
 	\item O software deverá retornar para o usuário a rota com menor tempo de viagem entre dois pontos informados.
 	\item O software deverá mostrar a rota resultante desenhada em um mapa, diferenciando as linhas de transporte por cor, e também no formato texto como uma sequência de passos.
-	\item O software deverá receber do usuário os pontos de partida/destino no formato de endereço e/ou marcando-os no mapa.
-	\item O software deverá receber o horário de partida no formato HH:MM.
-	\item O software deverá funcionar independente de qual fonte de dados for escolhida, contudo que esta respeite o padrão GTFS.
+	\item O software deverá receber do usuário os pontos de partida/destino no formato de endereço ou marcando-os no mapa.
+	\item O sistema deverá ser acessado através de um navegador web.
 \end{itemize}
 
 \subsection{Requisitos Não-Funcionais}
+Os requisitos não-funcionais referem-se a aspectos não-funcionais do sistema, como restrições nas quais o sistema deve operar ou propriedades emergentes do sistema.
+Estes são disponibilizados a seguir.
+
+Quanto a distribuição do software:
 \begin{itemize}
 	\item O software deverá ser disponibilizado como livre, possibilitando futuras contribuições.
 	\item O software deverá ser disponibilizado no formato de um serviço web.
-	\item O software devera utilizar o padrão GTFS para o arquivo fonte de dados contendo as rotas do sistema público de transporte de determinada cidade.
-	\item O software deverá ser desenvolvido em linguagem Java e, para o núcleo web, javascript.
-	\item O software deverá utilizar um banco de dados de grafos para armazenamento das rotas do sistema de transporte público.
 \end{itemize}
+
+Quanto à fonte de dados:
+\begin{itemize}
+	\item O software deverá funcionar independente de qual fonte de dados for escolhida, contudo que esta respeite o padrão GTFS.
+	\item O software deverá utilizar um banco de dados de grafos para armazenamento das rotas do sistema de transporte público.
+	\item O software deverá ter seu banco de dados populado com um mínimo de informações sobre as rotas do serviço de transporte público, sendo estas:
+	\begin{itemize}
+		\item As rotas existentes no serviço de transporte público.
+		\item As paradas ou estações existentes.
+		\item Horários de chegada e partida de veículos de cada parada ou estação.
+		\item As coordenadas geográficas de cada parada ou estação.
+	\end{itemize}
+\end{itemize}
+
+Quanto às ferramentas:
+\begin{itemize}
+	\item O sistema gerenciador de banco de dados deverá responder à consultas rapidamente.
+	\item O software deverá ser hospedado em um servidor que suporte todas as ferramentas computacionais utilizadas.
+\end{itemize}
+
 
 \section{Arquitetura do Sistema}
 O sistema em questão é composto de quatro núcleos principais: \emph{Core, GTFS Importer, Web Service} e um Cliente (o qual consiste num \emph{Cliente Web} atualmente). 
@@ -32,7 +57,7 @@ O projeto de fluxo padrão do sistema como um todo é mostrado na figura \ref{fi
 \begin{figure}[!htb]
 	\centering
 	\includegraphics[width=0.6\textwidth]{./arquitetura.jpg}
-	\caption[ImgArquitetura]{Visão geral da arquitetura do sistema.}
+	\caption[Arquitetura do sistema]{Visão geral da arquitetura do sistema.}
 	\fonte{Autoria Própria}
 	\label{fig:arquitetura}
 \end{figure}
@@ -52,7 +77,7 @@ O diagrama de projeto do pacote \emph{Core} é mostrado na \ref{fig:core}.
 \begin{figure}[!htb]
 	\centering
 	\includegraphics[width=1\textwidth]{./CoreDiagram.jpg}
-	\caption[ImgCore]{Visão geral da arquitetura do Core.}
+	\caption[Arquitetura do Core]{Visão geral da arquitetura do Core.}
 	\fonte{Autoria Própria}
 	\label{fig:core}
 \end{figure}
@@ -72,10 +97,10 @@ Como se pode observar, o \emph{Core} é composto pelas seguintes entidades espec
 
 Para a criação no sistema de cada uma destas entidades foi utilizado o conceito de \emph{factories}. 
 Uma \emph{factory} nada mais é que um \emph{design pattern} que consiste em uma interface para a criação de famílias de objetos correlatos ou dependentes.
-Desta forma, cada entidade do \emph{Core} possui sua respectiva \emph{factory} não somente para criação de objetos mas também para retornar todos os objetos de um determinado tipo de entidade.
+Desta forma, optou-se por implementar \emph{factories} para criação de cada entidade presente no \emph{Core}.
 
 Todos estes objetos são armazenados no banco de dados através da classe \emph{DatabaseController}.
-Esta nada mais é que uma camada de abstração do acesso ao banco, com o objetivo de permitir uma troca do sistema de banco de dados rapidamente caso necessário.
+Esta nada mais é que uma camada de abstração do acesso ao banco, com o objetivo de permitir uma troca do sistema gerenciador de banco de dados rapidamente caso necessário.
 Além disso, é na classe \emph{DatabaseController} que se encontra o algoritmo principal do sistema para encontrar o caminho com tempo de viagem mínimo entre os pontos de origem e destino fornecidos pelo usuário.
 
 
@@ -115,14 +140,14 @@ Sem essas informações importadas para o banco de dados o sistema é incapaz de
 
 
 \subsection{Web Service}
-Este é o núcleo funcional do sistema.
-Ao receber a informação do Cliente por um HTTP POST, este executa uma query no banco de dados com o objetivo de aquisição do caminho mínimo entre os pontos informados pelo usuário. 
-Esta é executada através dos métodos de acesso ao banco implementados no \emph{Core} do sistema. 
-Por fim, as informações sobre a rota resultante são retornadas ao Cliente através de um JSON.
+Este é o módulo responsável por executar a \emph{query} no banco de dados em busca do caminho de tempo de viagem mínimo entre os pontos informados pelo usuário.
+
+Ao receber as informações dos pontos de origem e destino do módulo Cliente, o \emph{Web Service} deve acessar o banco de dados através do \emph{Core}, mais especificamente com a classe \emph{DatabaseController}, e executar uma \emph{query} de busca de caminho mínimo. Feito isso, retorna-se o resultado ao módulo Cliente.
 
 \subsection{Cliente Web}
 Responsável por aquisição de dados de entrada do usuário e encaminhamento dos mesmos ao Web Service. 
-Ao receber a resposta contendo as informações do caminho mínimo entre os pontos especificados, o Cliente desenha a rota resultante no mapa e descreve passo-a-passo as ações a serem tomadas para se chegar ao destino.
+Primeiramente o usuário informa o endereço de origem e destino à interface Cliente, repassando-os em seguida ao \emph{Web Service} para que o mesmo busque o caminho mínimo requisitado.
+Ao receber resposta do \emph{Web Service}, o Cliente se responsabiliza de mostrar o resultado desenhando a rota resultante no mapa e descrevendo passo-a-passo as ações a serem tomadas para se chegar ao destino.
 
 \section{Considerações}
 
