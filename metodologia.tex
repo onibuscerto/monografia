@@ -2,6 +2,8 @@
 
 \chapter{Metodologia}
 
+% TODO: devemos falar da IDE usada? e do Jetty?
+
 \section{Estratégia de Desenvolvimento do Software}
 
 Tendo em vista que a equipe foi composta por apenas três integrantes, foi adotada uma estratégia de desenvolvimento de software inspirada nos Métodos Ágeis, prezando mais pela simplicidade e por um software funcional do que uma documentação extensa.
@@ -74,6 +76,8 @@ Para o processo de revisão de código, foi utilizado o serviço de hospedagem d
 Para os componentes do sistema que residem no servidor, ou seja, Core, GTFS Importer e Web Service, a equipe inicialmente optou por escolher uma linguagem de programação que todos os integrantes tivessem conhecimento e alguma experiência, para que não fosse necessário aprender uma nova linguagem, podendo então focar o tempo no aprendizado de outras ferramentas como SGBDs NoSQL e no desenvolvimento do código em si.
 Desta forma, as linguagens que foram consideradas para este projeto foram: C++, Java e Python.
 
+% TODO: colocar uma tabela comparativa das linguagens C++, Java e Python
+
 A linguagem C++ foi criada por Bjarne Stroustrup em 1979 no Bell Labs.
 Originalmente, esta foi criada como uma extensão que insere diversas funcionalidades à linguagem C, tais como classes, sobrecarga de operadores, herança múltipla, \emph{templates} e tratamento de exceções.
 Atualmente, C++ é uma das linguagems mais populares, com domínios de aplicações que incluem sistemas operacionais, aplicativos para \emph{desktops}, \emph{drivers} para dispositivos de hardware, sistemas embarcados e aplicações de servidores e clientes que exigem alta performance.
@@ -90,12 +94,31 @@ A linguagem Java foi criada por James Gosling enquanto trabalhava na Sun Microsy
 Lançada em 1995 como um dos principais componentes da plataforma Java, a linguagem teve sua sintaxe inspirada na de C++, compartilhando diversas características com a mesma.
 Ao contrário de C++, os aplicativos desenvolvidos em Java são compilados na forma de \emph{bytecode} e podem, portanto, ser executados em qualquer computador que possua uma máquina virtual Java instalada, independente de arquitetura ou sistema operacional.
 Assim como Python, a linguagem Java possui uma extensa biblioteca padrão, também contando com módulos para acesso à bancos de dados relacionais, \emph{toolkits} para a confecção de interfaces gráficas, \emph{sockets}, \emph{threads}, entre outros.
+Outra vantagem da linguagem Java são os Servlets: classes Java que extendem as funcionalidades de servidores que hospedam aplicações acessadas por meio de requisições e respostas.
+Apesar de poderem ser utilizadas para responder qualquer tipo de requisição, os Servlets são geralmente utilizados para extender aplicações hospedadas por servidores Web e, sendo assim, de grande utilidade para este projeto.
 
-% TODO: falar um pouco sobre o histórico de java
+A decisão pela linguagem de programação a ser utilizada nas componentes da aplicação presentes no servidor foi influenciada em grande parte pela decisão do Sistema Gerenciador de Banco de Dados do projeto.
+Como é apresentado na Tabela \ref{tab:bancos}, os principais SGBDs NoSQL existentes são escritos em linguagem Java e, sendo assim, todos estes possuem \emph{bindings} para esta.
+Além disso, os integrantes da equipe possuíam conhecimentos prévios de linguagem Java, assim como construção de Servlets.
+Somando-se estes pontos à extensa documentação fornecida pela linguagem, optou-se por utilizar a linguagem Java nas aplicações do servidor.
 
-% TODO: argumentar a decisão por Java
+Com relação ao cliente Web, foram consideradas duas opções: a primeira seria desenvolver este utilizando a linguagem Java, sob a forma de um Applet Java, enquanto que a segunda seria utilizar apenas utilizar páginas em HTML simples com o auxílio de JavaScript para melhorar a experiência do usuário.
+
+A principal desvantagem de se utilizar Applets Java para a interface do cliente Web é a necessidade do usuário ter uma implementação da máquina virtual Java instalada em seu computador para utilizar o sistema.
+Além disso, devido ao \emph{overhead} imposto pela máquina virtual, os Applets Java tendem a demorar mais tempo para carregar no navegador Web dos usuários, prejudicando a experiência do usuário.
+Sendo assim, esta opção foi descartada pela equipe e optou-se por desenvolver o cliente Web utilizando apenas páginas HTML e JavaScript.
+
+A linguagem JavaScript foi desenvolvida por Brendan Eich durante a década de 90, enquanto trabalhava na Netscape.
+Apesar do nome, a linguagem não possui grande relação com Java, excetuando-se o fato de que aquela foi influenciada por esta em alguns aspectos como, por exemplo, as convenções de nome e a de sintaxe.
+Atualmente, JavaScript é amplamente utilizada para o desenvolvimento de interfaces de usuário para a \emph{Web} e \emph{websites} dinâmicos.
+
+Com o crescimento da demanda por aplicações escritas em JavaScript, uma série de bibliotecas para facilitar o desenvolvimento deste tipo de aplicação surgiu.
+Entre estas destaca-se a biblioteca jQuery que, por ser a mais popular, contém uma extensa documentação e diversas funcionalidades, que vão desde efeitos e animações, até manipulação de folhas de estilo e métodos para comunicação assíncrona com servidores de aplicações Web.
+Por estes motivos, optou-se por utilizar também esta biblioteca para o desenvolvimento do cliente Web.
 
 \subsection{Sistema Gerenciador de Banco de Dados}
+
+% TODO: falar algo do Neo4j spatial
 
 Como citado anteriormente, os SGBDs NoSQL permitem que os dados sejam armazenados de uma forma menos rígida que nos bancos de dados relacionais.
 Por este motivo, os bancos de dados NoSQL apresentam uma grande vantagem com relação aos demais para armazenar e extrair informações rapidamente de bases de dados que possam ser modeladas como grafos. % TODO: citar algo
@@ -146,13 +169,11 @@ A decisão final de qual banco de dados utilizar ficou, portanto, entre o Neo4j 
 Optou-se pelo Neo4j principalmente devido à facilidade de aprendizado da sua \sigla{API}{Application Programming Interface}, que possui uma notação mais concisa e com uma curva de aprendizagem adequada, na opinião da equipe.
 Outro ponto positivo com relação ao Neo4j é que ele é mantido por uma grande comunidade de desenvolvedores desde 2003 e é, portanto, um dos projetos livres pioneiros nesta área.
 
-\subsection{Maven}
+\subsection{Gerenciamento e Automação de Projetos}
 
-\subsection{git}\label{met:git}
+\subsection{Sistema de Controle de Versão}\label{met:git}
 
-\subsection{JUnit}
-
-\subsection{Cobertura}\label{met:Cobertura}
+\subsection{Testes e Cobertura de Código}\label{met:Cobertura}
 
 \section{Considerações}
 
