@@ -171,6 +171,31 @@ Outro ponto positivo com relação ao Neo4j é que ele é mantido por uma grande
 
 \subsection{Gerenciamento e Automação de Projetos}
 
+Tendo em vista a arquitetura em módulos proposta para este projeto, mostrou-se interessante o uso de uma ferramenta capaz de facilitar o processo de \emph{build}, ou seja, compilação e integração dos diferentes módulos da aplicação.
+
+Para tanto, optou-se por utilizar o Apache Maven, o qual é uma ferramenta desenvolvida em linguagem Java para facilitar o gerenciamento de projetos nesta e em outras linguagens de programação.
+
+Entre as principais vantagens de se utilizar o Maven para o gerenciamento de um projeto, estão:
+\begin{itemize}
+	\item Facilita o processo de \emph{build}, compilação e integração dos módulos da aplicação.
+	\item Simplifica a resolução de dependências, permitindo que o desenvolvedor apenas especifique de quais bibliotecas ou módulos o projeto depende, deixando o trabalho de fazer \emph{download} das mesmas e de inserir no \emph{classpath} à cargo do Maven.
+	\item Permite a execução de testes unitários e de integração no projeto antes de construir um pacote do mesmo.
+	\item Facilita o gerenciamento de projetos de grande porte.
+	% TODO: citar mais vantagens
+\end{itemize}
+
+Os projetos gerenciados pelo Apache Maven são descritos através de uma estrutura denominada \sigla{POM}{Project Object Model} (\emph{Project Object Model}).
+Esta estrutura, especificada sob a forma de um documento \sigla{XML}{Extensible Markup Language} denominado \texttt{pom.xml}, fornece à ferramenta todas as informações relativas ao projeto como, por exemplo: o nome do projeto, os desenvolvedores, o tipo de empacotamento utilizado para a aplicação e suas dependências com outros projetos.
+Através do POM também é possível configurar todas as fases do processo de compilação, permitindo especificar até mesmo a versão da linguagem Java que será utilizada para compilação ou evitar que seja gerado um pacote da aplicação quando algum dos testes falhar.
+
+Projetos maiores, como é o caso deste, podem ser divididos em diversos módulos, ou sub-projetos, cada um com o seu próprio POM.
+Um projeto principal (ou raiz) é criado, através do qual é possível compilar todos os demais módulos com um único comando.
+Os POMs dos sub-projetos podem ainda herdar configurações do projeto principal, tornando possível manter uma padronização entre os projetos e sub-projetos da aplicação com facilidade.
+
+Dadas estas características, esta ferramenta mostrou-se ideal para o desenvolvimento deste projeto, tendo em vista a grande variedade de dependências que compõem este, tais como bibliotecas para acesso ao SGBD, serialização e deserialização de dados, assim como os diversos módulos pelos quais a aplicação é composta.
+
+% TODO: talvez seja interessante ampliar essa seção, dando um exemplo de pom.xml, mais detalhes sobre a ferramenta e tal
+
 \subsection{Sistema de Controle de Versão}\label{met:git}
 
 \subsection{Testes e Cobertura de Código}\label{met:Cobertura}
