@@ -6,7 +6,7 @@ Nas subseções a seguir são apresentados os requisitos do sistema bem como o p
 
 \section{Requisitos do Sistema}
 O primeiro passo para o desenvolvimento de qualquer sistema computacional é levantar seus requisitos. 
-A seguir estão listados os requisitos do sistema.
+A seguir estão listados os requisitos funcionais e não-funcionais do sistema proposto.
 
 \subsection{Requisitos Funcionais}
 Os requisitos funcionais visam levantar informações a respeito do sistema proposto quanto às suas funcionalidades, ou seja, é o serviço que se espera fornecer ao usuário final.
@@ -21,7 +21,7 @@ Quanto à interface do sistema:
 \end{itemize}
 
 \subsection{Requisitos Não-Funcionais}
-Os requisitos não-funcionais referem-se a aspectos não-funcionais do sistema, como restrições nas quais o sistema deve operar ou propriedades emergentes do sistema.
+Os requisitos não-funcionais referem-se a aspectos não-funcionais do sistema, como restrições nas quais o sistema deve operar.
 Estes são disponibilizados a seguir.
 
 Quanto a distribuição do software:
@@ -51,7 +51,7 @@ Quanto às ferramentas:
 
 
 \section{Arquitetura do Sistema}
-O sistema em questão é composto de quatro núcleos principais: \emph{Core, GTFS Importer, Web Service} e um Cliente (o qual consiste num \emph{Cliente Web} atualmente). 
+O sistema em questão é composto de quatro núcleos principais: \emph{Core, GTFS Importer, Web Service} e um Cliente. 
 O projeto de fluxo padrão do sistema como um todo é mostrado na figura \ref{fig:arquitetura}.
 
 \begin{figure}[!htb]
@@ -62,17 +62,17 @@ O projeto de fluxo padrão do sistema como um todo é mostrado na figura \ref{fi
 	\label{fig:arquitetura}
 \end{figure}
 
-Primeiramente o usuário informa os pontos de origem e destino para o Cliente marcando-os no mapa disponibilizado ou fornecendo o endereço por extenso nas devidas caixas de texto, juntamente com o horário de partida no formato HH:MM. 
-Feito isso, os dados coletados são enviados ao Web Service através de um HTTP POST. 
-Este é responsável pela execução da query para encontrar a rota contendo o caminho mínimo, sendo o acesso ao banco de dados realizado através dos métodos e entidades contidos no \emph{Core}.
-Ao terminar de executar a query no banco, o \emph{Web Service} responde ao Cliente as informações sobre a rota resultante através de um objeto serializado no formato JSON, sendo estas por fim mostradas para o usuário de duas formas: uma sequência de passos em formato texto e visualmente através do desenho da rota no mapa.
+Primeiramente o usuário informa os pontos de origem e destino para o Cliente marcando-os no mapa disponibilizado ou fornecendo o endereço por extenso nas devidas caixas de texto, juntamente com o horário de partida da origem.
+Feito isso, os dados coletados são enviados ao \emph{Web Service} para que este execute uma busca no banco de dados. 
+Esta busca é realizada através das funcionalidades contidas no \emph{Core} do sistema e tem como objetivo encontrar a rota de caminho mínimo entre os pontos informados.
+Ao terminar de executar a \emph{query} no banco, o \emph{Web Service} responde ao Cliente as informações sobre a rota resultante sendo estas por fim mostradas ao usuário de duas formas: uma sequência de passos em formato texto e um desenho da rota no mapa.
 
-Para que qualquer consulta seja bem sucedida, é necessário que o banco de dados esteja populado com as informações do arquivos no padrão GTFS, população a qual é realizada através do núcleo \emph{GTFS Importer}.
+Para que qualquer consulta seja bem sucedida, é necessário que o banco de dados esteja populado com as informações dos arquivos no padrão GTFS, esta a qual é realizada através do núcleo \emph{GTFS Importer}.
 A seguir uma explicação detalhada de cada módulo do sistema.
 
 \subsection{Core}
 Este módulo foi projetado para conter todas as representações das entidades que compõem o sistema, bem como suas respectivas \emph{factories} e um controle de acesso ao banco de dados.
-O diagrama de projeto do pacote \emph{Core} é mostrado na \ref{fig:core}.
+O diagrama de projeto do pacote \emph{Core} é mostrado na figura \ref{fig:core}.
 
 \begin{figure}[!htb]
 	\centering
@@ -87,26 +87,25 @@ Como se pode observar, o \emph{Core} é composto pelas seguintes entidades espec
 \begin{itemize}
 	\item \textbf{Route}: contém informações a respeito de uma linha de transporte público, tais como o nome da rota, o meio de transporte utilizado, e as \emph{Trips} que a compõem.
 	\item \textbf{Trip}: é uma sequência de duas ou mais entidades \emph{StopTime}, ou seja, dois ou mais pontos de parada de embarque/desembarque que ocorrem em um certo instante de tempo determinado.
-	\item \textbf{Location}: consiste em um ponto de coordenadas geográficas e suas respectivas conexões de entrada e saída com outros pontos.
-	\item \textbf{Stop}: é um tipo de \emph{Location} que consiste em um ponto de parada  de veículos para entrada e saída de passageiros.
+	\item \textbf{Location}: consiste em um ponto de coordenadas geográficas e suas respectivas conexões de entrada e saída.
+	\item \textbf{Stop}: um tipo de \emph{Location} que consiste em um ponto de parada de veículos para entrada e saída de passageiros.
 	\item \textbf{StopTime}: contém informações de horários de partida e chegada de veículos em uma determinada \emph{Stop} pertencente a uma \emph{Trip}.
 	\item \textbf{Connection}: consiste em uma conexão entre dois pontos, contendo informações tais como a distância e o custo de tempo entre a origem e destino. 
-					Uma \emph{Connection} pode ser do tipo \emph{TransportConnection} e \emph{WalkingConnection}, sendo que a primeira consiste em uma conexão entre duas entidades \emph{Stop} e a segunda entre uma \emph{Stop} e uma 								\emph{Location}.
-	\item \textbf{Calendar}: especifica quando determinado serviço de transporte começa e termina, bem como os dias da semana nos quais o serviço está disponível.
+								Uma \emph{Connection} pode ser do tipo \emph{TransportConnection} e \emph{WalkingConnection}, sendo que a primeira consiste em uma 										conexão entre duas entidades \emph{Stop} e a segunda entre uma \emph{Stop} e uma \emph{Location}.
 \end{itemize}
 
 Para a criação no sistema de cada uma destas entidades foi utilizado o conceito de \emph{factories}. 
 Uma \emph{factory} nada mais é que um \emph{design pattern} que consiste em uma interface para a criação de famílias de objetos correlatos ou dependentes.
 Desta forma, optou-se por implementar \emph{factories} para criação de cada entidade presente no \emph{Core}.
 
-Todos estes objetos são armazenados no banco de dados através da classe \emph{DatabaseController}.
+Todas as entidades do módulo em questão são armazenados no banco de dados através da classe \emph{DatabaseController}.
 Esta nada mais é que uma camada de abstração do acesso ao banco, com o objetivo de permitir uma troca do sistema gerenciador de banco de dados rapidamente caso necessário.
 Além disso, é na classe \emph{DatabaseController} que se encontra o algoritmo principal do sistema para encontrar o caminho com tempo de viagem mínimo entre os pontos de origem e destino fornecidos pelo usuário.
 
 
 \subsection{GTFS Importer}
 Módulo responsável pela importação e mapeamento dos arquivos GTFS para o banco de dados. 
-Seu principal objetivo é o de adquirir informações dos arquivos GTFS e, utilizando as \emph{factories} respectivas às entidades do \emph{Core}, mapeá-las no banco de dados para grafos, criando as devidas relações entre as entidades. 
+Seu principal objetivo é o de adquirir informações dos arquivos GTFS e, utilizando as \emph{factories} respectivas às entidades do \emph{Core}, mapeá-las e relacioná-las no banco de dados para grafos.
 Porém, os arquivos do padrão GTFS contém muita informação opcional para o funcionamento do sistema, sendo que muitas destas nem sempre são disponibilizadas. 
 Desta forma, foi definido que o mínimo de informação necessária para o funcionamento do sistema são os campos obrigatórios do padrão GTFS, os quais são citados na tabela \ref{tab:campos_obrigatorios}.
 
@@ -138,16 +137,17 @@ Desta forma, foi definido que o mínimo de informação necessária para o funci
 
 Sem essas informações importadas para o banco de dados o sistema é incapaz de cumprir o objetivo de responder a rota ótima entre dois pontos considerando o tempo de viagem.
 
-
 \subsection{Web Service}
 Este é o módulo responsável por executar a \emph{query} no banco de dados em busca do caminho de tempo de viagem mínimo entre os pontos informados pelo usuário.
 
 Ao receber as informações dos pontos de origem e destino do módulo Cliente, o \emph{Web Service} deve acessar o banco de dados através do \emph{Core}, mais especificamente com a classe \emph{DatabaseController}, e executar uma \emph{query} de busca de caminho mínimo. Feito isso, retorna-se o resultado ao módulo Cliente.
 
 \subsection{Cliente Web}
-Responsável por aquisição de dados de entrada do usuário e encaminhamento dos mesmos ao Web Service. 
-Primeiramente o usuário informa o endereço de origem e destino à interface Cliente, repassando-os em seguida ao \emph{Web Service} para que o mesmo busque o caminho mínimo requisitado.
+Responsável pela aquisição de dados de entrada do usuário e encaminhamento dos mesmos ao \emph{Web Service}.
+Primeiramente o usuário informa o endereço de origem e destino à interface web do Cliente através de um \emph{browser}, repassando-os em seguida ao \emph{Web Service} para que o mesmo busque o caminho mínimo requisitado.
 Ao receber resposta do \emph{Web Service}, o Cliente se responsabiliza de mostrar o resultado desenhando a rota resultante no mapa e descrevendo passo-a-passo as ações a serem tomadas para se chegar ao destino.
 
 \section{Considerações}
-
+%defender as decisões de arquitetura que a gente tomou
+% o projeto proporcionou uma base pro desenvolvimento
+%por exemplo, da forma que a gente estruturou, os componentes do sistema se conectam de forma que é fácil modificar um deles, caso seja necessário
