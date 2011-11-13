@@ -198,6 +198,10 @@ Dadas estas características, esta ferramenta mostrou-se ideal para o desenvolvi
 
 \subsection{Sistema de Controle de Versão}\label{met:git}
 
+% referencias: http://betterexplained.com/articles/a-visual-guide-to-version-control/
+% http://betterexplained.com/articles/intro-to-distributed-version-control-illustrated/
+% http://www.infoq.com/articles/dvcs-guide
+
 O gerenciamento e monitoramento de modificações em documentos, programas e outras informações armazenadas como arquivos de computador é conhecido como controle de versão ou, ainda, controle de revisão.
 
 Durante o processo de desenvolvimento de software, é comum que múltiplas versões de um mesmo software sejam utilizadas em diferentes locais e que os desenvolvedores trabalhem simultaneamente em partes distintas do software.
@@ -208,9 +212,64 @@ Inclusive, muitas vezes é necessário desenvolver duas ou mais versões do mesm
 Enquanto os desenvolvedores poderiam simplesmente manter múltiplas cópias das diferentes versões do projeto no sistema de arquivos, este processo é extremamente ineficiente pois muitas versões praticamente idênticas do \emph{software} teriam que ser mantidas, tornando a tarefa de determinar as modificações entre uma versão e outra difícil, tediosa e sujeita à erros.
 Por este motivo, diversos sistemas para automatizar o processo de controle de versão surgiram.
 
-Tradicionalmente, os sistemas de controle de versão mais cmouns utilizam um modelo centralizado, no qual todas as funções são desempenhadas em um servidor compartilhado por todos os desenvolvedores.
+Tradicionalmente, os sistemas de controle de versão mais comuns utilizam um modelo centralizado, no qual todas as funções são desempenhadas em um servidor compartilhado por todos os desenvolvedores.
 Sistemas como estes vêm sendo utilizados desde a década de 70 e foram considerados padrão na indústria por muitos anos.
 Diversos sistemas de controle de versão livres enquadram-se neste modelo como, por exemplo, o \sigla{CVS}{Concurrent Versions System}, lançado em 1990, e o Subversion, lançado em 2004.
+
+% citar a lista de falhas apontadas por http://www.infoq.com/articles/dvcs-guide
+Apesar de muito utilizados, os sistemas de controle de versão centralizados possuem algumas falhas, entre elas:
+
+\begin{itemize}
+	\item Criar novos \emph{branches} é fácil de ser feito. No entanto, os \emph{merges}, ou mesclagens, não são.
+	\item Ferramentas como o Subversion não possuem um histórico ciente dos \emph{merges}, forçando os usuários a monitorarem manualmente quais \emph{branches} já foram mescladas entre si, tornando o processo sujeito à erros e tedioso.
+	\item Sistemas centralizados não permitem que modificações sejam compartilhadas entre os usuários sem que estas sejam enviadas ao repositório central.
+	\item Algumas ferramentas, como o Subversion, não são capazes de mesclar modificações quando arquivos ou diretórios foram renomeados em um dos \emph{branches}.
+	\item Impossibilidade de fazer \emph{commits} enquanto não há acesso ao servidor central.
+\end{itemize}
+
+Estes problemas são, em grande parte, solucionados pelos modernos sistemas de controle de versão distribuídos (ou \sigla{DVCS}{Distributed Version Control System}, \emph{Distributed Version Control System}).
+% TODO: explicar melhor o que são os DVCS
+
+O primeiro destes sistemas, o BitKeeper, é desenvolvido pela BitMover Inc. e teve sua primeira versão estável disponibilizada para o público em Maio de 2000.
+Este tornou-se muito conhecido quando, em 2002, Linus Torvalds decidiu que esta seria a melhor ferramenta para ser utilizada no desenvolvimento do kernel Linux.
+Até então, Linus aplicava cada \emph{patch} submetido pela comunidade manualmente.
+
+Em Abril de 2005, a BitMover Inc. anunciou que não iria mais fornecer uma versão gratuita do BitKeeper para a comunidade.
+Com isso, apenas os desenvolvedores do Linux que tivessem acesso à uma versão comercial do BitKeeper poderiam ter acesso ao histórico de versões, por exemplo.
+Este evento levou à criação do projeto git, pelo próprio Linus Torvalds, que rapidamente substituiu o BitKeeper como sistema de controle de versão do Linux.
+
+Dada a origem dos sistemas de controle de versão distribuídos, é notável a sua importância para muitos \emph{softwares} livres.
+Devido à sua característica de distribuir e permitir a colaboração de diversas pessoas em um mesmo projeto com facilidade, estes sistemas são amplamente utilizados pela grande maioria dos projetos livres.
+
+Tendo em vista que este projeto tem como objetivo o desenvolvimento de um software livre, que esteja aberto para futuras contribuições de terceiros, optou-se por utilizar um DVCS para o controle de versão do código.
+
+Apesar de outras ferramentas livres existirem, como o Mercurial, o Bazaar e o darcs, a equipe decidiu utilizar o git como sistema de controle de versão.
+Os principais motivos pelos quais a equipe optou por este sistema foram:
+
+\begin{itemize}
+	\item Todos os membros da equipe já tinham experiência com esta ferramenta, proveniente de projetos anteriores.
+	\item É especialmente popular entre projetos de \emph{software} livre, sendo utilizado por vários projetos como Ruby on Rails, WINE, X.org e até mesmo o sistema operacional para dispositivos móveis Android.
+	\item Existência de vários \emph{sites} para hospedagem gratuita de projetos de \emph{software} livre na Internet que suportam o git como sistema de controle de versão, tais como o popular GitHub, Gitorious, SourceForge, Google Code e Bitbucket.
+\end{itemize}
+
+\subsubsection{Hospedagem do Repositório}
+
+% TODO: citar o Git User's Survey 2009
+De acordo com uma pesquisa realizada entre os usuários do git em 2009, o \emph{site} de hospedagem de repositórios git mais popular é o GitHub.
+Atualmente, o serviço conta com mais de um milhão de usuários e dois milhões de projetos hospedados.
+
+Diversas características destacam o GitHub com relação aos demais serviços de hospedagem, entre as principais estão as suas ferramentas para gerência de projeto:
+
+\begin{itemize}
+	\item É possível criar vários times com diferentes tipos de permissões para trabalhar em determinados repositórios, facilitando o controle de quais usuários podem fazer alterações em cada projeto.
+	\item Todos os repositórios hospedados no GitHub possuem um sistema de \emph{bug tracking}, o que permite que os desenvolvedores mantenham uma lista dos \emph{bugs} a serem corrigidos, assim como das funcionalidades a serem implementadas.
+Este sistema ainda permite a criação e manutenção de \emph{milestones}, tornando-o compatível com a estratégia proposta para o desenvolvimento do software.
+	\item O sistema permite que os desenvolvedores façam comentários nos \emph{commits} feitos no repositório ou, até mesmo, em linhas de código.
+Esta característica é extremamente importante para o processo de revisão de código, tornando possível com que os membros da equipe, ou até mesmo contribuidores da comunidade, discutam sobre as decisões tomadas diretamente em cima do código.
+\end{itemize}
+
+Aliando-se estas características com a popularidade do GitHub, o que poderá auxiliar o projeto a encontrar colaboradores e dar mais visibilidade ao mesmo, a equipe optou por utilizar o GitHub como \emph{site} para hospedar o desenvolvimento do \emph{software}.
+
 
 \subsection{Testes e Cobertura de Código}\label{met:Cobertura}
 
