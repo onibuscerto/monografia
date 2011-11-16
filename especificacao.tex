@@ -28,6 +28,7 @@ Quanto a distribuição do software:
 \begin{itemize}
 	\item O software deverá ser disponibilizado como livre, possibilitando futuras contribuições.
 	\item O software deverá ser disponibilizado no formato de um serviço web.
+	\item O software 
 \end{itemize}
 
 Quanto à fonte de dados:
@@ -91,7 +92,7 @@ Como se pode observar, o \emph{Core} é composto pelas seguintes entidades espec
 	\item \textbf{Stop}: um tipo de \emph{Location} que consiste em um ponto de parada de veículos para entrada e saída de passageiros.
 	\item \textbf{StopTime}: contém informações de horários de partida e chegada de veículos em uma determinada \emph{Stop} pertencente a uma \emph{Trip}.
 	\item \textbf{Connection}: consiste em uma conexão entre dois pontos, contendo informações tais como a distância e o custo de tempo entre a origem e destino. 
-								Uma \emph{Connection} pode ser do tipo \emph{TransportConnection} e \emph{WalkingConnection}, sendo que a primeira consiste em uma 										conexão entre duas entidades \emph{Stop} e a segunda entre uma \emph{Stop} e uma \emph{Location}.
+	Uma \emph{Connection} pode ser do tipo \emph{TransportConnection} e \emph{WalkingConnection}, sendo que a primeira consiste em uma conexão entre duas entidades \emph{Stop} e a segunda entre uma \emph{Stop} e uma \emph{Location}.
 \end{itemize}
 
 Para a criação no sistema de cada uma destas entidades foi utilizado o conceito de \emph{factories}. 
@@ -103,7 +104,7 @@ Esta nada mais é que uma camada de abstração do acesso ao banco, com o objeti
 Além disso, é na classe \emph{DatabaseController} que se encontra o algoritmo principal do sistema para encontrar o caminho com tempo de viagem mínimo entre os pontos de origem e destino fornecidos pelo usuário.
 
 
-\subsection{GTFS Importer}
+\subsection{Importer}
 Módulo responsável pela importação e mapeamento dos arquivos GTFS para o banco de dados. 
 Seu principal objetivo é o de adquirir informações dos arquivos GTFS e, utilizando as \emph{factories} respectivas às entidades do \emph{Core}, mapeá-las e relacioná-las no banco de dados para grafos.
 Porém, os arquivos do padrão GTFS contém muita informação opcional para o funcionamento do sistema, sendo que muitas destas nem sempre são disponibilizadas. 
@@ -139,15 +140,34 @@ Sem essas informações importadas para o banco de dados o sistema é incapaz de
 
 \subsection{Web Service}
 Este é o módulo responsável por executar a \emph{query} no banco de dados em busca do caminho de tempo de viagem mínimo entre os pontos informados pelo usuário.
-
-Ao receber as informações dos pontos de origem e destino do módulo Cliente, o \emph{Web Service} deve acessar o banco de dados através do \emph{Core}, mais especificamente com a classe \emph{DatabaseController}, e executar uma \emph{query} de busca de caminho mínimo. Feito isso, retorna-se o resultado ao módulo Cliente.
-
+ 
+Ao receber as coordenadas geográficas dos pontos de origem e destino do módulo Cliente, o \emph{Web Service} primeiramente cria os respectivos nós de origem e destinho no grafo através do \emph{Core}, mais especificamente com a classe \emph{DatabaseController}.
+Estes nós são então conectados aos diversos pontos de parada de veículos com o custo de tempo baseado na distância e velocidade de caminhada, sendo a última uma constante definida em \emph{Constants}.
+ 
+Com os pontos presentes no grafo, o \emph{Web Service} executa uma \emph{query} de busca de caminho mínimo. Feito isso, os pontos de origem e destino são descartados do grafo e retorna-se o resultado ao módulo Cliente.
+ 
 \subsection{Cliente Web}
 Responsável pela aquisição de dados de entrada do usuário e encaminhamento dos mesmos ao \emph{Web Service}.
-Primeiramente o usuário informa o endereço de origem e destino à interface web do Cliente através de um \emph{browser}, repassando-os em seguida ao \emph{Web Service} para que o mesmo busque o caminho mínimo requisitado.
-Ao receber resposta do \emph{Web Service}, o Cliente se responsabiliza de mostrar o resultado desenhando a rota resultante no mapa e descrevendo passo-a-passo as ações a serem tomadas para se chegar ao destino.
-
+Primeiramente o usuário informa o endereço de origem e destino à interface web do Cliente através de um \emph{browser}, sendo que estes são repassados em seguida ao \emph{Web Service} no formato de coordenadas geográficas, para que o mesmo busque o caminho mínimo requisitado.
+É necessária uma conexão com a internet para que a busca seja realizada, já que o funcionamento do sistema baseia-se num \emph{Web Service}.
+ 
+Ao receber resposta do \emph{Web Service}, o Cliente se responsabiliza de mostrar o resultado desenhando a rota resultante no mapa através das coordenadas geográficas dos pontos e descrevendo passo-a-passo as ações a serem tomadas para se chegar ao destino.
+ 
 \section{Considerações}
-%defender as decisões de arquitetura que a gente tomou
-% o projeto proporcionou uma base pro desenvolvimento
-%por exemplo, da forma que a gente estruturou, os componentes do sistema se conectam de forma que é fácil modificar um deles, caso seja necessário
+Neste projeto do sistema procurou-se modularizar ao máximo seus componentes, de tal forma que se caso surjam modificações seja rápido e fácil de implementá-las.
+Cada um dos módulos foi idealizado com base na sua funcionalidade principal visando minimizar o grau de dependência entre os mesmos, o que facilita futuros reaproveitamentos de código, contribuições ao projeto, e a própria divisão de trabalho entre os integrantes da equipe.
+
+Em suma, os seguintes módulos foram definidos no projeto:
+\begin{itemize}
+	\item O \emph{Core} tem como objetivo definir todas as entidades e relações a serem armazenadas no banco de dados, bem como interfacear o acesso do sistema ao mesmo.
+			Cada uma destas entidades possui sua respectiva \emph{factory}, centralizando desta forma sua criação no sistema por tipo de entidade.
+			Já o interfaceamento com o banco de dados é realizado pela classe \emph{DatabaseController} e tem como objetivo tornar o sistema flexível quanto ao SGBD utilizado.
+
+	\item O \emph{Importer} consiste basicamente em importar todas as entidades dos arquivos GTFS ao banco de dados através das funcionalidades contidas no \emph{Core}.
+	\item O Cliente consiste na interface com o usuário, ou seja, coleta de informação e mostra de informações a respeito da rota resultante.
+	Buscou-se flexibilizar a conexão entre o sistema e o Cliente, para que futuramente sejam desenvolvidos diferentes tipos de clientes, como por exemplo para dispositivos móveis.
+	\item O \emph{Web Service} é o responsável por, com os dados fornecidos vindos do Cliente, calcular a rota de caminho mínimo através das funcionalidades do \emph{Core}.
+\end{itemize}
+
+O projeto da arquitetura do sistema tornou-se uma excelente base para o processo de implementação.
+Com o mesmo foi definido detalhadamente os requisitos necessários e o que tinha que ser feito para se ter um sistema funcional, bastando somente buscar a maneira mais propícia para desenvolver o que foi idealizado.
