@@ -4,6 +4,8 @@
 
 % TODO: devemos falar da IDE usada? e do Jetty?
 % TODO: falar sobre convenções de estilo de código?
+% TODO: talvez falar um pouco sobre integração contínua em algum canto:
+% http://en.wikipedia.org/wiki/Continuous_integration
 
 \section{Estratégia de Desenvolvimento do Software}
 
@@ -272,6 +274,31 @@ Aliando-se estas características com a popularidade do GitHub, o que poderá au
 
 
 \subsection{Testes e Cobertura de Código}\label{met:Cobertura}
+
+Existem vários \emph{frameworks} para desenvolvimento de testes unitários e de integração para a linguagem Java.
+Entre estes, estão o JTiger, desenvolvido por Tony Morris, o TestNG, desenvolvido por Cedric Beust e Alexandru Popescu, e o mais conhecido dos três, JUnit, desenvolvido por Erich Gamma e Kent Beck.
+
+O JUnit é um dos mais antigos e populares \emph{frameworks} disponíveis para a linguagem Java, sendo conhecido pela grande maioria dos programadores que trabalham com esta.
+Apesar de ter sido originalmente criado para testar código escrito em Java, diversas extensões do JUnit estão disponíveis para permitir que testes sejam escritos para praticamente qualquer componente de um sistema, desde arquivos XML até código em JavaScript.
+
+% TODO: colocar a figura dos testes sendo rodados e citar no texto
+
+Tendo em vista que a compatibilidade do Maven com o JUnit, a popularidade e a familiaridade dos membros da equipe com este, o \emph{framework} foi escolhido como ferramenta para desenvolvimento dos casos de teste.
+
+O uso de uma ferramenta que permita analisar qual a porcentagem de código-fonte do sistema que é coberta pelos testes escritos mostrou-se necessário.
+Para tanto, a equipe optou pela ferramenta Cobertura, devido às seguintes características da mesma:
+
+\begin{itemize}
+	\item Integração com o Maven através de um \emph{plugin}.
+	\item Geração de relatórios em HTML ou XML.
+	\item Apresenta nos relatórios a porcentagem de linhas e ramificações cobertas para cada classe, pacote e para o projeto como um todo.
+	\item Calcula a complexidade ciclomática de cada classe, assim como a complexidade ciclomática média para cada pacote e para o projeto.
+\end{itemize}
+
+Os relatórios gerados por esta ferramenta são de grande importância para identificar com facilidade quais partes do \emph{software} não possuem testes.
+Um exemplo de relatório desta ferramenta é apresentado na Figura X.
+
+% TODO: colocar uma figura do relatório gerado e citar no texto
 
 \section{Considerações}
 
