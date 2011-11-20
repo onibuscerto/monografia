@@ -8,9 +8,15 @@
 % TODO: talvez falar um pouco sobre integração contínua em algum canto:
 % http://en.wikipedia.org/wiki/Continuous_integration
 
-\section{Estratégia de Desenvolvimento do Software}
+Com a especificação e uma arquitetura inicial do \emph{software} já estabelecidas, o passo seguinte foi dar início à fase de implementação do produto.
+Antes de dar início a esta é necessário definir o processo que será utilizado durante a codificação, como será feita a alocação de tarefas entre os membros da equipe, a definição de metas, assim como qual o processo utilizado para garantir a qualidade do sistema que está sendo desenvolvido.
 
-Tendo em vista que a equipe foi composta por apenas três integrantes, foi adotada uma estratégia de desenvolvimento de software inspirada nos Métodos Ágeis, prezando mais pela simplicidade e por um software funcional do que uma documentação extensa.
+Este capítulo é dividido em duas seções principais: a primeira procura descrever o processo de desenvolvimento de \emph{software} estabelecido pela equipe, enquanto que a segunda apresenta as ferramentas utilizadas durante a fase de implementação.
+
+
+\section{Processo de Desenvolvimento do Software}
+
+Tendo em vista que a equipe foi composta por apenas três integrantes, foi adotado um processo de desenvolvimento de software inspirado:nos Métodos Ágeis, prezando mais pela simplicidade e por um software funcional do que uma documentação extensa.
 
 Para garantir a funcionalidade do software, foram periodicamente estabelecidas \emph{milestones} (ou metas) através de reuniões da equipe, cada uma destas correspondendo à uma funcionalidade específica do software.
 Além disso, estas reuniões eram utilizadas para analisar a qualidade do código que havia sido escrito até então, em um processo chamado de \emph{code review} (ou revisão de código), bem como o cumprimento das \emph{milestones} previamente estabelecidas.
@@ -19,6 +25,7 @@ Ao estabelecer novas metas, cada integrante da equipe se responsabilizava por um
 Para assegurar a qualidade do código escrito, foram utilizadas, além do processo de \emph{code review}, ferramentas de desenvolvimento orientado à testes e de cobertura dos testes, as quais são discutidas em maiores detalhes na seção a seguir.
 
 \subsection{Desenvolvimento Orientado à Testes}
+% TODO: D'OH! *à* testes? seriously, wtf?
 
 Para reforçar a idéia de qualidade do código do software, minimizar os \emph{bugs} e manter a simplicidade do código, optou-se por utilizar uma adaptação do processo de desenvolvimento de software orientado à testes.
 
@@ -74,6 +81,8 @@ Para o processo de revisão de código, foi utilizado o serviço de hospedagem d
 \section{Ferramentas Utilizadas}
 
 % TODO: escrever uma breve introdução da seção
+Durante a codificação, diversas ferramentas mostraram-se necessárias.
+% TODO: OH CRAP, faltou tempo nesse tomate
 
 \subsection{Linguagens de Programação}
 
@@ -266,7 +275,7 @@ Diversas características destacam o GitHub com relação aos demais serviços d
 \begin{itemize}
 	\item É possível criar vários times com diferentes tipos de permissões para trabalhar em determinados repositórios, facilitando o controle de quais usuários podem fazer alterações em cada projeto.
 	\item Todos os repositórios hospedados no GitHub possuem um sistema de \emph{bug tracking}, o que permite que os desenvolvedores mantenham uma lista dos \emph{bugs} a serem corrigidos, assim como das funcionalidades a serem implementadas.
-Este sistema ainda permite a criação e manutenção de \emph{milestones}, tornando-o compatível com a estratégia proposta para o desenvolvimento do software.
+Este sistema ainda permite a criação e manutenção de \emph{milestones}, tornando-o compatível com o processo proposto para o desenvolvimento do software.
 	\item O sistema permite que os desenvolvedores façam comentários nos \emph{commits} feitos no repositório ou, até mesmo, em linhas de código.
 Esta característica é extremamente importante para o processo de revisão de código, tornando possível com que os membros da equipe, ou até mesmo contribuidores da comunidade, discutam sobre as decisões tomadas diretamente em cima do código.
 \end{itemize}
