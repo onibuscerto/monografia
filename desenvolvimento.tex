@@ -3,18 +3,26 @@
 \label{chap:desenv}
 
 Utilizando a metodologia e o projeto do sistema apresentados nos capítulos \ref{metod} e \ref{specs}, respectivamente, inicou-se o desenvolvimento efetivo do sistema.
-Primeiramente foram configurados o ambiente de desenvolvimento Netbeans juntamente com a ferramenta de gerenciamento de projetos e dependências Maven.
-Feito isso, deu-se início a implementação dos módulos \emph{Core}, \emph{Importer}, \emph{Web Service} e Cliente.
+Primeiramente foi criado um projeto Maven principal denominado \texttt{onibuscerto}, o qual foi dividido em quatro subprojetos: 
+\begin{itemize}
+	\item \texttt{onibuscerto-api}: contém a classe que representa coordenadas geográficas e o objeto resposta contendo informações da rota ao Cliente.
+	\item \texttt{onibuscerto-core}: consiste no módulo \emph{Core} definido no projeto do software (seção \ref{specs}). 
+	Contém as representações das entidades originárias dos arquivos GTFS e faz interface do sistema com o banco de dados.
+	\item \texttt{onibuscerto-importer}: consiste no módulo \emph{Importer} definido no projeto do software (seção \ref{specs}).
+	Responsável pela importação dos dados contidos nos arquivos GTFS para o sistema através das funcionalidades do \emph{Core}.
+	\item \texttt{onibuscerto-service}: consiste nos módulos \emph{Web Service} e Cliente definidos na seção \ref{specs}. 
+	Pretende-se futuramente separar este subprojeto em dois outros distintos representando tais módulos.
+\end{itemize}
 
-%wrappers Neo4j
-
-Nas subseções a seguir serão descritos detalhes a respeito da implementação de cada módulo.
+Nas subseções a seguir serão descritos detalhes a respeito da implementação de cada subprojeto.
 
 \section{Configuração do ambiente de desenvolvimento}
 
-\section{Core}
+\section{onibuscerto-core}
 O \emph{Core} foi organizado de tal forma que todas as suas entidades com dados originários dos arquivos GTFS possuam suas respectivas \emph{factories}.
 Desta forma, toda criação de entidades é realizada através de uma \emph{factory}, centralizando este processo a somente uma classe por entidade.
+
+%wrappers Neo4j
 
 \subsection{Location}
 
@@ -31,10 +39,8 @@ Desta forma, toda criação de entidades é realizada através de uma \emph{fact
 \subsection{DatabaseController}
 
 
-\section{Importer}
+\section{onibuscerto-importer}
 
-\section{Web Service}
-
-\section{Cliente}
+\section{onibuscerto-service}
 
 \section{Considerações}
