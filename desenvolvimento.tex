@@ -2,9 +2,34 @@
 \chapter{Desenvolvimento do Software}
 \label{chap:desenv}
 
+Utilizando a metodologia e o projeto do sistema apresentados nos capítulos \ref{metod} e \ref{specs}, respectivamente, inicou-se o desenvolvimento efetivo do sistema.
+Primeiramente foram configurados o ambiente de desenvolvimento Netbeans juntamente com a ferramenta de gerenciamento de projetos e dependências Maven.
+Feito isso, deu-se início a implementação dos módulos \emph{Core}, \emph{Importer}, \emph{Web Service} e Cliente.
+
+%wrappers Neo4j
+
+Nas subseções a seguir serão descritos detalhes a respeito da implementação de cada módulo.
+
 \section{Configuração do ambiente de desenvolvimento}
 
 \section{Core}
+O \emph{Core} foi organizado de tal forma que todas as suas entidades com dados originários dos arquivos GTFS possuam suas respectivas \emph{factories}.
+Desta forma, toda criação de entidades é realizada através de uma \emph{factory}, centralizando este processo a somente uma classe por entidade.
+
+\subsection{Location}
+
+\subsection{Stop}
+
+\subsection{Route}
+
+\subsection{Trip}
+
+\subsection{StopTime}
+
+\subsection{Connection}
+
+\subsection{DatabaseController}
+
 
 \section{Importer}
 
