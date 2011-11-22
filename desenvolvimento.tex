@@ -19,22 +19,45 @@ Nas subseções a seguir serão descritos detalhes a respeito da implementação
 \section{Configuração do ambiente de desenvolvimento}
 
 \section{onibuscerto-core}
-O \emph{Core} foi organizado de tal forma que todas as suas entidades com dados originários dos arquivos GTFS possuam suas respectivas \emph{factories}.
+
+O \emph{Core} consiste basicamente na interface do sistema com o banco de dados, contendo portanto as representações das entidades originárias dos arquivos GTFS.
+Estas representações nada mais são do que classes no sistema que são responsáveis pelo encapsulamento das entidades do banco de dados.
+Cada uma destas classes foi implementada com o intuito de referenciar um nó ou aresta do grafo armazenado. 
+
+O \emph{Core} foi organizado de tal forma que todas as suas classes de entidades possuam suas respectivas \emph{factories}.
+Como já comentado, \emph{factory} consiste em uma interface com o objetivo de criação de famílias de objetos dependentes ou correlacionados.
 Desta forma, toda criação de entidades é realizada através de uma \emph{factory}, centralizando este processo a somente uma classe por entidade.
 
+Cada \emph{factory} é armazenada no banco de dados como um nó de referência, o qual possui uma relação para cada nó de sua respectiva entidade.
+Esta organização das \emph{factories} no grafo pode ser observada na figura \ref{fig:grafoFactory}.
+
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[width=0.7\textwidth]{./grafoFactory.png}
+	\caption[Arquitetura do sistema]{Visão geral da organização das \emph{factories} do grafo.}
+	\fonte{Autoria Própria}
+	\label{fig:grafoFactory}
+\end{figure}
+
+
 %wrappers Neo4j
+%entidades do banco de dados sao encapsuladas em classes no sistema, sendo que cada uma contem uma referencia a um nó ou uma aresta.
+%essas entidades abstraem o acesso ao banco de dados, se precisar mudar é só mudar as factories.
 
-\subsection{Location}
+\subsection{Entidades}
 
-\subsection{Stop}
+\subsubsection{Location}
 
-\subsection{Route}
+\subsubsection{Stop}
 
-\subsection{Trip}
+\subsubsection{Route}
 
-\subsection{StopTime}
+\subsubsection{Trip}
 
-\subsection{Connection}
+\subsubsection{StopTime}
+
+\subsubsection{Connection}
+
 
 \subsection{DatabaseController}
 
