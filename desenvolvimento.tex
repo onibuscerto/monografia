@@ -24,6 +24,7 @@ Desta forma, toda criação de entidades é realizada através de uma \emph{fact
 
 %wrappers Neo4j
 
+
 \subsection{Location}
 
 \subsection{Stop}
@@ -42,5 +43,24 @@ Desta forma, toda criação de entidades é realizada através de uma \emph{fact
 \section{onibuscerto-importer}
 
 \section{onibuscerto-service}
+
+O subprojeto \texttt{onibuscerto-service} é onde encontram-se os Servlets responsáveis por executar consultas na base de dados construída pelo \emph{Importer}.
+Os Servlets funcionam sob a forma de \emph{web services} e, sendo assim, todas as consultas são requisitadas pelos clientes através de requisições \sigla{HTTP}{Hypertext Transfer Protocol} do tipo GET ou POST.
+As implementações dos Servlets residem no pacote \texttt{com.onibuscerto.service.servlets}.
+
+Atualmente, apenas consultas que determinam a rota com o menor tempo de viagem entre duas coordenadas geográficas estão implementadas.
+O Servlet responsável por executar esse tipo de consulta está implementado na classe \texttt{RouteServlet}.
+No início do seu ciclo de vida, este Servlet é responsável por obter uma instância da classe \texttt{DatabaseController} do \emph{Core}, a qual será utilizada para acessar o banco de dados e resolver as consultas.
+Em seguida, assim como um Servlet comum, este muda para um estado no qual está disponível para atender requisições dos clientes.
+Por fim, ao ser destruído, o \texttt{RouteServlet} deve chamar o método \texttt{close} do \texttt{DatabaseController}, com o objetivo de fechar a conexão com o banco de dados.
+O ciclo de vida completo do Servlet é ilustrado na Figura \ref{fig:servletciclo}.
+
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[width=0.4\textwidth]{./servletciclo.png}
+	\caption[Ciclo de vida de um Servlet]{Ciclo de vida de um Servlet}
+	\fonte{\citeonline{infocenter}}
+	\label{fig:servletciclo}
+\end{figure}
 
 \section{Considerações}
