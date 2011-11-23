@@ -21,14 +21,14 @@ Nas subseções a seguir serão descritos detalhes a respeito da implementação
 \section{onibuscerto-core}
 
 O \emph{Core} consiste basicamente na interface do sistema com o banco de dados, contendo portanto as representações das entidades originárias dos arquivos GTFS.
-Estas representações nada mais são do que classes no sistema que são responsáveis pelo encapsulamento das entidades do banco de dados.
-Cada uma destas classes foi implementada com o intuito de referenciar um nó ou aresta do grafo armazenado. 
+Estas representações nada mais são do que \emph{wrappers}, ou seja, classes no sistema que são responsáveis pelo encapsulamento das entidades do banco de dados.
+Cada uma destas classes é implementação de uma respectiva interface, e tem o intuito de referenciar um nó ou aresta do grafo armazenado.
 
 O \emph{Core} foi organizado de tal forma que todas as suas classes de entidades possuam suas respectivas \emph{factories}.
 Como já comentado, \emph{factory} consiste em uma interface com o objetivo de criação de famílias de objetos dependentes ou correlacionados.
 Desta forma, toda criação de entidades é realizada através de uma \emph{factory}, centralizando este processo a somente uma classe por entidade.
 
-Cada \emph{factory} é armazenada no banco de dados como um nó de referência, o qual possui uma relação para cada nó de sua respectiva entidade.
+Cada \emph{factory} de entidade pertencente ao arquivo GTFS é armazenada no banco de dados como um nó de referência, o qual possui uma relação para cada nó de sua respectiva entidade.
 Esta organização das \emph{factories} no grafo pode ser observada na figura \ref{fig:grafoFactory}.
 
 \begin{figure}[!htb]
@@ -39,14 +39,14 @@ Esta organização das \emph{factories} no grafo pode ser observada na figura \r
 	\label{fig:grafoFactory}
 \end{figure}
 
-A partir do nó de referência do grafo tem-se relações às \emph{factories} de todas as entidades (relação [Entidades n]), sendo que estas tem relações a cada nó de seu tipo entidade (relação [Entidade n]).
+A partir do nó de referência do grafo tem-se relações às \emph{factories} de todas as entidades (relação no formato [Entidades X]), sendo que estas tem relações a cada nó de seu tipo entidade (relação no formato [Entidade X]).
+Com estas relações, a \emph{factory} pode ser utilizada para acessar todas as entidades do mesmo tipo, bastando percorrer o grafo.
 
-
-%wrappers Neo4j
-%entidades do banco de dados sao encapsuladas em classes no sistema, sendo que cada uma contem uma referencia a um nó ou uma aresta.
-%essas entidades abstraem o acesso ao banco de dados, se precisar mudar é só mudar as factories.
+O uso deste tipo de arquitetura torna o sistema flexível quanto ao SGBD, sendo que se necessária alguma modificação basta atualizar as \emph{factories} de acordo com o novo banco de dados. 
+A seguir serão descritas todas as entidades pertencentes ao sistema, bem como a classe responsável pela interface com o banco de dados.
 
 \subsection{Entidades}
+Nesta seção serão descritos detalhes de implementação das classes que encapsulam as entidades, as quais em conjunto formam o grafo armazenado no banco de dados do sistema.
 
 \subsubsection{Location}
 
