@@ -46,9 +46,26 @@ O uso deste tipo de arquitetura torna o sistema flexível quanto ao SGBD, sendo 
 A seguir serão descritas todas as entidades pertencentes ao sistema, bem como a classe responsável pela interface com o banco de dados.
 
 \subsection{Entidades}
-Nesta seção serão descritos detalhes de implementação das classes que encapsulam as entidades, as quais em conjunto formam o grafo armazenado no banco de dados do sistema.
+As entidades que compõem o \emph{Core}, juntamente com suas \emph{factories}, são representadas através de interfaces e suas respectivas implementações por meio de classes no sistema.
+As interfaces que representam as entidades e suas \emph{factories} pertencem ao pacote \texttt{com.onibuscerto.core.entities} e \texttt{com.onibuscerto.core.factories}, respectivamente.
+Já as implementações das mesmas estão localizadas no pacote \texttt{com.onibuscerto.core}.
+
+A seguir serão descritos detalhes de implementação das classes que encapsulam as entidades, as quais em conjunto formam o grafo armazenado no banco de dados do sistema.
 
 \subsubsection{Location}
+Entidade responsável principalmente por representar pontos através de coordenadas geográficas, bem como suas conexões com outros pontos.
+Contém basicamente em quatro atributos: latitude, longitude, coleção de conexões chegando e saindo da \emph{Location}.
+Estas propriedades são armazenadas no próprio nó do grafo através de pares chave/valor, sendo estas disponíveis para futuras consultas.
+
+A \emph{factory} assignada a esta entidade denomina-se \emph{LocationFactory} e tem as funcionalidades de:
+\begin{itemize}
+	\item criar todas as entidades do tipo \emph{Location}, inclusive  suas extensões, como é o caso da entidade \emph{Stop} descrita na subseção a seguir.
+	\item retornar todas as \emph{Stops} do sistema.
+	\item retornar uma determinada \emph{Stop} com base em sua ID.
+\end{itemize}
+
+Esta entidade é utilizada principalmente para demarcar os pontos de origem e destino fornecidos pelo usuário que não consistem em uma parada para embarque e desembarque de passageiros.
+Esta demarcação é importante para que estes pontos sejam adicionados ao grafo, desta forma contribuindo para um melhor refinamento na busca da rota com tempo de viagem mínimo.
 
 \subsubsection{Stop}
 
