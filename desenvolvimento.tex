@@ -123,4 +123,9 @@ Ao receber estes parâmetros, o \texttt{RouteServlet} executa os seguintes passo
 	\item Serializa o objeto \texttt{Collection<QueryResponseConnection>} para uma \emph{string} no formato \sigla{JSON}{JavaScript Object Notation}, o qual será finalmente enviado para o cliente do usuário.
 \end{enumerate}
 
+Tendo o funcionamento do \texttt{RouteServlet} em vista, a aplicação cliente é responsável apenas por enviar uma requisição HTTP POST para o serviço com os parâmetros no formato especificado e, por fim, interpretar os resultados retornados pelo servidor.
+Uma pequena aplicação de exemplo que executa consultas no \emph{Service}, escrita em linguagem Python, é apresentada no Apêndice \ref{ape:exemplodeuso}.
+
+\subsection{Cliente Web}
+
 \section{Considerações}
