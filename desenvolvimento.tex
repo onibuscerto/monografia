@@ -46,28 +46,60 @@ O uso deste tipo de arquitetura torna o sistema flexível quanto ao SGBD, sendo 
 A seguir serão descritas todas as entidades pertencentes ao sistema, bem como a classe responsável pela interface com o banco de dados.
 
 \subsection{Entidades}
-As entidades que compõem o \emph{Core}, juntamente com suas \emph{factories}, são representadas através de interfaces e suas respectivas implementações por meio de classes no sistema.
-As interfaces que representam as entidades e suas \emph{factories} pertencem ao pacote \texttt{com.onibuscerto.core.entities} e \texttt{com.onibuscerto.core.factories}, respectivamente.
-Já as implementações das mesmas estão localizadas no pacote \texttt{com.onibuscerto.core}.
+As entidades que compõem o \emph{Core}, juntamente com suas \emph{factories}, são representadas através de interfaces e suas respectivas implementações por meio de classes no sistema. 
+Desta forma toda entidade é representada no sistema através de duas interfaces e suas respectivas implementações, as quais obedecem o seguinte padrão de nomenclatura e localização (nesse contexto, \texttt{Entidade} consiste em uma representação genérica de qualquer tipo de entidade presente no sistema):
+\begin{itemize}
+	\item \texttt{Entidade}: interface da entidade do tipo \texttt{Entidade}.
+		  Este tipo de representação é localizado no pacote \texttt{com.onibuscerto.core.entities}.
+	\item \texttt{EntidadeFactory}: interface referente a \emph{factory} da \texttt{Entidade}.
+		  Todas as interfaces de \emph{factories} estão localizadas no pacote \texttt{com.onibuscerto.core.factories} do subprojeto \texttt{onibuscerto-core}.
+	\item \texttt{EntidadeImpl}: implementação da interface \texttt{Entidade}.
+		  Todos estas implementações estão disponibilizados no pacote \texttt{com.onibuscerto.core}.
+	\item \texttt{EntidadeFactoryImpl}: implementação da \emph{factory} da entidade de nome \texttt{Entidade}.
+		  Estas implementações estão disponibilizadas no pacote \texttt{com.onibuscerto.core}.
+\end{itemize}
+
+Cada entidade do sistema possui suas respectivas propriedades, as quais são armazenadas no próprio nó ou aresta do grafo (dependendo de como a entidade foi armazenada no banco de dados) através de pares chave/valor, sendo estas disponíveis para futuras consultas.
+
+%As interfaces que representam as entidades e suas \emph{factories} pertencem ao pacote \texttt{com.onibuscerto.core.entities} e %\texttt{com.onibuscerto.core.factories}, respectivamente.
+%Já as implementações das mesmas estão localizadas no pacote \texttt{com.onibuscerto.core}.
 
 A seguir serão descritos detalhes de implementação das classes que encapsulam as entidades, as quais em conjunto formam o grafo armazenado no banco de dados do sistema.
 
 \subsubsection{Location}
 Entidade responsável principalmente por representar pontos através de coordenadas geográficas, bem como suas conexões com outros pontos.
-Contém basicamente em quatro atributos: latitude, longitude, coleção de conexões chegando e saindo da \emph{Location}.
-Estas propriedades são armazenadas no próprio nó do grafo através de pares chave/valor, sendo estas disponíveis para futuras consultas.
+Contém basicamente em quatro atributos: 
 
-A \emph{factory} assignada a esta entidade denomina-se \emph{LocationFactory} e tem as funcionalidades de:
 \begin{itemize}
-	\item criar todas as entidades do tipo \emph{Location}, inclusive  suas extensões, como é o caso da entidade \emph{Stop} descrita na subseção a seguir.
-	\item retornar todas as \emph{Stops} do sistema.
-	\item retornar uma determinada \emph{Stop} com base em sua ID.
+	\item \texttt{latitude}: latitude do ponto \emph{Location} em questão.
+	\item \texttt{longitude}: longitude do ponto \emph{Location} em questão.
+	\item \texttt{outgoingConnections}: coleção de conexões de entrada da \emph{Location}, representadas pela entidade do tipo \emph{Connection} (ver seção 					  \ref{conn}).
+	\item \texttt{incomingConnections}: coleção de conexões de saida da \emph{Location}, também representadas pela entidade do tipo \emph{Connection} (ver seção 			  	  \ref{conn}).
 \end{itemize}
+
+A \emph{factory} assignada a esta entidade denomina-se \emph{LocationFactory} e, para este tipo de entidade, tem a funcionalidade de criar todas as entidades do tipo \emph{Location}, inclusive  suas extensões, como é o caso da entidade \emph{Stop} descrita na subseção \ref{stop}.
 
 Esta entidade é utilizada principalmente para demarcar os pontos de origem e destino fornecidos pelo usuário que não consistem em uma parada para embarque e desembarque de passageiros.
 Esta demarcação é importante para que estes pontos sejam adicionados ao grafo, desta forma contribuindo para um melhor refinamento na busca da rota com tempo de viagem mínimo.
 
 \subsubsection{Stop}
+\label{stop}
+Uma \emph{Stop} consiste em uma parada de veículos para embarque e desembarque de passageiros.
+Como esta também é representada por coordenadas geográficas então optou-se por implementá-la como um caso específico de uma \emph{Location}, ou seja, uma \emph{Stop} herda atributos de \emph{Location}. Desta forma, além dos atributos de \emph{Location}, cada entidade deste tipo possui os seguintes atributos:
+
+\begin{itemize}
+	\item \texttt{id}: identifica exclusivamente uma parada ou estação, porém diversos trajetos podem usar a mesma parada.
+	\item \texttt{name}: nome de uma parada ou estação.
+\end{itemize}
+
+Como uma \emph{Stop} é uma especificação de \emph{Location}, utiliza-se a mesma \emph{LocationFactory}, porém neste caso com as seguintes funcionalidades:
+\begin{itemize}
+	\item além de criar \emph{Locations}, utiliza-se esta \emph{factory} também para criar entidades \emph{Stop} e adicioná-las a seus respectivos índices no banco 		de dados, com o intuito de facilitar futuras buscas.
+	\item retornar todas as \emph{Stops} do sistema em forma de uma coleção, através de simples uma busca no grafo do sistema.
+	\item retornar uma determinada \emph{Stop} com base em sua ID utilizando o índice referente a este tipo de entidade.
+\end{itemize}
+
+A informação de todas as \emph{Stops} é essencial para o funcionamento do sistema, pois sem as localizações das paradas de veículos é impossível fornecer uma rota entre dois pontos utilizando transporte público.
 
 \subsubsection{Route}
 
@@ -76,7 +108,7 @@ Esta demarcação é importante para que estes pontos sejam adicionados ao grafo
 \subsubsection{StopTime}
 
 \subsubsection{Connection}
-
+\label{conn}
 
 \subsection{DatabaseController}
 
