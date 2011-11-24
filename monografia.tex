@@ -17,6 +17,21 @@
 \usepackage{amsmath,amsfonts,amssymb} % pacote matematico
 \usepackage{graphicx} % pacote grafico
 \usepackage{times} % fonte times
+\usepackage{listings} % para código-fonte
+
+% configuracao do pacote listings
+\lstset{
+	basicstyle=\footnotesize,
+	showstringspaces=false,
+	tabsize=4,
+	numbers=left,
+	numberstyle=\tiny,
+	stepnumber=1,
+	numbersep=5pt,
+	breaklines=true,
+	extendedchars=true,
+	frame=tb
+}
 
 %Podem utilizar GEOMETRY{...} para realizar pequenos ajustes das margens. Onde, left=esquerda, right=direita, top=superior, bottom=inferior. P.ex.:
 %\geometry{left=3.0cm,right=1.5cm,top=4cm,bottom=1cm} 
@@ -104,6 +119,11 @@ Abstract text (maximum of 500 words).
 %\input{fund.tex}
 %\input{exper.tex}
 %\input{concl.tex}
+
+% aparentemente esse sloppy resolve o problema das margens e do texttt
+% não tenho certeza sobre os efeitos colaterais dele, no entanto
+% fiquemos atentos! :P
+\sloppy
 
 \input{introducao.tex}
 

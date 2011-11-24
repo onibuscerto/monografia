@@ -85,16 +85,16 @@ Esta demarcação é importante para que estes pontos sejam adicionados ao grafo
 
 \section{onibuscerto-service}
 
-O subprojeto \texttt{onibuscerto-service} é onde encontram-se os Servlets responsáveis por executar consultas na base de dados construída pelo \emph{Importer}.
-Os Servlets funcionam sob a forma de \emph{web services} e, sendo assim, todas as consultas são requisitadas pelos clientes através de requisições \sigla{HTTP}{Hypertext Transfer Protocol} do tipo GET ou POST.
+O subprojeto \texttt{onibuscerto-service} é onde encontram-se os Servlets responsáveis por executar consultas na base de dados construída através do \emph{Importer}.
+Os Servlets funcionam sob a forma de \emph{web services} e, sendo assim, todas as consultas são feitas pelos clientes através de requisições \sigla{HTTP}{Hypertext Transfer Protocol} do tipo GET ou POST.
 As implementações dos Servlets residem no pacote \texttt{com.onibuscerto.service.servlets}.
 
 Atualmente, apenas consultas que determinam a rota com o menor tempo de viagem entre duas coordenadas geográficas estão implementadas.
-O Servlet responsável por executar esse tipo de consulta está implementado na classe \texttt{RouteServlet}.
-No início do seu ciclo de vida, este Servlet é responsável por obter uma instância da classe \texttt{DatabaseController} do \emph{Core}, a qual será utilizada para acessar o banco de dados e resolver as consultas.
+Estas consultas são de responsabilidade do Servlet implementado na classe \texttt{RouteServlet}.
+No início do seu ciclo de vida, este é responsável por obter uma instância da classe \texttt{DatabaseController} do \emph{Core}, a qual será utilizada para acessar o banco de dados e resolver as consultas.
 Em seguida, assim como um Servlet comum, este muda para um estado no qual está disponível para atender requisições dos clientes.
 Por fim, ao ser destruído, o \texttt{RouteServlet} deve chamar o método \texttt{close} do \texttt{DatabaseController}, com o objetivo de fechar a conexão com o banco de dados.
-O ciclo de vida completo do Servlet é ilustrado na Figura \ref{fig:servletciclo}.
+O ciclo de vida completo de um Servlet é ilustrado na Figura \ref{fig:servletciclo}.
 
 \begin{figure}[!htb]
 	\centering
@@ -103,5 +103,29 @@ O ciclo de vida completo do Servlet é ilustrado na Figura \ref{fig:servletciclo
 	\fonte{\citeonline{infocenter}}
 	\label{fig:servletciclo}
 \end{figure}
+
+Enquanto o \texttt{RouteServlet} está ativo, ou seja, respondendo consultas, este recebe requisições HTTP do tipo POST com os seguintes parâmetros:
+\begin{itemize}
+	\item \texttt{start.latitude}: latitude do ponto de origem.
+	\item \texttt{start.longitude}: longitude do ponto de origem.
+	\item \texttt{end.lagitude}: lagitude do ponto de destino.
+	\item \texttt{end.longitude}: longitude do ponto de destino.
+	\item \texttt{departure}: horário de saída do ponto de origem, uma \emph{string} no formato \texttt{"HH:MM"}.
+\end{itemize}
+
+Ao receber estes parâmetros, o \texttt{RouteServlet} executa os seguintes passos:
+\begin{enumerate}
+	\item Converte as posições geográficas passadas como parâmetros para a consulta através de HTTP POST para objetos da classe \texttt{GlobalPosition}, do subprojeto \texttt{onibuscerto-api}.
+	\item Cria nós no banco de dados para representar os nós de origem e destino, através da \texttt{LocationFactory}.
+	\item Cria conexões do tipo \texttt{WalkingConnection} entre os recém-criados nós de origem e destino e todas as entidades do tipo \texttt{Stop} do grafo, de forma a representar os trechos que podem ser percorridos a pé pelo usuário.
+	\item Executa a consulta no grafo através do método \texttt{getShortestPath} do \texttt{DatabaseController} e recebe o caminho encontrado sob a forma de um objeto do tipo \texttt{Collection<Connection>}.
+	\item Converte o resultado da consulta para uma coleção de objetos da classe \texttt{QueryResponseConnection}, do subprojeto \texttt{onibuscerto-api}, ou seja, um objeto do tipo \texttt{Collection<QueryResposeConnection>}.
+	\item Serializa o objeto \texttt{Collection<QueryResponseConnection>} para uma \emph{string} no formato \sigla{JSON}{JavaScript Object Notation}, o qual será finalmente enviado para o cliente do usuário.
+\end{enumerate}
+
+% TODO: será que esse exemplo de cliente em Python fica nessa seção mesmo?
+% talvez seja melhor colocar me um anexo ou coisa parecida
+% outra coisa, não sei como referenciar ele no texto, então ficou assim msm
+\lstinputlisting[language=Python]{code/cliente.py}
 
 \section{Considerações}
