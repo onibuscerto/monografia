@@ -2,17 +2,52 @@
 
 \chapter{Fundamentação}
 
-\section{O Problema do Menor Caminho Multi-Modal}
+\section{O Problema do Menor Caminho Multi-Modal com Restrição de Itinerário}
 
 % citar esse artigo: http://www.scialert.net/fulltext/?doi=jas.2009.3804.3812&org=11#290480_ja
 
-O problema do menor caminho multi-modal consiste em, dada uma rede multi-modal e dois nós nessa rede, a origem e o destino, encontrar o caminho entre a origem e o destino que totaliza o menor custo.
-Em uma rede de transporte multi-modal, os nós correspondem às paradas do sistema de transporte, ou aos pontos de origem de destino do trajeto. As arestas correspondem aos deslocamentos entre os nós da rede, e tem associado um custo em tempo e um modo. Os modem correspondem aos serviços ou meios de deslocamento na rede, como por exemplo caminhada ou uma determinada linha de ônibus.
-Os serviços de transporte operam segundo tabelas de horários, e portanto para resolver o problema também é necessária a informação do horário de partida no nó de origem.
-Uma rede multi-modal pode ser vista como a superposição de diversas redes mono-modais, com a adição de arestas entre elas para representar o tempo de espera associado à troca de serviços.
+%O problema do menor caminho multi-modal consiste em, dada uma rede multi-modal e dois nós nessa rede, a origem e o destino, %encontrar o caminho entre a origem e o destino que totaliza o menor custo.
+%Em uma rede de transporte multi-modal, os nós correspondem às paradas do sistema de transporte, ou aos pontos de origem de destino do trajeto. As arestas correspondem aos deslocamentos entre os nós da rede, e tem associado um custo em tempo e um modo. Os modem correspondem aos serviços ou meios de deslocamento na rede, como por exemplo caminhada ou uma determinada linha de ônibus.
+%Os serviços de transporte operam segundo tabelas de horários, e portanto para resolver o problema também é necessária a informação do horário de partida no nó de origem.
+%Uma rede multi-modal pode ser vista como a superposição de diversas redes mono-modais, com a adição de arestas entre elas para representar o tempo de espera associado à troca de serviços.
 
 % vou escrever mais do multi-objetivo depois
-Esse problema pode ser generalizado para o caso onde o interessa não é apenas minimizar o tempo de chegada ao destino, mas também minimizar outros objetivos como o custo total do transporte e o número de trocas de serviços. Esta generalização é o problema do menor caminho multi-objetivo.
+%Esse problema pode ser generalizado para o caso onde o interessa não é apenas minimizar o tempo de chegada ao destino, mas também minimizar outros objetivos como o custo total do transporte e o número de trocas de serviços. Esta generalização é o problema do menor caminho multi-objetivo.
+
+O problema de realizar o planejamento de rota em uma rede de transporte público é bastante semelhante ao conhecido problema de caminho mínimo em grafos, porém com a adição de duas restrições importantes.
+A primeira é que, como se trata de uma rede de transporte urbana, existe mais de uma maneira de de percorrer um trecho da rede, como por exemplo, utilizando o transporte público (ônibus, metro, etc) ou não (caminhada, bicicleta, etc).
+Esses diferentes modos tem características distintas e portanto precisam ser tratados separadamente.
+A segunda restrição é a de itinerário, pois o transporte público das cidades obedecem horários, e o planejamento de rota precisa levar isto em consideração.
+
+Nesta seção primeiro será apresentado o problema clássico do caminho mínimo em grafos, seguido do modelo utilizado no trabalho e o algoritmo de roteamento.
+
+\subsection{O Problema do Caminho Mínimo em Grafos}
+
+Informalmente, o problema do caminho mínimo em grafos consiste em, dado um conjunto de pontos, as ligações, um custo associado a essas ligações e dois pontos específicos, encontrar um caminho entre eles que minimize o custo total, ou seja, se trata de um problema de minimização.
+O conjunto de pontos e suas ligações, assim como a função de custo associada à essas ligações, é o que se chama de grafo, ou rede quando existe um valor associado a cada ligação, o peso(ou custo).
+Existem diversos tipos de grafos e portanto existem também variações do problema do caminho mínimo, dependendo do tipo de grafo envolvido.
+Especificamente, é de interesse a variante que trata dos grafos direcionados e com pesos não-negativos nas ligações.
+
+De maneira mais formal, um grafo direcionado com pesos, ou uma rede direcionada, é um par ordenado $G = (V, A)$ onde $V$ é o conjunto dos nós do grafo(os pontos), cujos elementos são nós; e $A$ é o conjunto das arestas(as ligações) do grafo, cujos elementos são triplas ordenadas da forma $(v_1, v_2, c)$, indicando que existe uma aresta direcionada do nó $v_1$ para o nó $v_2$ com custo $c \in \mathbb{R^+}$.
+Um caminho $p$ em $G$ entre dois nós $v_o$ e $v_d$ é uma sequência alternada de nós e arestas, iniciando em $v_o$ e terminando em $v_d$ tal que cada aresta ligue os nós que vem antes e depois dela, ou seja:
+
+\begin{align*}
+& p = (v_0, a_0, v_1, a_1, v_2, \ldots ,v_{k-1}, a_{k-1}, v_k) \\
+& v_i \in V \qquad 0 <= i <= k \\
+& a_i = (v_i, v_{i+1}, c_i) \in A \qquad 0 <= i <= k-1
+\end{align*}
+onde $v_o = v_0$ e $v_d = v_k$. O custo total $C$ associado ao caminho $p$ é definido como:
+\begin{equation*}
+C(p) = \sum_{i=0}^{k-1} c_i
+\end{equation*}
+
+O problema do caminho mínimo em redes direcionadas consiste, portanto, em encontrar o caminho $p_i \in P_od$ com o menor valor de $C(p_i)$, onde $P_od$ é o conjunto de todos os caminhos possíveis entre $v_o$ e $v_d$. Existem diversos algoritmos eficientes que resolvem esse problema, como o algortimo de Bellman-Ford e o algoritmo de Dijkstra.
+
+\subsection{Modelagem da Rede Multi-Modal com Restrição de Itinerário}
+
+
+
+\subsection{Algoritmo de Roteamento}
 
 \section{NoSQL}
 %TODO: citar wikipedia =p
