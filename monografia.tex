@@ -17,6 +17,21 @@
 \usepackage{amsmath,amsfonts,amssymb} % pacote matematico
 \usepackage{graphicx} % pacote grafico
 \usepackage{times} % fonte times
+\usepackage{listings} % para código-fonte
+
+% configuracao do pacote listings
+\lstset{
+	basicstyle=\footnotesize,
+	showstringspaces=false,
+	tabsize=4,
+	numbers=left,
+	numberstyle=\tiny,
+	stepnumber=1,
+	numbersep=5pt,
+	breaklines=true,
+	extendedchars=true,
+	frame=tb
+}
 
 %Podem utilizar GEOMETRY{...} para realizar pequenos ajustes das margens. Onde, left=esquerda, right=direita, top=superior, bottom=inferior. P.ex.:
 %\geometry{left=3.0cm,right=1.5cm,top=4cm,bottom=1cm} 
@@ -99,6 +114,13 @@ Abstract text (maximum of 500 words).
 
 
 %---------- Inicio do Texto ----------
+% recomenda-se a escrita de cada capitulo em um arquivo texto separado (exemplo: intro.tex, fund.tex, exper.tex, concl.tex, etc.) e a posterior inclusao dos mesmos no mestre do documento utilizando o comando \input{}, da seguinte forma:
+
+% aparentemente esse sloppy resolve o problema das margens e do texttt
+% não tenho certeza sobre os efeitos colaterais dele, no entanto
+% fiquemos atentos! :P
+\sloppy
+
 \input{introducao.tex}
 
 \input{fundamentacao.tex}
@@ -117,19 +139,16 @@ Abstract text (maximum of 500 words).
 
 
 %---------- Apendices (opcionais) ----------
-\apendice
-\chapter{Nome do Ap\^endice}
-
-Use o comando {\ttfamily \textbackslash apendice} e depois comandos {\ttfamily \textbackslash chapter\{\}}
-para gerar t\'itulos de ap\^en-dices.
+\input{guia.tex}
+\input{exemplodeuso.tex}
 
 
 % ---------- Anexos (opcionais) ----------
-\anexo
-\chapter{Nome do Anexo}
+%\anexo
+%\chapter{Nome do Anexo}
 
-Use o comando {\ttfamily \textbackslash anexo} e depois comandos {\ttfamily \textbackslash chapter\{\}}
-para gerar t\'itulos de anexos.
+%Use o comando {\ttfamily \textbackslash anexo} e depois comandos {\ttfamily \textbackslash chapter\{\}}
+%para gerar t\'itulos de anexos.
 
 
 % --------- Lista de siglas --------
