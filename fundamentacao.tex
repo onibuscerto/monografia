@@ -45,6 +45,38 @@ O problema do caminho mínimo em redes direcionadas consiste, portanto, em encon
 
 \subsection{Modelagem da Rede Multi-Modal com Restrição de Itinerário}
 
+Para utilizar as redes direcionadas na modelagem da rede de transporte urbano, é preciso definir o que cada elemento da rede direcionada representa no mundo real. Os nós da rede representam locais, que podem ser os pontos de origem e destino usuário, ou qualquer um dos pontos de parada do transporte público. Esses nós, portanto, estão associados a coordenadas geográficas.
+As arestas direcionadas da rede representam um deslocamento entre dois locais na cidade, do local representado pelo nó de origem até o local representado pelo nó de destino. O custo da aresta representa o tempo que foi gasto no deslocamento, e portanto é sempre um número real positivo, restrição imposta pelo algoritmo de Dijkstra e também pelo algoritmo utilizado no planejador.
+
+No entanto, esse modelo não é suficiente para representar a rede de transporte urbana, ou para realizar o planejamento de rotas, pois não trata as duas restrições adicionais mencionadas anteriormente.
+Para contemplar essas restrições, o modelo precisa ser alterado.
+
+Uma rede multi-modal é uma em que cada aresta tem um modo associado. 
+No caso da rede de transporte, esse modo determina que tipo de meio transporte foi utilizado para percorrer esse trecho.
+Foram definidos dois modos, público, se a aresta representa um caminho percorrido com transporte público, como ônibus; ou privado, no caso de trecho percorrido a pé.
+Além disso, para realizar o roteamento, é necessário saber a qual serviço a aresta pertence, no caso de ser do modo privado, pois uma troca de serviço normalmente leva algum tempo que precisa ser considerado. Essa folga impede que o algoritmo forneça uma rota que, na prática, não pode ser executada por incluir descer de um ônibus e subir em outro no mesmo minuto, por exemplo. Uma folga ajuda a levar em conta os ocasionais atrasos no transporte público.
+Cada serviço representa uma viagem completa de um veículo, do seu ponto inicial até o final. Por mais que o mesmo veículo realize o percurso contrário, ou o mesmo percurso várias vezes, cada viagem é considerada um serviço separado.
+
+Toda a rede de transporte público opera segundo itinerários bem definidos, e cada veículo tem um horário previsto para chegar em cada parada, e para partir dela para a próxima.
+Cada aresta do modo privado tem, portanto, dois horários associados, o de partida no nó de origem, e o de chada no nó destino.
+A diferença entre esses dois valores é o custo de tempo do trecho.
+
+Definidos todos os elementos necessários, é possível então formalizar as redes de transporte. Uma rede de transporte é uma quádrupla ordenada $G = (V, A, M, S)$, onde $V$ é o conjunto junto dos nós do grafo, $A$ é o conjunto das arestas, $M$ é o conjunto dos modos e $S$ é o conjunto dos serviços de transporte. O conjunto dos modos possui apenas dois elementos, que são os dois modos possíveis da rede, público ou privado, ou seja, $M = {m_{pub}, m_{pri}}$.
+Cada um dos elementos $s_i$ do conjunto $S$ dos serviços representa um serviço único.
+O conjunto $V$ dos nós é definido exatamente como o caso mono-modal. Por fim, os elementos do conjunto das arestas são sêxtuplas ordenadas definidas da seguinte forma:
+\begin{align*}
+& A = \{ (v_o, v_d, t_c, t_p, m, s) : t_c <= t_p \} \\
+& v_o, v_d \in V \\
+& t_c, t_p \in \mathbb{R^+} \\
+& m \in M \\
+& s = \left\{
+	\begin{array}{cr}
+		s_{pub} &  \text{se} \qquad m = m_{pub}, \\
+		s_i  & \text{caso contrário}. \\
+	\end{array}
+	\right.
+\end{align*}
+
 
 
 \subsection{Algoritmo de Roteamento}
