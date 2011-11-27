@@ -193,4 +193,9 @@ Esta API também conta com funcionalidades para o desenho de poli-linhas e o pos
 Para realizar o processo de \emph{geocoding}, ou seja, a conversão de endereços completos como, por exemplo, ``1600 Amphitheatre Parkway, Mountain View, CA'' em coordenadas geográficas como $(37.423021, -122.083739)$, foi utilizada a API de \emph{Geocoding} do Google \cite{geocodingapi}.
 De forma semelhante à API do Google Maps, esta API permite realizar este tipo de consulta diretamente através de JavaScript, sendo fornecido um endereço completo e retornando a latitude e longitude do endereço em questão.
 
+O cliente \emph{web} pode ser utilizado simplesmente ao hospedar os arquivos do mesmo em um servidor HTTP.
+No entanto, é importante notar que, caso o endereço do \emph{web service} seja diferente da página inicial do cliente \emph{web}, é necessário adaptar o endereço que é feito na requisição do mesmo, no arquivo \texttt{script.js}.
+Apesar disso, ao iniciar o servidor de desenvolvimento, o cliente \emph{web} é automaticamente servido através do mesmo.
+Maiores detalhes com relação à execução do \emph{software} em um ambiente de desenvolvimento estão disponíveis no Apêndice \ref{ape:guia}.
+
 \section{Considerações}
