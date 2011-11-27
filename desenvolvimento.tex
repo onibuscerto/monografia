@@ -158,6 +158,39 @@ Ao receber estes parâmetros, o \texttt{RouteServlet} executa os seguintes passo
 Tendo o funcionamento do \texttt{RouteServlet} em vista, a aplicação cliente é responsável apenas por enviar uma requisição HTTP POST para o serviço com os parâmetros no formato especificado e, por fim, interpretar os resultados retornados pelo servidor.
 Uma pequena aplicação de exemplo que executa consultas no \emph{Service}, escrita em linguagem Python, é apresentada no Apêndice \ref{ape:exemplodeuso}.
 
-\subsection{Cliente Web}
+\subsection{Cliente \emph{Web}}
+
+Além dos Servlets responsáveis pelo funcionamento do \emph{web service}, o projeto \texttt{onibuscerto-service} é onde também reside o código-fonte do cliente \emph{web}.
+Situado no diretório \texttt{src/main/webapp/} deste projeto, o cliente \emph{web} é composto pelos seguintes arquivos:
+
+\begin{itemize}
+	\item \texttt{index.html}: estrutura em \sigla{HTML}{Hypertext Markup Language} do \emph{layout} da página que é exibida para os usuários do cliente.
+	\item \texttt{style.css}: descrição das folhas de estilo \sigla{CSS}{Cascading Style Sheets} utilizadas para renderizar o \emph{layout} da página.
+	\item \texttt{script.js}: código-fonte principal do cliente, em linguagem JavaScript, responsável por todas as funcionalidades e interação do cliente \emph{web} com o service e o usuário.
+\end{itemize}
+
+Além destes arquivos, juntamente com a distribuição do cliente \emph{web} estão empacotadas as bibliotecas jQuery e jQuery UI, utilizadas para simplificar o desenvolvimento do \emph{software} em JavaScript.
+Estas bibliotecas encontram-se no diretório \texttt{src/main/webapp/js/} do projeto.
+As imagens utilizadas no \emph{layout} da página estão presentes no diretório \texttt{src/main/webapp/img/}.
+
+A interface do cliente \emph{web} é composta basicamente por dois elementos: uma barra lateral e a visualização do mapa da região.
+Na barra lateral está presente um formulário, através do qual o usuário pode digitar os endereços de origem e destino do caminho e o horário de partida.
+Esta mesma barra é atualizada com uma descrição textual do caminho determinado pelo sistema, assim que o usuário inicia a consulta ao clicar no botão de busca.
+Além disso, é possível introduzir os endereços de origem e destino clicando com o botão direito do mouse no mapa.
+A figura \ref{fig:clienteweb} apresenta a interface do cliente \emph{web} com o resultado de uma consulta.
+
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[width=0.9\textwidth]{./imgs/clienteweb.png}
+	\caption[Interface do cliente \emph{web}]{Interface do cliente \emph{web}}
+	\fonte{Autoria Própria}
+	\label{fig:clienteweb}
+\end{figure}
+
+A renderização do mapa é feita através da \sigla{API}{Application Programming Interface} do Google Maps \cite{gmapsapi}, a qual permite utilizar, através de chamadas JavaScript, os mapas deste serviço de forma gratuita, contanto que o serviço que faça uso dos mapas também o seja \cite{gmapsterms}.
+Esta API também conta com funcionalidades para o desenho de poli-linhas e o posicionamento de marcadores, tornando-se ideal para apresentar os resultados da consulta retornados pelo \emph{web service}.
+
+Para realizar o processo de \emph{geocoding}, ou seja, a conversão de endereços completos como, por exemplo, ``1600 Amphitheatre Parkway, Mountain View, CA'' em coordenadas geográficas como $(37.423021, -122.083739)$, foi utilizada a API de \emph{Geocoding} do Google \cite{geocodingapi}.
+De forma semelhante à API do Google Maps, esta API permite realizar este tipo de consulta diretamente através de JavaScript, sendo fornecido um endereço completo e retornando a latitude e longitude do endereço em questão.
 
 \section{Considerações}
