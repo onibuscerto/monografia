@@ -5,13 +5,12 @@
 Utilizando a metodologia e o projeto do sistema apresentados nos capítulos \ref{metod} e \ref{specs}, respectivamente, inicou-se o desenvolvimento efetivo do sistema.
 Primeiramente foi criado um projeto Maven principal denominado \texttt{onibuscerto}, o qual foi dividido em quatro subprojetos: 
 \begin{itemize}
-	\item \texttt{onibuscerto-api}: contém a classe que representa coordenadas geográficas e o objeto resposta contendo informações da rota ao Cliente.
+	\item \texttt{onibuscerto-api}: contém classes que são de utilidade comum a todos os projetos do sistema, como classes que representam coordenadas geográficas e aquelas que compõem os objetos resposta que contém informações do caminho determinado.
 	\item \texttt{onibuscerto-core}: consiste no módulo \emph{Core} definido no projeto do software (seção \ref{specs}). 
-	Contém as representações das entidades originárias dos arquivos GTFS e faz interface do sistema com o banco de dados.
+	Contém as representações das entidades originárias dos arquivos GTFS e faz a interface do sistema com o banco de dados.
 	\item \texttt{onibuscerto-importer}: consiste no módulo \emph{Importer} definido no projeto do software (seção \ref{specs}).
 	Responsável pela importação dos dados contidos nos arquivos GTFS para o sistema através das funcionalidades do \emph{Core}.
-	\item \texttt{onibuscerto-service}: consiste nos módulos \emph{Web Service} e Cliente definidos na seção \ref{specs}. 
-	Pretende-se futuramente separar este subprojeto em dois outros distintos representando tais módulos.
+	\item \texttt{onibuscerto-service}: consiste nos módulos \emph{Web Service} e o Cliente \emph{Web} definidos na seção \ref{specs}. 
 \end{itemize}
 
 Nas subseções a seguir serão descritos detalhes a respeito da implementação de cada subprojeto.
