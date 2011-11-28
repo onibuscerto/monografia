@@ -65,7 +65,7 @@ Definidos todos os elementos necessários, é possível então formalizar as red
 Cada um dos elementos $s_i$ do conjunto $S$ dos serviços representa um serviço único.
 O conjunto $V$ dos nós é definido exatamente como o caso mono-modal. Por fim, os elementos do conjunto das arestas são sêxtuplas ordenadas definidas da seguinte forma:
 \begin{align*}
-& A = \{ (v_o, v_d, t_c, t_p, m, s) : t_c <= t_p \} \\
+& A = \{ (v_o, v_d, t_p, t_c, m, s) : t_p <= t_c \} \\
 & v_o, v_d \in V \\
 & t_c, t_p \in \mathbb{R^+} \\
 & m \in M \\
@@ -76,8 +76,14 @@ O conjunto $V$ dos nós é definido exatamente como o caso mono-modal. Por fim, 
 	\end{array}
 	\right.
 \end{align*}
+onde $t_p$ e $t_c$ são, respectivamente, os tempos de partida do nó $v_o$ e o tempo de chegada no nó $v_2$, $m$ é o modo de transporte, público ou privado, e $s$ é o serviço caso o modo seja privado, ou um indicador de que o modo é público, caso contrário.
 
-
+Um caminho $p$ em uma rede de transporte é similar ã definição de caminho em uma rede direcionada, mas com a seguinte restrição adicional: se $a_i = (v_o^i, v_d^i, t_p^i, t_c^i, m^i, s^i)$, então
+\begin{align*}
+t_p^{i+1} >= t_c^i + t_{folga}
+\end{align*}
+para toda aresta no caminho, onde $t_{folga}$ é uma constante inserida para evitar planejamentos impossíveis de executar na prática e para compensar os atrasos dos meios de transporte. 
+O custo total de um caminho $p$ é definido como sendo $C(p) = a_c^{k-1} - a_p^0$.
 
 \subsection{Algoritmo de Roteamento}
 
