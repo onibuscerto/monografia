@@ -60,9 +60,6 @@ Desta forma toda entidade é representada no sistema através de duas interfaces
 
 Cada entidade do sistema possui suas respectivas propriedades, as quais são armazenadas no próprio nó ou aresta do grafo (dependendo de como a entidade foi armazenada no banco de dados) através de pares chave/valor, sendo estas disponíveis para futuras consultas.
 
-%As interfaces que representam as entidades e suas \emph{factories} pertencem ao pacote \texttt{com.onibuscerto.core.entities} e %\texttt{com.onibuscerto.core.factories}, respectivamente.
-%Já as implementações das mesmas estão localizadas no pacote \texttt{com.onibuscerto.core}.
-
 A seguir serão descritos detalhes de implementação das classes que encapsulam as entidades, as quais em conjunto formam o grafo armazenado no banco de dados do sistema.
 
 \subsubsection{Location}
@@ -212,7 +209,21 @@ A mesma \emph{factory} (denominada \emph{ConnectionFactory}) é utilizada para a
 O algoritmo de busca do caminho mínimo do sistema utiliza estes tipos de entidades para percorrer o grafo e calcular o trajeto com menor tempo de viagem, sendo seu resultado retornado na forma de coleção de \emph{Connections}.
 
 \subsection{DatabaseController}
+O \texttt{DatabaseController} é a classe principal do subprojeto \emph{Core} responsável por interfacear o sistema com o banco de dados, ou seja, toda transação ou acesso ao banco de dados tem de ser feito através desta classe.
+Para tal, esta possui referências às \emph{factories} de todas as entidades do sistema, bem como métodos para iniciar e finalizar transações no banco.
 
+É nesta classe que está localizado o método \texttt{getShortestPath}, responsável pela busca do caminho com tempo de viagem mínimo. 
+Este recebe três parâmetros:
+
+\begin{itemize}
+	\item \texttt{source}: ponto de origem da rota consultada na forma de objeto \texttt{Location}, fornecido pelo usuário.
+	\item \texttt{target}: ponto de destino da rota consultada na forma de objeto \texttt{Location}, fornecido pelo usuário.
+	\item \texttt{time}: inteiro que representa o horário de partida da origem em segundos.
+\end{itemize}
+
+O mesmo foi implementado de acordo com a descrição especificada no capítulo \ref{fund} e retorna o trajeto resultante na forma de uma coleção de entidades \texttt{Connection}, a qual contém todas as conexões necessárias, desde trechos percorridos com veículos de transporte público até caminhos a pé.
+
+Considera-se esta classe como principal do subprojeto \emph{Core} pois a mesma possui o método que implementa a principal funcionalidade do sistema como um todo: a de buscar a rota que minimiza o tempo de viagem total dados os pontos de partida e destino juntamente com o horário de saída do usuário da origem.
 
 \section{onibuscerto-importer}
 
