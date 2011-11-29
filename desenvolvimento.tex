@@ -142,8 +142,30 @@ Esta entidade é essencial para o funcionamento do sistema pois contém todas as
 Além disso, esta é responsável por organizar informações a respeito de \emph{Trips} e suas respectivas \emph{Stops} em uma forma de hierarquia no banco de dados através de relações, ou seja, uma \emph{Route} possui várias \emph{Trips} e estas possuem várias \emph{Stops}.
 
 \subsubsection{Trip}
+\label{trip}
+Representa as viagens e suas rotas, sendo que define-se viagem no sistema como uma seqüência de duas ou mais paradas que ocorrem em um horário específico (ver subseção \ref{stoptime}).
+Desta forma, a principal função de uma \emph{Trip} é de reunir informações a respeito do trajeto percorrido, ou seja, todas as paradas ou estações que compõem a viagem bem como os horários em que o veículo chega e sai de cada uma destas.
+Para cumprir tal objetivo, este tipo de entidade contém os seguintes atributos:
+
+\begin{itemize}
+	\item \texttt{id}: identificador único de uma \emph{Trip}.
+	\item \texttt{route}: rota a qual a \emph{Trip} pertence.
+	É adquirida através da relação entre \emph{Route} e \emph{Trip}.
+	\item \texttt{stop\_times}: coleção contendo todas as entidades \emph{StopTime} (ver subseção \ref{stoptime}) que compõem a \emph{Trip}.
+	Esta coleção é preenchida ao percorrer as relações entre \emph{Trip} e \emph{StopTime} no grafo do sistema.
+\end{itemize}
+
+A \emph{factory} atribuída a uma \emph{Trip} é denominada \emph{TripFactory}, e tem as seguintes funcionalidades:
+\begin{itemize}
+	\item criar entidades do tipo \emph{Trip} e adicioná-las a seus respectivos índices no banco de dados.
+	\item retornar todas as \emph{Trips} do sistema em forma de uma coleção, através de simples uma busca no grafo do sistema.
+	\item retornar uma determinada \emph{Trip} com base em sua ID utilizando o índice referente a este tipo de entidade.
+\end{itemize}
+
+A entidade \emph{Trip} é primordial para o funcionamento do sistema pois reune informações como nome do trajeto e horários de chegada e partida de veículos em cada parada ou estação que compõe determinada linha, as quais são base de qualquer sistema de transporte público.
 
 \subsubsection{StopTime}
+\label{stoptime}
 
 \subsubsection{Connection}
 \label{conn}
