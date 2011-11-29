@@ -166,6 +166,30 @@ A entidade \emph{Trip} é primordial para o funcionamento do sistema pois reune 
 
 \subsubsection{StopTime}
 \label{stoptime}
+A entidade do tipo \emph{StopTime} relaciona os horários de partida e chegada dos veículos em paradas ou estações específicas em cada \emph{Trip} (ver subseção \ref{trip}).
+Para tal, esta possui os seguintes atributos armazenados no grafo:
+\begin{itemize}
+	\item \texttt{trip}: referência a \emph{Trip} a qual a \emph{StopTime} pertence.
+	Especificado através de uma relação entre estas duas entidades no grafo.
+	\item \texttt{stop}: referência a \emph{Stop} a qual a \emph{StopTime} pertence.
+	Especificado através de uma relação entre estas duas entidades no grafo.
+	\item \texttt{arrival\_time}: consiste na hora de chegada em uma parada ou estação específica (\emph{Stop}), de uma viagem específica (\emph{Trip}), em uma rota 	(\emph{Route}). 
+	O horário é definido a partir da meia-noite, no dia do início do serviço e deve possuir oito dígitos no formato HH:MM:SS (o formato H:MM:SS também é aceito, se       
+	a hora iniciar com 0).
+	\item \texttt{departure\_time}: especifica o horário de partida de uma parada específica (\emph{Stop}) de uma determinada viagem (\emph{Trip}) em uma rota 				(\emph{Route}).
+	O horário é definido a partir da meia-noite, no dia do início do serviço, obedecendo o padrão HH:MM:SS (o formato H:MM:SS também é aceito, se a hora iniciar com 	0).
+	\item \texttt{stop\_sequence}: identifica a ordem das paradas de uma viagem em particular. 
+	Representado por inteiros não negativos que variam em ordem crescente ao longo da viagem.
+	\item \texttt{next\_stoptime}: referência através de uma relação no grafo à próxima \emph{StopTime} da \emph{Trip} em questão.
+	Informação baseada no campo \texttt{stop\_sequence}.
+	\item \texttt{previous\_stoptime}: referência através de uma relação no grafo à \emph{StopTime} anterior da \emph{Trip} em questão.
+	Informação baseada no campo \texttt{stop\_sequence}.
+\end{itemize}
+
+Como esta não possui uma \texttt{id} específica, a única função de sua \emph{factory}, denominada \emph{StopTimeFactory}, é a de criação deste tipo de entidade.
+
+Sua principal função é a de relacionar as entidades \emph{Stop} com horários de chegada e partida de veículos de uma determinada \emph{Trip}.
+Desta forma, essa informação é essencial para o funcionamento do sistema pois o algoritmo para busca do caminho mínimo é inteiramente baseado nestes horários para calcular o tempo total gasto na viagem.
 
 \subsubsection{Connection}
 \label{conn}
