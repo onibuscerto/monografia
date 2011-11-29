@@ -101,6 +101,45 @@ Como uma \emph{Stop} é uma especificação de \emph{Location}, utiliza-se a mes
 A informação de todas as \emph{Stops} é essencial para o funcionamento do sistema, pois sem as localizações das paradas de veículos é impossível fornecer uma rota entre dois pontos utilizando transporte público.
 
 \subsubsection{Route}
+Uma \emph{Route} contém informações sobre as rotas que formam o sistema transporte público.
+Sua principal função é a de caracterizar uma linha de transporte de maneira geral, ou seja, independentemente de horários e sentidos percorridos por seus veículos.
+Desta forma, este tipo de entidade contém as seguintes propriedades:
+
+\begin{itemize}
+	\item \texttt{route\_id}: identifica exclusivamente uma rota.
+	\item \texttt{route\_short\_name}: nome abreviado de uma rota.
+	\item \texttt{route\_short\_name}: nome abreviado de uma rota.
+	Geralmente é um identificador curto e abstrato, como por exemplo "32", "100X" ou "verde" que os passageiros usem para identificar um trajeto, mas que não dê 			nenhuma indicação dos locais atendidos pela rota. 
+	É atríbuida uma sequência de carateres vazia se a mesma não possuir um \texttt{route\_short\_name}.
+	\item \texttt{route\_long\_name}:  nome completo de uma rota. 
+	Este normalmente é mais descritivo que o \texttt{route\_short\_name}, incluindo informações sobre os locais atendidos pela mesma (por exemplo "Santa Cândida/Capão 	Raso"). 
+	É atribuída uma sequência vazia caso a rota não tenha este campo preenchido.
+	\item \texttt{route\_type}: especifica o tipo de veículo utilizado pela rota. É representado por um número inteiro especificado da seguinte forma:
+		\begin{itemize}
+			\item 0 - Bonde, ônibus elétrico.
+			\item 1 - Metrô, trem subterrâneo.
+			\item 2 - Via férrea.
+			\item 3 - Ônibus.
+			\item 4 - Balsa.
+			\item 5 - Teleférico.
+			\item 6 - Gôndola, teleférico suspenso.
+			\item 7 - Funicular (qualquer sistema de trilho projetado para subir ladeiras).
+		\end{itemize}
+	\item \texttt{route\_color}: define uma cor que corresponde à rota, ou seja, a cor do trajeto desenhado no mapa da interface. A cor deve ser informada como um 			número hexadecimal de seis caracteres, por exemplo 00FFFF. 
+	Caso este campo esteja vazio, a cor padrão atribuída a rota é branco (FFFFFF).
+	\item \texttt{trips}: consiste em uma coleção contendo todas as viagens que compõem esta rota (ver subseção \ref{trip}).
+	Estas são adquiridas percorrendo o grafo através das relações entre determinada \emph{Route} e suas \emph{Trips}.
+\end{itemize}
+
+A \emph{factory} atribuída a uma \emph{Route} é denominada \emph{RouteFactory}, e tem as seguintes funcionalidades:
+\begin{itemize}
+	\item criar entidades do tipo \emph{Route} e adicioná-las a seus respectivos índices no banco de dados, com o intuito de facilitar futuras buscas.
+	\item retornar todas as \emph{Routes} do sistema em forma de uma coleção, através de simples uma busca no grafo do sistema.
+	\item retornar uma determinada \emph{Route} com base em sua ID utilizando o índice referente a este tipo de entidade.
+\end{itemize}
+
+Esta entidade é essencial para o funcionamento do sistema pois contém todas as informações a respeito das linhas de transporte público da cidade em questão.
+Além disso, esta é responsável por organizar informações a respeito de \emph{Trips} e suas respectivas \emph{Stops} em uma forma de hierarquia no banco de dados através de relações, ou seja, uma \emph{Route} possui várias \emph{Trips} e estas possuem várias \emph{Stops}.
 
 \subsubsection{Trip}
 
