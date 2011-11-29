@@ -193,6 +193,23 @@ Desta forma, essa informação é essencial para o funcionamento do sistema pois
 
 \subsubsection{Connection}
 \label{conn}
+Uma \emph{Connection} consiste em uma conexão entre dois pontos na forma de aresta no grafo, contendo informações do tipo custo de tempo e par origem e destino da mesma.
+Estes pontos podem ser do tipo \emph{Location} (não consistindo em uma parada ou estação) e \emph{Stop}, sendo que dependendo de qual par de origem e destino a conexão possui, ela pode ser de dois tipos:
+
+\begin{itemize}
+	\item \emph{WalkingConnection}: consiste em uma conexão entre dois pontos quaisquer a qual é percorrida a pé. 
+	Geralmente esta conexão é entre a origem/destino da viagem e uma parada de veículos ou diretamente entre origem e destino, sendo que neste último caso a viagem 		inteira é percorrida a pé, sem a necessidade do uso de transporte público.
+	O custo de tempo deste tipo de conexão é calculado com base na distância entre seus pontos de origem e destino e a velocidade de caminhada.
+	\item \emph{TransportConnection}: consiste em uma conexão entre duas paradas, portanto esta é exclusivamente percorrida por algum tipo de veículo pertencente ao 	sistema de transporte público da cidade em questão.
+	O custo de tempo deste tipo de entidade é calculado através da subtração entre os horários de chegada do veículo no destino e o de partida da origem.
+	Além deste, possui referência à \emph{Trip} a qual pertence.
+\end{itemize}
+
+Todas estes tipos de \emph{Connection} possuem atributos e métodos semelhantes, portanto decidiu-se por definir uma interface chamada \emph{Connection} que serve como base para implementação de \emph{WalkingConnection} e \emph{TransportConnection}.
+
+A mesma \emph{factory} (denominada \emph{ConnectionFactory}) é utilizada para ambos os tipos de \emph{Connection}, com o intuito de criar separadamente estes tipos de entidade na forma de relação entre dois pontos armazenados no grafo.
+
+O algoritmo de busca do caminho mínimo do sistema utiliza estes tipos de entidades para percorrer o grafo e calcular o trajeto com menor tempo de viagem, sendo seu resultado retornado na forma de coleção de \emph{Connections}.
 
 \subsection{DatabaseController}
 
