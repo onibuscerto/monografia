@@ -1,6 +1,85 @@
-\apendice
 \chapter{Guia de Desenvolvimento}\label{ape:guia} % FIXME: titulo podre
 
-Este apêndice descreve como obter o código-fonte do projeto e utilizar o \emph{software}.
+Este apêndice tem como propósito descrever os passos que podem ser utilizados para obter os arquivos do projeto, reproduzir o ambiente de desenvolvimento, executar o \emph{software} e contribuir com o desenvolvimento do mesmo.
+As instruções aqui apresentadas são referentes a uma estação de trabalho utilizando GNU/Linux.
+Apesar disso, estas instruções podem também ser utilizadas no sistema operacional Microsoft Windows com poucas modificações.
 
-% TODO
+\section{Obtendo os \emph{Softwares} Necessários}
+
+Para obter, compilar e executar o projeto é necessário que os seguintes \emph{softwares} estejam instalados na estação de trabalho:
+
+\begin{itemize}
+% misteriosamente, se eu não colocasse o ~, o texto ficava perto demais do bullet da lista
+	\item ~ git, versão 1.7 ou superior.
+	\item ~ Java Development Kit 7 ou superior.
+	\item ~ Apache Maven, versão 3.0 ou superior.
+\end{itemize}
+
+Estes aplicativos podem ser, em geral, obtidos a partir do gerenciador de pacotes da distribuição GNU/Linux.
+No caso do Microsoft Windows, é necessário obter estes arquivos a partir da página de cada um dos projetos.
+
+\section{Obtendo os Arquivos do Projeto}
+
+Para obter os arquivos do projeto, basta executar o comando \texttt{clone} do git no repositório do projeto no GitHub:
+
+\lstset{language=bash}
+\begin{lstlisting}
+git clone git://github.com/onibuscerto/onibuscerto.git
+\end{lstlisting}
+
+Ao executar este comando, será criado um diretório \texttt{onibuscerto} com o conteúdo do projeto, conforme a estrutura descrita no Capítulo \ref{chap:desenv}.
+
+\section{Obtendo as Dependências e Compilando o Projeto}
+
+Existem várias formas de se compilar o projeto.
+Uma delas, é abrir o projeto em uma IDE que suporte projetos Maven como, por exemplo, a IDE Netbeans.
+A outra, é utilizar a ferramenta para linha de comando do próprio Apache Maven.
+Para tanto, basta executar o seguinte comando na raiz do diretório \texttt{onibuscerto}:
+
+\lstset{language=bash}
+\begin{lstlisting}
+mvn install
+\end{lstlisting}
+
+Note que este comando irá fazer \emph{download} de todas as dependências do projeto tais como o banco de dados Neo4j, o \emph{framework} de testes JUnit, entre outros.
+Sendo assim, o tempo de execução deste comando pode variar de acordo com a velocidade da conexão à Internet sendo utilizada.
+
+Ao concluir o \emph{download} das dependências, o Maven irá automaticamente iniciar a compilação do projeto, após a qual serão executados os testes e o \emph{software} compilado será instalado no repositório local do Maven.
+Os testes podem ser executados novamente durante o desenvolvimento a qualquer momento através do comando \texttt{mvn test}.
+
+\section{Importando a Base de Dados}
+
+Duas bases de dados distintas estão presentes no projeto \texttt{onibuscerto-importer}: a primeira, situada no diretório \texttt{onibuscerto-importer/src/test/resources/sample} e apenas utilizada para a execução dos testes, é a base de dados de exemplo da especificação do formato GTFS, a segunda é a base de dados do Bay Area Rapid Transit (BART), da cidade de São Francisco, California.
+A base de dados está disponível para uso em \citeonline{bart}.
+Para importar a base de dados do BART no banco de dados do \emph{software}, basta executar o seguinte comando a partir do diretório do \texttt{onibuscerto-importer}:
+
+\lstset{language=bash}
+\begin{lstlisting}
+mvn exec:java -e -Dexec.mainClass="com.onibuscerto.importer.ImporterMain"
+\end{lstlisting}
+
+Ao executar este comando, diversas mensagens de depuração serão impressas à saída padrão.
+Os arquivos do banco de dados com a base de dados do BART importada serão criados no diretório \texttt{onibuscerto-importer/target/db}.
+
+Após importar a base de dados, é necessário instalar a mesma no projeto \texttt{onibuscerto-service}.
+Para tanto, basta copiar o diretório \texttt{onibuscerto-importer/target/db} para o diretório \texttt{onibuscerto-service/target/db}, com o seguinte comando:
+
+\lstset{language=bash}
+\begin{lstlisting}
+cp -R onibuscerto-importer/target/db onibuscerto-service/target/db
+\end{lstlisting}
+
+Ao fim destes passos, o \emph{software} estará devidamente instalado, sendo possível executá-lo com os passos descritos na seção a seguir.
+
+\section{Executando o \emph{Software}}
+
+Para executar o \emph{web service}, basta executar o seguinte comando no diretório \texttt{onibuscerto-service}:
+
+\lstset{language=bash}
+\begin{lstlisting}
+mvn jetty:run
+\end{lstlisting}
+
+Este comando irá automaticamente iniciar uma instância do servidor de aplicações Jetty e instalar o Servlet do projeto no mesmo.
+Por fim, o cliente \emph{web} pode ser acessado a partir da URL \texttt{http://localhost:8080/}.
+O endereço do \texttt{RouteServlet} será \texttt{http://localhost:8080/route}, sendo que este poderá ser utilizado de acordo com as instruções apresentadas no Apêndice \ref{ape:exemplodeuso}.
