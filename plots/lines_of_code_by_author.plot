@@ -5,8 +5,9 @@ set key left top
 set xdata time
 set timefmt "%s"
 set format x "%Y-%m-%d"
-set grid y
-set ylabel "Lines"
+set grid x y
+set ylabel "Número de Linhas"
+set xlabel "Data"
 set xtics rotate
 
 set style line 11 lc rgb '#808080' lt 1
