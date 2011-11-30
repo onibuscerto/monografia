@@ -226,6 +226,34 @@ O mesmo foi implementado de acordo com a descrição especificada no capítulo \
 Considera-se esta classe como principal do subprojeto \emph{Core} pois a mesma possui o método que implementa a principal funcionalidade do sistema como um todo: a de buscar a rota que minimiza o tempo de viagem total dados os pontos de partida e destino juntamente com o horário de saída do usuário da origem.
 
 \section{onibuscerto-importer}
+Este subprojeto é responsável por importar efetivamente as informações contidas nos arquivos GTFS para o banco de dados do sistema.
+É composto por basicamente 2 classes: \texttt{GTFSImporter} e \texttt{ImporterMain}.
+O primeiro consiste nos métodos de importação de cada entidade definida no \emph{Core} e o segundo é simplesmente a execução destes através de um método \texttt{main}.
+
+A importação dos dados é feita através da varredura linha a linha dos arquivos GTFS e adição dos dados no banco através de uma referência a \emph{DatabaseController}.
+A classe \texttt{GTFSImporter} possui um método para cada tipo de entidade cuja importação é necessária para o funcionamento do sistema, sendo que cada um destes métodos seguem o algoritmo a seguir:
+
+\begin{enumerate}
+	\item Instanciar \texttt{EntidadeFactory} através da referência à \texttt{DatabaseController}.
+	\item Iniciar leitura do arquivo GTFS corresnpondente a \texttt{Entidade}, sendo que o caminho ao arquivo em questão é fornecido como parâmetro do algoritmo.
+	\item Criar nova \texttt{Entidade} através da \texttt{EntidadeFactory} com base nos dados contidos na linha atual do arquivo GTFS.
+	\item Adicionar à \texttt{Entidade} criada no passo 3 seus atributos especificados na linha atual.
+	\item Se ainda existir linhas não lidas no arquivo GTFS, ler a próxima linha e voltar ao passo 3.
+	\item Caso contrário, fim da importação.
+\end{enumerate}
+
+O principal método da classe \texttt{GTFSImporter} é definido como \texttt{importData}, o qual é responsável por iniciar uma transação no banco de dados através do \emph{DatabaseController} e então executar as seguintes funções:
+
+\begin{itemize}
+	\item \texttt{importStops}: cria uma \emph{Stop} para cada linha do arquivo \texttt{stops.txt} e adiciona os atributos \texttt{name}, \texttt{latitude} e 				\texttt{longitude}.
+	\item \texttt{importRoutes}: cria uma \emph{Route} para cada linha do arquivo \texttt{routes.txt} e adiciona os atributos \texttt{short\_name}, 						\texttt{long\_name}, \texttt{type} e \texttt{color} (se este for especificado).
+	\item \texttt{importTrips}: cria uma \emph{Trip} para cada linha do arquivo \texttt{trips.txt} e adiciona o atributo \texttt{route} através de uma relação no 			grafo.
+	\item \texttt{importStopTimes}: cria uma \emph{StopTime} para cada linha do arquivo \texttt{stop\_times.txt} e adiciona os atributos \texttt{trip}, 					\texttt{arrival\_time}, \texttt{departure\_time}, \texttt{stop}, \texttt{stop} e \texttt{stop\_sequence}.
+	\item \texttt{linkStopTimes}: responsável por construir a sequência de \emph{StopTimes} para todas as \emph{Trips} do banco de dados baseado no atributo 				\texttt{stop\_sequence} de \emph{StopTime}.
+	\item \texttt{createConnections}: para todas as \emph{Trips} do sistema, cria entidades \emph{TransportConnection} ligando cada \emph{StopTime} consecutiva e, 			para todos os pares de \emph{Stops} distantes de até no máximo um quilômetro, cria uma \emph{WalkingConnection}.
+\end{itemize}
+
+Este subprojeto é uma das partes essenciais ao projeto, pois sua função é a de popular o banco de dados do sistema para que o usuário possa efetivamente consultar por rotas de tempo mínimo de viagem.
 
 \section{onibuscerto-service}
 
