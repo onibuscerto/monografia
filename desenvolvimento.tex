@@ -60,9 +60,6 @@ Desta forma toda entidade é representada no sistema através de duas interfaces
 
 Cada entidade do sistema possui suas respectivas propriedades, as quais são armazenadas no próprio nó ou aresta do grafo (dependendo de como a entidade foi armazenada no banco de dados) através de pares chave/valor, sendo estas disponíveis para futuras consultas.
 
-%As interfaces que representam as entidades e suas \emph{factories} pertencem ao pacote \texttt{com.onibuscerto.core.entities} e %\texttt{com.onibuscerto.core.factories}, respectivamente.
-%Já as implementações das mesmas estão localizadas no pacote \texttt{com.onibuscerto.core}.
-
 A seguir serão descritos detalhes de implementação das classes que encapsulam as entidades, as quais em conjunto formam o grafo armazenado no banco de dados do sistema.
 
 \subsubsection{Location}
@@ -166,14 +163,97 @@ A entidade \emph{Trip} é primordial para o funcionamento do sistema pois reune 
 
 \subsubsection{StopTime}
 \label{stoptime}
+A entidade do tipo \emph{StopTime} relaciona os horários de partida e chegada dos veículos em paradas ou estações específicas em cada \emph{Trip} (ver subseção \ref{trip}).
+Para tal, esta possui os seguintes atributos armazenados no grafo:
+\begin{itemize}
+	\item \texttt{trip}: referência a \emph{Trip} a qual a \emph{StopTime} pertence.
+	Especificado através de uma relação entre estas duas entidades no grafo.
+	\item \texttt{stop}: referência a \emph{Stop} a qual a \emph{StopTime} pertence.
+	Especificado através de uma relação entre estas duas entidades no grafo.
+	\item \texttt{arrival\_time}: consiste na hora de chegada em uma parada ou estação específica (\emph{Stop}), de uma viagem específica (\emph{Trip}), em uma rota 	(\emph{Route}). 
+	O horário é definido a partir da meia-noite, no dia do início do serviço e deve possuir oito dígitos no formato HH:MM:SS (o formato H:MM:SS também é aceito, se       
+	a hora iniciar com 0).
+	\item \texttt{departure\_time}: especifica o horário de partida de uma parada específica (\emph{Stop}) de uma determinada viagem (\emph{Trip}) em uma rota 				(\emph{Route}).
+	O horário é definido a partir da meia-noite, no dia do início do serviço, obedecendo o padrão HH:MM:SS (o formato H:MM:SS também é aceito, se a hora iniciar com 	0).
+	\item \texttt{stop\_sequence}: identifica a ordem das paradas de uma viagem em particular. 
+	Representado por inteiros não negativos que variam em ordem crescente ao longo da viagem.
+	\item \texttt{next\_stoptime}: referência através de uma relação no grafo à próxima \emph{StopTime} da \emph{Trip} em questão.
+	Informação baseada no campo \texttt{stop\_sequence}.
+	\item \texttt{previous\_stoptime}: referência através de uma relação no grafo à \emph{StopTime} anterior da \emph{Trip} em questão.
+	Informação baseada no campo \texttt{stop\_sequence}.
+\end{itemize}
+
+Como esta não possui uma \texttt{id} específica, a única função de sua \emph{factory}, denominada \emph{StopTimeFactory}, é a de criação deste tipo de entidade.
+
+Sua principal função é a de relacionar as entidades \emph{Stop} com horários de chegada e partida de veículos de uma determinada \emph{Trip}.
+Desta forma, essa informação é essencial para o funcionamento do sistema pois o algoritmo para busca do caminho mínimo é inteiramente baseado nestes horários para calcular o tempo total gasto na viagem.
 
 \subsubsection{Connection}
 \label{conn}
+Uma \emph{Connection} consiste em uma conexão entre dois pontos na forma de aresta no grafo, contendo informações do tipo custo de tempo e par origem e destino da mesma.
+Estes pontos podem ser do tipo \emph{Location} (não consistindo em uma parada ou estação) e \emph{Stop}, sendo que dependendo de qual par de origem e destino a conexão possui, ela pode ser de dois tipos:
+
+\begin{itemize}
+	\item \emph{WalkingConnection}: consiste em uma conexão entre dois pontos quaisquer a qual é percorrida a pé. 
+	Geralmente esta conexão é entre a origem/destino da viagem e uma parada de veículos ou diretamente entre origem e destino, sendo que neste último caso a viagem 		inteira é percorrida a pé, sem a necessidade do uso de transporte público.
+	O custo de tempo deste tipo de conexão é calculado com base na distância entre seus pontos de origem e destino e a velocidade de caminhada.
+	\item \emph{TransportConnection}: consiste em uma conexão entre duas paradas, portanto esta é exclusivamente percorrida por algum tipo de veículo pertencente ao 	sistema de transporte público da cidade em questão.
+	O custo de tempo deste tipo de entidade é calculado através da subtração entre os horários de chegada do veículo no destino e o de partida da origem.
+	Além deste, possui referência à \emph{Trip} a qual pertence.
+\end{itemize}
+
+Todas estes tipos de \emph{Connection} possuem atributos e métodos semelhantes, portanto decidiu-se por definir uma interface chamada \emph{Connection} que serve como base para implementação de \emph{WalkingConnection} e \emph{TransportConnection}.
+
+A mesma \emph{factory} (denominada \emph{ConnectionFactory}) é utilizada para ambos os tipos de \emph{Connection}, com o intuito de criar separadamente estes tipos de entidade na forma de relação entre dois pontos armazenados no grafo.
+
+O algoritmo de busca do caminho mínimo do sistema utiliza estes tipos de entidades para percorrer o grafo e calcular o trajeto com menor tempo de viagem, sendo seu resultado retornado na forma de coleção de \emph{Connections}.
 
 \subsection{DatabaseController}
+O \texttt{DatabaseController} é a classe principal do subprojeto \emph{Core} responsável por interfacear o sistema com o banco de dados, ou seja, toda transação ou acesso ao banco de dados tem de ser feito através desta classe.
+Para tal, esta possui referências às \emph{factories} de todas as entidades do sistema, bem como métodos para iniciar e finalizar transações no banco.
 
+É nesta classe que está localizado o método \texttt{getShortestPath}, responsável pela busca do caminho com tempo de viagem mínimo. 
+Este recebe três parâmetros:
+
+\begin{itemize}
+	\item \texttt{source}: ponto de origem da rota consultada na forma de objeto \texttt{Location}, fornecido pelo usuário.
+	\item \texttt{target}: ponto de destino da rota consultada na forma de objeto \texttt{Location}, fornecido pelo usuário.
+	\item \texttt{time}: inteiro que representa o horário de partida da origem em segundos.
+\end{itemize}
+
+O mesmo foi implementado de acordo com a descrição especificada no capítulo \ref{fund} e retorna o trajeto resultante na forma de uma coleção de entidades \texttt{Connection}, a qual contém todas as conexões necessárias, desde trechos percorridos com veículos de transporte público até caminhos a pé.
+
+Considera-se esta classe como principal do subprojeto \emph{Core} pois a mesma possui o método que implementa a principal funcionalidade do sistema como um todo: a de buscar a rota que minimiza o tempo de viagem total dados os pontos de partida e destino juntamente com o horário de saída do usuário da origem.
 
 \section{onibuscerto-importer}
+Este subprojeto é responsável por importar efetivamente as informações contidas nos arquivos GTFS para o banco de dados do sistema.
+É composto por basicamente 2 classes: \texttt{GTFSImporter} e \texttt{ImporterMain}.
+O primeiro consiste nos métodos de importação de cada entidade definida no \emph{Core} e o segundo é simplesmente a execução destes através de um método \texttt{main}.
+
+A importação dos dados é feita através da varredura linha a linha dos arquivos GTFS e adição dos dados no banco através de uma referência a \emph{DatabaseController}.
+A classe \texttt{GTFSImporter} possui um método para cada tipo de entidade cuja importação é necessária para o funcionamento do sistema, sendo que cada um destes métodos seguem o algoritmo a seguir:
+
+\begin{enumerate}
+	\item Instanciar \texttt{EntidadeFactory} através da referência à \texttt{DatabaseController}.
+	\item Iniciar leitura do arquivo GTFS corresnpondente a \texttt{Entidade}, sendo que o caminho ao arquivo em questão é fornecido como parâmetro do algoritmo.
+	\item Criar nova \texttt{Entidade} através da \texttt{EntidadeFactory} com base nos dados contidos na linha atual do arquivo GTFS.
+	\item Adicionar à \texttt{Entidade} criada no passo 3 seus atributos especificados na linha atual.
+	\item Se ainda existir linhas não lidas no arquivo GTFS, ler a próxima linha e voltar ao passo 3.
+	\item Caso contrário, fim da importação.
+\end{enumerate}
+
+O principal método da classe \texttt{GTFSImporter} é definido como \texttt{importData}, o qual é responsável por iniciar uma transação no banco de dados através do \emph{DatabaseController} e então executar as seguintes funções:
+
+\begin{itemize}
+	\item \texttt{importStops}: cria uma \emph{Stop} para cada linha do arquivo \texttt{stops.txt} e adiciona os atributos \texttt{name}, \texttt{latitude} e 				\texttt{longitude}.
+	\item \texttt{importRoutes}: cria uma \emph{Route} para cada linha do arquivo \texttt{routes.txt} e adiciona os atributos \texttt{short\_name}, 						\texttt{long\_name}, \texttt{type} e \texttt{color} (se este for especificado).
+	\item \texttt{importTrips}: cria uma \emph{Trip} para cada linha do arquivo \texttt{trips.txt} e adiciona o atributo \texttt{route} através de uma relação no 			grafo.
+	\item \texttt{importStopTimes}: cria uma \emph{StopTime} para cada linha do arquivo \texttt{stop\_times.txt} e adiciona os atributos \texttt{trip}, 					\texttt{arrival\_time}, \texttt{departure\_time}, \texttt{stop}, \texttt{stop} e \texttt{stop\_sequence}.
+	\item \texttt{linkStopTimes}: responsável por construir a sequência de \emph{StopTimes} para todas as \emph{Trips} do banco de dados baseado no atributo 				\texttt{stop\_sequence} de \emph{StopTime}.
+	\item \texttt{createConnections}: para todas as \emph{Trips} do sistema, cria entidades \emph{TransportConnection} ligando cada \emph{StopTime} consecutiva e, 			para todos os pares de \emph{Stops} distantes de até no máximo um quilômetro, cria uma \emph{WalkingConnection}.
+\end{itemize}
+
+Este subprojeto é uma das partes essenciais ao projeto, pois sua função é a de popular o banco de dados do sistema para que o usuário possa efetivamente consultar por rotas de tempo mínimo de viagem.
 
 \section{onibuscerto-service}
 
