@@ -207,11 +207,17 @@ O processo pode ser descrito nas seguintes etapas:
 
 Os testes produzidos durante o TDD são apenas testes de unidades, e portanto devem se limitar a funcionalidades específicas. Um dos objetivos de escrever testes automatizados é que, se alguma modificação no código-fonte gera um erro em algo implementado anteriormente, esse erro é identificado imediatamente. Escrever testes automatizados que tentem cobrir várias funcionalidades do programa faz com que quanto esses testes falham seja mais difícil descobrir o que exatamente causou o erro, além de usualmente tornar a execução de testes uma tarefa demorada, principalmente em \emph{softwares} de grande porte.
 
-\subsection{Testes de Software}
+\subsection{Testes de \emph{Software}}
+
+Testes de \emph{software} são uma atividade no processo de desenvolvimento que visa encontrar falhas e garantir a qualidade do produto. Dependendo do processo utilizado no desenvolvimento, os testes podem estar mais focados em momentos diferentes, logo no início, no caso de TDD, ou apenas mais tarde, por um time específico de testadores, como é o caso dos processos tradicionais de desenvolvimento.
+
+Dois níveis em que os testes de \emph{software} podem ser realizados são os testes de unidade e os testes de integração. Testes de unidade testam funcionalidades específicas do programa, isoladamente, e normalmente são automatizados, ou seja, uma ferramenta é utilizada para que todos os testes sejam executados em sequência, e o resultado apresentado ao programador. Então, sempre que uma tarefa é concluída e o código é compilado, o programador executa os testes para verificar que tudo está funcionando corretamente, e caso não esteja, é capaz de identificar exatamente qual unidade está apresentando erros.
+
+Já os testes de integração testam as interfaces entre as interfaces das diferentes componentes do programa, já que estas normalmente são desenvolvidas separadamente. Esses testes testes podem ser realizados de forma gradativa, adicionando uma componente de cada vez e testando se todas as partes se comunicam corretamente entre si, ou pode-se simplesmente unir todas as componentes e realizar os testes do conjunto todo, o que é conhecido como método Big Bang.
 
 \section{Arquitetura Cliente-Servidor}
 
-\section{Licenciamento de Software}
+\section{Licenciamento de \emph{Software}}
 
 Licenças de \emph{software} são instrumentos legais que regulam como um determinado \emph{software} pode ser distribuído e utilizado.
 Softwares, usualmente, não são vendidos, apenas tem seu uso licenciado, então a menos que o \emph{software} seja colocado em domínio público, os direitos do usuário que licenciou o \emph{software} e os do dono dos direitos autorais precisam ser bem definidos. Portanto, para que seus direitos autorais sejam respeitados, todo desenvolvedor de \emph{software} deve se preocupar com o licenciamento de seu trabalho.
