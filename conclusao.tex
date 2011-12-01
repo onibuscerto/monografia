@@ -4,11 +4,11 @@ Como produto do projeto em questão obteve-se uma ferramenta disponibilizada na 
 O código-fonte do projeto inteiro está disponível livremente para o público, basta seguir os passos citados no apêndice \ref{guia}.
 Desta forma, o projeto está aberto a futuras contribuições, adaptações e integrações a diversos outros sistemas, não sendo limitado somente a sua funcionalidade originalmente idelizada pela equipe.
 
-% TODO: Cada uma das considerações dos capítulos deverão entrar na conclusão
+\section{Desenvolvimento do Projeto}
 %especificação
 O passo inicial do projeto foi uma profunda revisão bibliográfica (localizada no capítulo \ref{fund}), como o intuito de analisar todas as tecnologias existentes e definir qual seria a mais indicada para o desenvolvimento do \emph{software}, não somente em questão de programação mas também em decisões de metodologias e técnicas de gerência de projeto utilizadas.
 
-Decididas todas as tecnologias a serem utilizadas, o próximo passo foi o desenvolvimento da especificação do \emph{software} (capítulo \ref{specs}), a qual engloba um estudo dos requisitos do sistema e a arquitetura a ser implementada.
+Decididas todas as tecnologias a serem utilizadas, o próximo passo foi o desenvolvimento da especificação do \emph{software} (capítulo \ref{specs}), a qual engloba um estudo dos requisitos do sistema e a o projeto da arquitetura a ser implementada.
 Nesta fase procurou-se projetar o sistema com o intuito de modularizar ao máximo seus componentes, de tal forma que se caso necessárias modificações futuras seja rápido e fácil adapatá-lo e implementá-las.
 Todos os módulos foram definidos com base nas suas respectivas funcionalidades, visando minimizar o grau de dependência entre eles. 
 Isto facilita contribuições futuras ao projeto, bem como possibilitou o desenvolvimento paralelo de cada módulo, dividindo de maneira justa o trabalho entre os integrantes da equipe.
@@ -28,10 +28,23 @@ Com base na especificação do \emph{software} e na metodologia discutida, inici
 Durante tal fase procurou-se seguir de fielmente a especificação discutida no capítulo \ref{specs}, pois nesta definiu-se grande parte das decisões de arquitetura e técnicas de desenvolvimento, fazendo com que várias dificuldades de implementação fossem previstas e contornadas.
 Uma destas foi a interface entre o sistema e o banco de dados, sendo que o modo como esta foi implementada tornou o sistema flexível para futuras modificações quanto ao banco de dados utilizado.
 
-
+\section{Relação com Engenharia de Computação}
 % TODO: Discutir a engenharia, relacionar o trabalho com as disciplinas cursadas, estágios, trabalhos
+O desenvolvimento deste projeto agregou muita experiência aos membros da equipe, principalmente pela necessidade de integração de vários conceitos de diversas áreas de conhecimento estudadas ao longo do curso.
+Tais conhecimentos englobam as áreas de:
+\begin{itemize}
+	\item \textbf{Sistemas distribuídos}: com conceitos de arquitetura cliente-servidor e controle de concorrência.
+	\item \textbf{Desenvolvimento pra web}: visto que o projeto consiste basicamente em um sistema web.
+	\item \textbf{Algoritmos}: sendo idealizadas adaptações de algoritmos baseados em grafos para o sistema.
+	\item \textbf{Estruturas de dados}: já que diversos tipos de estruturas de dados, como vetores, grafos, listas encadeadas, foram utilizados.
+	\item \textbf{Bancos de dados}: com uso de conceitos de transações no banco de dados para grafos empregado ao sistema. 
+	\item \textbf{Engenharia de \emph{software}}: através do uso e adaptação de diversos conceitos, como desenvolvimento orientado a testes, uso de versionadores, 			estabelecimento de metas, entre outros.
+\end{itemize}
 
+Esta experiência é fundamental para carreira profissional de qualquer engenheiro, visto que neste projeto foram bem definidas as etapas do processo de engenhar, sendo estas necessárias para qualquer trabalho realizado. 
+Tais etapas consistiram em: aquisição de base teórica, estudo do estado da arte, definição dos requisitos, projeto da arquitetura do \emph{software}, definição da metodologia utilizada, implementação efetiva do sistema e por último uma análise dos resultados alcançados. 
 
+\section{Propostas Futuras}
 % TODO: Propostas futuras
 %tem que melhorar a performance do sistema com muitas requisições concorrentes
 %botar shapes e fares, pegar os dados de curitiba, desenvolver um cliente android
