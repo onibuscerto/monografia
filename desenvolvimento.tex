@@ -339,3 +339,10 @@ Apesar disso, ao iniciar o servidor de desenvolvimento, o cliente \emph{web} é 
 Maiores detalhes com relação à execução do \emph{software} em um ambiente de desenvolvimento estão disponíveis no Apêndice \ref{ape:guia}.
 
 \section{Considerações}
+Durante o desenvolvimento do sistema procurou-se seguir de maneira fiel a especificação definida no capítulo \ref{specs}, o que facilitou o andamento desta etapa. Afirma-se isto pois como praticamente todas as decisões de arquitetura e técnicas de desenvolvimento de software foram definidas anteriormente na especificação, várias dificuldades de implementação foram previstas e evitadas. 
+
+Uma das dificuldades evitadas com a especificação do software foi o interfaceamento do sistema com o banco de dados, o qual foi implementado para abstrair a conexão entre os mesmos, tornando o sistema mais versátil e flexível para ser integrado com outros bancos de dados futuramente.
+Desta forma, caso necessário seria rápido e fácil adapatar o sistema para uma troca de banco de dados.
+Outra decisão estratégica foi a separação do sistema em subprojetos, pois, além de organizar o sistema de acordo com suas funcionalidades específicas, possibilitou o desenvolvimento paralelo de cada módulo, o que aumentou a eficiência de implementação.
+
+Após muito estudo sobre as possibilidades existentes, definiu-se como o projeto seria organizado e implementado nos mínimos detalhes, desde as técnicas de engenharia de software até decisões críticas de implementação, bastando a fase de desenvolvimento do sistema somente executar o plano projetado.
