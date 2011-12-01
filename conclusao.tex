@@ -1,14 +1,40 @@
 \chapter{Conclusão}
 
-Como produto do projeto em questão obteve-se uma ferramenta disponibilizada na forma de software livre através de um serviço web, com a principal funcionalidade de auxiliar o planejamento de trajetos urbanos com o uso de transporte público.
+Como produto do projeto em questão obteve-se uma ferramenta disponibilizada na forma de \emph{software} livre através de um serviço web, com a principal funcionalidade de auxiliar o planejamento de trajetos urbanos com o uso de transporte público.
 O código-fonte do projeto inteiro está disponível livremente para o público, basta seguir os passos citados no apêndice \ref{guia}.
 Desta forma, o projeto está aberto a futuras contribuições, adaptações e integrações a diversos outros sistemas, não sendo limitado somente a sua funcionalidade originalmente idelizada pela equipe.
 
-
-% TODO: Discutir a metodologia utilizada (se foi bom e tal)
-
-
 % TODO: Cada uma das considerações dos capítulos deverão entrar na conclusão
 %especificação
-O passo inicial do projeto foi uma profunda revisão bibliográfica, como o intuito de analisar todas as tecnologias existentes e definir qual seria a mais indicada para o desenvolvimento do software, não somente em questão de programação mas também em decisões de metodologias e técnicas de gerência de projeto utilizadas.
+O passo inicial do projeto foi uma profunda revisão bibliográfica (localizada no capítulo \ref{fund}), como o intuito de analisar todas as tecnologias existentes e definir qual seria a mais indicada para o desenvolvimento do \emph{software}, não somente em questão de programação mas também em decisões de metodologias e técnicas de gerência de projeto utilizadas.
 
+Decididas todas as tecnologias a serem utilizadas, o próximo passo foi o desenvolvimento da especificação do \emph{software} (capítulo \ref{specs}), a qual engloba um estudo dos requisitos do sistema e a arquitetura a ser implementada.
+Nesta fase procurou-se projetar o sistema com o intuito de modularizar ao máximo seus componentes, de tal forma que se caso necessárias modificações futuras seja rápido e fácil adapatá-lo e implementá-las.
+Todos os módulos foram definidos com base nas suas respectivas funcionalidades, visando minimizar o grau de dependência entre eles. 
+Isto facilita contribuições futuras ao projeto, bem como possibilitou o desenvolvimento paralelo de cada módulo, dividindo de maneira justa o trabalho entre os integrantes da equipe.
+
+Tendo definido o que fazer e quais tecnologias utilizar, basta decidir que tipo de metodologia de desenvolvimento utilizar (capítulo \ref{metod}) para então partir para a implementação efetiva do projeto. 
+A metodologia utilizada visou principalmente o trabalho em paralelo dos integrantes da equipe, já que a arquitetura do sistema possibilitou esta técnica, sendo que reuniões somente aconteceram para tomadas de decisões cruciais ao projeto, como definição de \emph{milestones} e padrões de interfaceamento entre os módulos idelizados.
+Tal metodologia de desenvolvimento distribuído mostrou-se uma excelente opção ao longo do processo, já que frequentemente os horários dos integrantes da equipe se mostraram incompatíveis para reuniões periódicas.
+
+O uso de ferramentas específicas de controle de versão e compartilhamento de código permitiu que fosse utilizada técnicas de revisão de código, as quais permitiram que os integrantes da equipe discutissem detalhes de implementação de código remotamente, sendo tais discussões disponibilizadas para futuros colaboradores. 
+Estas revisões de código juntamente com desenvolvimento orientado a testes se mostraram vitais para garantir a qualidade de código, tendo em vista que o desenvolvimento distribuído torna a codificação eficiente porém sujeita a queda neste quesito.
+Tais técnicas ajudaram a evitar que fossem introduzidos novos \emph{bugs} ao código já testado e que novos problemas ainda não cobertos pelos testes fosse criados.
+
+A utilização de ferramentas como o Maven permitiram a todos os desenvolvedores utilizarem o editor de sua preferência, já que a codificação tornou-se independente da IDE utilizada.
+Esta juntamente com as demais ferramentas utilizadas reforçaram o conceito de \emph{software} livre empregado ao projeto, já que todas elas estão disponíveis sob licenças livres. 
+
+Com base na especificação do \emph{software} e na metodologia discutida, iniciou-se a fase de implementação do projeto (descrita no capítulo \ref{chap:desenv}). 
+Durante tal fase procurou-se seguir de fielmente a especificação discutida no capítulo \ref{specs}, pois nesta definiu-se grande parte das decisões de arquitetura e técnicas de desenvolvimento, fazendo com que várias dificuldades de implementação fossem previstas e contornadas.
+Uma destas foi a interface entre o sistema e o banco de dados, sendo que o modo como esta foi implementada tornou o sistema flexível para futuras modificações quanto ao banco de dados utilizado.
+
+
+% TODO: Discutir a engenharia, relacionar o trabalho com as disciplinas cursadas, estágios, trabalhos
+
+
+% TODO: Propostas futuras
+%tem que melhorar a performance do sistema com muitas requisições concorrentes
+%botar shapes e fares, pegar os dados de curitiba, desenvolver um cliente android
+%melhorar a interface web tanto o layout, como a disposição dos elementos as funcionalidades da interface 
+%implementar consultas do tipo "quero chegar no lugar X às Y horas"
+%diferentes custos pra minimizar
