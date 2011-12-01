@@ -3,7 +3,7 @@
 
 % TODO: introduzir a seção de resultados
 
-\section{Metodologia Aplicada}
+\section{Metodologia Empregada}
 
 % TODO: escrever texto e referencias as figuras
 
@@ -39,7 +39,22 @@
 	\label{fig:hourofday}
 \end{figure}
 
-\section{Performance do Serviço}
+\section{Performance do Sistema}
+
+Como métrica para analisar a performance do sistema, optou-se por utilizar testes de \emph{stress} no \emph{Web Service}, ou seja, executar uma série de consultas simultaneamente e avaliar o impacto no tempo de resposta do mesmo.
+
+Para tanto, foram realizados testes com o auxílio da ferramenta ApacheBench \cite{apachebench}.
+Os testes foram executados em um único servidor com processador Intel{\textsuperscript\textregistered} Xeon{\textsuperscript\textregistered} X3450 de 2.67GHz e 2GB de memória RAM.
+O servidor HTTP utilizado para hospedar a aplicação foi o Jetty, assim como descrito no Apêndice \ref{ape:guia}.
+
+Tendo em vista a dificuldade que a equipe teve de obter informações de transporte público para cidades brasileiras, todos os testes utilizaram a base de dados do Bay Area Rapid Transit (BART), da cidade de São Francisco, Califórnia.
+Esta base de dados é composta por 48 \emph{Stops}, 13 \emph{Routes}, cerca de 30 mil \emph{StopTimes} e 1500 \emph{Trips}.
+% TODO: esse é o melhor jeito de dizer o tamanho da base de dados usada?
+
+Foram executados cinco testes, sendo cada um destes composto por 1000 requisições.
+O primeiro dos testes correspondeu à execução de todas as requisições sequencialmente, uma por segundo.
+O segundo dos testes foi realizado com duas requisições concorrentes por segundo e, os demais testes, foram compostos por 5, 10 e 20 requisições por segundo.
+O impacto do aumento do número de requisições concorrentes pode ser acompanhado através da Figura \ref{fig:response}, a qual apresenta o tempo de resposta para cada uma das requisições feitas nos testes descartando a latência da rede.
 
 \begin{figure}[!htb]
 	\centering
@@ -48,6 +63,14 @@
 	\fonte{Autoria Própria}
 	\label{fig:response}
 \end{figure}
+
+A partir do gráfico apresentado na Figura \ref{fig:response} é possível notar que, sob as condições propostas para o experimento, o serviço foi capaz de atender todas as requisições sequenciais em menos de 100 ms.
+No teste de 2 requisições concorrentes por segundo, o serviço foi capaz de atender todas as requisições em menos de 200ms.
+Para os testes de 5, 10 e, principalmente, 20 requisições concorrentes por segundo, as últimas requisições tiveram um tempo de resposta significativo, sendo em alguns casos necessários pouco mais de 2 segundos para responder a requisição de um cliente.
+
+Apesar da aparente ruim performance no teste com 20 requisições concorrentes, deve-se levar em conta que para este teste foi utilizado apenas um servidor.
+Para melhorar a performance do sistema em um ambiente com uma grande quantidade de requisições concorrentes, é possível utilizar diversos servidores e utilizar um mecanismo de escalonamento, de forma que as requisições sejam alocadas aos servidores que possuem mais tempo de CPU livre no momento, consequentemente minimizando o tempo de resposta.
+Vale notar também que o caso de 20 requisições por segundo é um teste de \emph{stress} do sistema, o que não corresponde necessariamente à um caso de uso real.
 
 \section{Considerações}
 

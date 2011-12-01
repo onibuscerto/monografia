@@ -28,8 +28,8 @@ set style line 4 lc rgb '#5e9c36' pt 6 ps 1 lt 1 lw 2 # --- green
 set style line 5 lc rgb '#706e98' pt 6 ps 1 lt 1 lw 2 # --- green
 
 # plot data from "out.dat" using column 9
-plot "data1.dat" using 9 with lines linestyle 5 title "1 concorrente", \
-     "data2.dat" using 9 with lines linestyle 4 title "2 concorrentes", \
-     "data5.dat" using 9 with lines linestyle 3 title "5 concorrentes", \
-     "data10.dat" using 9 with lines linestyle 2 title "10 concorrentes", \
-     "data20.dat" using 9 with lines linestyle 1 title "20 concorrentes"
+plot "data1.dat" using 9 with lines linestyle 5 title "1 requisição/s", \
+     "data2.dat" using 9 with lines linestyle 4 title "2 requisições/s", \
+     "data5.dat" using 9 with lines linestyle 3 title "5 requisições/s", \
+     "data10.dat" using 9 with lines linestyle 2 title "10 requisições/s", \
+     "data20.dat" using 9 with lines linestyle 1 title "20 requisições/s"
