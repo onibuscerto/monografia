@@ -2,6 +2,8 @@
 
 \chapter{Fundamentação}
 \label{fund}
+
+
 \section{O Problema do Menor Caminho Multi-Modal com Restrição de Itinerário}
 
 % citar esse artigo: http://www.scialert.net/fulltext/?doi=jas.2009.3804.3812&org=11#290480_ja
@@ -167,12 +169,12 @@ No entanto, sua maior vantagem é que, devido à sua estrutura, são capazes de 
 
 \section{Métodos Ágeis}
 
-Métodos ágeis são um conjunto de práticas e métodos de desenvolvimento de software que se consolidaram na década de 90 e que visavam superar alguns problemas que foram identificados nos métodos de desenvolvimento tradicionais, que são mais focados em planejamentos, com ênfase numa abordagem "racional, de engenharia" \cite{Dyba:2008:ESA:1379905.1379989}. Por outro lado, os métodos ágeis partem do princípio que o andamento dos projetos costuma ser bastante imprevisível, e portanto tem um foco maior nas "pessoas e sua criatividade".
+Métodos ágeis são um conjunto de práticas e métodos de desenvolvimento de \emph{software} que se consolidaram na década de 90 e que visavam superar alguns problemas que foram identificados nos métodos de desenvolvimento tradicionais, que são mais focados em planejamentos, com ênfase numa abordagem "racional, de engenharia" \cite{Dyba:2008:ESA:1379905.1379989}. Por outro lado, os métodos ágeis partem do princípio que o andamento dos projetos costuma ser bastante imprevisível, e portanto tem um foco maior nas "pessoas e sua criatividade".
 
 Em 2001, defensores dos métodos ágeis escreveram um documento curto listando os 4 valores centrais do desenvolvimento ágil:
 
 \begin{quote}
-Estamos descobrindo maneiras melhores de desenvolver software fazendo-o nós mesmos e ajudando outros a fazê-lo. Através deste trabalho, passamos a valorizar:
+Estamos descobrindo maneiras melhores de desenvolver \emph{software} fazendo-o nós mesmos e ajudando outros a fazê-lo. Através deste trabalho, passamos a valorizar:
 \begin{itemize}
 
 \item    Indivíduos e interação entre eles mais que processos e ferramentas
@@ -191,32 +193,42 @@ Alguns dos métodos de desenvolvimento dentro dos métodos ágeis são o Extreme
 
 \section{Desenvolvimento Orientado a Testes}\label{fun:tdd}
 
-\subsection{Testes de Software}
+Desenvolvimento orientado a testes, ou \sigla{TDD}{Desenvolvimento Orientado a Testes} na sigla em inglês, é um processo de desenvolvimento de \emph{software} que utiliza testes automatizados para realizar um desenvolvimento incremental do \emph{software}. O código resultante geralmente é bastante confiável devido à abundante cobertura de testes.
 
-\subsection{Complexidade Ciclomática}
+O processo pode ser descrito nas seguintes etapas:
+\begin{itemize}
+\item Uma nova função a ser adicionada ao \emph{software} é escolhida.
+\item O programador escreve um teste automatizado para a função ainda não implementada.
+\item Os testes são executados e verifica-se que eles falham, pois o código-fonte para a nova função ainda não foi escrito.
+\item O programador implementa a nova funcionalidade.
+\item Os testes são executados novamente, e caso algum teste falhe, retorna-se à etapa anterior, até que todos passem.
+\item O código é refatorado, e em seguida o processo é reiniciado da primeira etapa.
+\end{itemize}
+
+Os testes produzidos durante o TDD são apenas testes de unidades, e portanto devem se limitar a funcionalidades específicas. Um dos objetivos de escrever testes automatizados é que, se alguma modificação no código-fonte gera um erro em algo implementado anteriormente, esse erro é identificado imediatamente. Escrever testes automatizados que tentem cobrir várias funcionalidades do programa faz com que quanto esses testes falham seja mais difícil descobrir o que exatamente causou o erro, além de usualmente tornar a execução de testes uma tarefa demorada, principalmente em \emph{softwares} de grande porte.
+
+\subsection{Testes de Software}
 
 \section{Arquitetura Cliente-Servidor}
 
-\section{Sistemas Georreferenciados}
-
 \section{Licenciamento de Software}
 
-Licenças de software são instrumentos legais que regulam como um determinado software pode ser distribuído e utilizado.
-Softwares, usualmente, não são vendidos, apenas tem seu uso licenciado, então a menos que o software seja colocado em domínio público, os direitos do usuário que licenciou o software e os do dono dos direitos autorais precisam ser bem definidos. Portanto, para que seus direitos autorais sejam respeitados, todo desenvolvedor de software deve se preocupar com o licenciamento de seu trabalho.
+Licenças de \emph{software} são instrumentos legais que regulam como um determinado \emph{software} pode ser distribuído e utilizado.
+Softwares, usualmente, não são vendidos, apenas tem seu uso licenciado, então a menos que o \emph{software} seja colocado em domínio público, os direitos do usuário que licenciou o \emph{software} e os do dono dos direitos autorais precisam ser bem definidos. Portanto, para que seus direitos autorais sejam respeitados, todo desenvolvedor de \emph{software} deve se preocupar com o licenciamento de seu trabalho.
 
-Além disso, todas as ferramentas de software citadas neste trabalho são distribuídas sob algum tipo de licença, e portanto é necessário conhecer e entender licenças de software para que se possa fazer um uso legítimo dessas ferramentas.
+Além disso, todas as ferramentas de \emph{software} citadas neste trabalho são distribuídas sob algum tipo de licença, e portanto é necessário conhecer e entender licenças de \emph{software} para que se possa fazer um uso legítimo dessas ferramentas.
 
-Existem dois tipos principais de licenças de software, as proprietárias e as livres e de código aberto. As licenças proprietárias se concentram em garantir que a distribuição do software seja potencialmente rentável, assim como proteger os direitos dos distribuidores. Já as licenças livres e de código aberto se concentram em proteger os direitos dos usuários.
+Existem dois tipos principais de licenças de \emph{software}, as proprietárias e as livres e de código aberto. As licenças proprietárias se concentram em garantir que a distribuição do \emph{software} seja potencialmente rentável, assim como proteger os direitos dos distribuidores. Já as licenças livres e de código aberto se concentram em proteger os direitos dos usuários.
 
 \subsection{Software Proprietário} 
 
-Software proprietário é aquele cuja licença restringe ou proíbe diversos usos do produto, como a cópia, redistribuição, engenharia reversa ou modificação. Além disso, o usuário que licencia o software normalmente não tem acesso ao código-fonte e a licença pode ter uma duração limitada.
+Software proprietário é aquele cuja licença restringe ou proíbe diversos usos do produto, como a cópia, redistribuição, engenharia reversa ou modificação. Além disso, o usuário que licencia o \emph{software} normalmente não tem acesso ao código-fonte e a licença pode ter uma duração limitada.
 
-Quando o usuário adquire uma cópia do software, esta costuma vir acompanhada da licença proprietária, na forma dos termos de uso do software. O software só pode ser utilizado se o usuário concordar com os termos de uso, e pode utilizá-lo apenas da forma prevista nos termos de uso.
+Quando o usuário adquire uma cópia do \emph{software}, esta costuma vir acompanhada da licença proprietária, na forma dos termos de uso do \emph{software}. O \emph{software} só pode ser utilizado se o usuário concordar com os termos de uso, e pode utilizá-lo apenas da forma prevista nos termos de uso.
 
 \subsection{Software Livre e/ de Código Aberto}
 
-Softwares livres e de código aberto são aqueles distribuídos com uma licença que permite que o usuário possa, além de utilizar, também analisar e melhorar o software, através do código fonte. Licenças de software livre e de código aberto tem duas definições diferentes, baseadas em conceitos parecidos, o de software livre e o de software de código aberto. Neste trabalho utilizaremos o o conceito de software livre.
+Softwares livres e de código aberto são aqueles distribuídos com uma licença que permite que o usuário possa, além de utilizar, também analisar e melhorar o \emph{software}, através do código fonte. Licenças de \emph{software} livre e de código aberto tem duas definições diferentes, baseadas em conceitos parecidos, o de \emph{software} livre e o de \emph{software} de código aberto. Neste trabalho utilizaremos o o conceito de \emph{software} livre.
 
 Software livre, como definido pela \sigla{FSF}{Free Software Foundation}, é aquele cuja licença dá ao usuário 4 liberdades básicas\cite{GNUFreeSoftware}:
 
@@ -229,9 +241,9 @@ Software livre, como definido pela \sigla{FSF}{Free Software Foundation}, é aqu
 
 \end{itemize}
 
-Para satisfazer as liberdades 1 e 3, o usuário precisa ter acesso ao código fonte do software.
+Para satisfazer as liberdades 1 e 3, o usuário precisa ter acesso ao código fonte do \emph{software}.
 
-O objetivo dessa categoria de licenças é garantir ao desenvolvedor do software que qualquer um que receba o seu trabalho terá todas as liberdades listadas. Além disso, muitas licenças de software livre também são \emph{copyleft}, ou seja, exigem que trabalhos derivados mantenham todas as liberdades originais. Assim, algum terceiro fica impedido de, com base no trabalho original, realizar alguma modificação e em seguida distribuir a versão modificada sob uma licença proprietária, por exemplo.
+O objetivo dessa categoria de licenças é garantir ao desenvolvedor do \emph{software} que qualquer um que receba o seu trabalho terá todas as liberdades listadas. Além disso, muitas licenças de \emph{software} livre também são \emph{copyleft}, ou seja, exigem que trabalhos derivados mantenham todas as liberdades originais. Assim, algum terceiro fica impedido de, com base no trabalho original, realizar alguma modificação e em seguida distribuir a versão modificada sob uma licença proprietária, por exemplo.
 
 %TODO: Listar/descrever licenças de software livre?
 
