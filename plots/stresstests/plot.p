@@ -2,16 +2,16 @@ set terminal pngcairo size 576,432 enhanced font 'Verdana,9'
 set output "out.png"
 
 # graph title
-set title "Teste de Performance do Web Service"
+#set title "Teste de Performance do Web Service"
 
 # y-axis grid
 set grid x y
 
 # x-axis label
-set xlabel "requisição"
+set xlabel "Requisição"
 
 # y-axis label
-set ylabel "tempo de resposta (ms)"
+set ylabel "Tempo de Resposta (ms)"
 
 set style line 11 lc rgb '#808080' lt 1
 set border 3 back ls 11
