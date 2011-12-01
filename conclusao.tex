@@ -45,9 +45,16 @@ Esta experiência é fundamental para carreira profissional de qualquer engenhei
 Tais etapas consistiram em: aquisição de base teórica, estudo do estado da arte, definição dos requisitos, projeto da arquitetura do \emph{software}, definição da metodologia utilizada, implementação efetiva do sistema e por último uma análise dos resultados alcançados. 
 
 \section{Propostas Futuras}
-% TODO: Propostas futuras
-%tem que melhorar a performance do sistema com muitas requisições concorrentes
-%botar shapes e fares, pegar os dados de curitiba, desenvolver um cliente android
-%melhorar a interface web tanto o layout, como a disposição dos elementos as funcionalidades da interface 
-%implementar consultas do tipo "quero chegar no lugar X às Y horas"
-%diferentes custos pra minimizar
+
+Tendo em vista a proporção do presente projeto, ainda há muito o que ser feito para melhorar sua qualidade.
+As seguintes propostas foram idealizadas:
+
+\begin{itemize}
+	\item Melhorar a performance do sistema quanto ao tempo de resposta para muitas requisições concorrentes, visto que atualmente este tempo não é satisfatório para 	o uso em larga escala, como mostrado no capítulo \ref{chap:result}.
+	\item Importar e tratar mais informações originárias dos arquivos GTFS, como tarifas e disponibilidade do serviço.
+	\item Desenhar a rota resultante utilizando o conceito de \emph{shapes} do GTFS, com o intuito de desenhá-la coincidindo com as ruas presentes no mapa.
+	\item Melhorar o \emph{layout} da interface web.
+	\item Adicionar novas funcionalidades ao sistema, como suporte a consultas que tem como entrada um horário de chegada ao destino, ou seja, consultas do tipo 			"chegar ao ponto X as Y horas".
+	\item Implementação de busca multi-objetivo, ou seja, considerar diferentes fatores para minimizar o custo de viagem, como valor da tarifa total e a minimização 		do número de trocas de veículos, desta forma obtendo-se um conjunto de soluções ótimas para sugerir diferentes rotas ao usuário.
+	\item Adquirir os dados de Curitiba para transporte público no formato GTFS, para então implantar o sistema na cidade.
+\end{itemize}
