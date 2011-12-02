@@ -10,17 +10,17 @@
 % http://en.wikipedia.org/wiki/Continuous_integration
 
 Com a especificação e uma arquitetura inicial do \emph{software} já estabelecidas, o passo seguinte foi dar início à fase de implementação do produto.
-Antes de dar início a esta é necessário definir o processo que será utilizado durante a codificação, como será feita a alocação de tarefas entre os membros da equipe, a definição de metas, assim como qual o processo utilizado para garantir a qualidade do sistema que está sendo desenvolvido.
+Porém antes deste passo é necessário definir o processo que será utilizado durante a codificação, como será feita a alocação de tarefas entre os membros da equipe, a definição de metas, assim como qual o processo utilizado para garantir a qualidade do sistema que está sendo desenvolvido.
 
 Este capítulo é dividido em duas seções principais: a primeira procura descrever o processo de desenvolvimento de \emph{software} estabelecido pela equipe, enquanto que a segunda apresenta as ferramentas utilizadas durante a fase de implementação.
 
 
 \section{Processo de Desenvolvimento do Software}
 
-Tendo em vista que a equipe foi composta por apenas três integrantes, foi adotado um processo de desenvolvimento de software inspirado:nos Métodos Ágeis, prezando mais pela simplicidade e por um software funcional do que uma documentação extensa.
+Tendo em vista que a equipe foi composta por apenas três integrantes, foi adotado um processo de desenvolvimento de software inspirado em Métodos Ágeis, prezando mais pela simplicidade e por um software funcional do que uma documentação extensa.
 
 Para garantir a funcionalidade do software, foram periodicamente estabelecidas \emph{milestones} (ou metas) através de reuniões da equipe, cada uma destas correspondendo à uma funcionalidade específica do software.
-Além disso, estas reuniões eram utilizadas para analisar a qualidade do código que havia sido escrito até então, em um processo chamado de \emph{code review} (ou revisão de código), bem como o cumprimento das \emph{milestones} previamente estabelecidas.
+Além disso, estas reuniões foram utilizadas para analisar a qualidade do código que havia sido escrito até então, em um processo chamado de \emph{code review} (ou revisão de código), bem como o cumprimento das \emph{milestones} previamente estabelecidas.
 Ao estabelecer novas metas, cada integrante da equipe se responsabilizava por um sub-conjunto destas, de forma que cada um desenvolva uma parte do software que seja, de preferência, do seu interesse.
 
 Para assegurar a qualidade do código escrito, foram utilizadas, além do processo de \emph{code review}, ferramentas de desenvolvimento orientado a testes e de cobertura dos testes, as quais são discutidas em maiores detalhes na seção a seguir.
@@ -29,25 +29,25 @@ Para assegurar a qualidade do código escrito, foram utilizadas, além do proces
 
 Para reforçar a ideia de qualidade do código do software, minimizar os \emph{bugs} e manter a simplicidade do código, optou-se por utilizar uma adaptação do processo de desenvolvimento de software orientado a testes.
 
-Como mencionado na seção \ref{fun:tdd}, o processo de desenvolvimento de software orientado a testes baseia-se na repetição de um pequeno ciclo: inicialmente os desenvolvedores escrevem casos de teste nos quais o software falha, em seguida o código para que o software passe nos novos testes é escrito e, por fim, o código é refatorado para adequar-se aos padrões de código do projeto.
+Como mencionado na seção \ref{fun:tdd}, o processo de desenvolvimento de software orientado a testes baseia-se na repetição de um pequeno ciclo: inicialmente os desenvolvedores escrevem casos de teste nos quais o software falha, em seguida o código para que o software passe nos novos testes é escrito e, por fim, o código é refatorado para adequar-se aos padrões do projeto.
 
 Neste projeto, a equipe optou por adaptar este método, de forma que não seja obrigatório escrever os casos de teste antes das funcionalidades do software, acelerando o processo de desenvolvimento.
 No entanto, todo código escrito deve ser testado adequadamente antes de ser enviado ao sistema de controle de versão, com o objetivo de evitar que \emph{bugs} sejam introduzidos no código versionado.
 
 O processo orientado a testes também permitiu que a equipe desenvolvesse o software em passos menores sem sacrificar a eficiência do grupo.
-Os programadores apenas tinham se preocupar em cumprir as metas propostas na última reunião e garantir que o código passe nos testes, focando muito mais no desenvolvimento do código em si e nas funcionalidades desejadas do projeto.
+Os programadores apenas tinham que se preocupar em cumprir as metas propostas na última reunião e garantir que o código passasse nos testes, focando muito mais no desenvolvimento do código em si e nas funcionalidades desejadas do projeto.
 
 Os casos de testes foram desenvolvidos por todos os membros da equipe, ou seja, não necessariamente por aqueles que desenvolveram uma determinada funcionalidade que seria testada pelos casos de teste em questão.
-Este tipo de abordagem aumenta a confiabilidade dos testes, fazendo com que tanto o software quanto os testes tenham sido analisados por mais de uma pessoa, diminuindo a probabilidade de que erros surjam neste processo.
+Este tipo de abordagem aumenta a confiabilidade dos mesmos, fazendo com que tanto o software quanto os testes tenham sido analisados por mais de uma pessoa, diminuindo a probabilidade de que erros surjam neste processo.
 
 
 \subsubsection{Cobertura dos Testes}
 
-Como no desenvolvimento orientado a testes os testes são usualmente escritos antes do código do software, não existe código escrito que não seja necessário para passar um teste.
-Desta forma, os testes resultantes do processo de TDD acabam sempre, invariavelmente, aproximando-se de 100\% de cobertura de código durante os testes.
+Como no TDD os testes são usualmente escritos antes do código do software, não existe código escrito que não seja necessário para passar um teste.
+Desta forma, os testes resultantes deste processo acabam sempre, invariavelmente, aproximando-se de 100\% de cobertura de código durante os testes.
 Ou seja, durante a execução dos testes, praticamente todo o código é percorrido pelos mesmos.
 
-Devido à adaptação feita pela equipe à metodologia de desenvolvimento orientado a testes, a não-obrigatoriedade de escrever os testes antes do código, tornou-se necessário a utilização de uma métrica para analisar se os casos de teste escritos cobrem a maior parte do código escrito possível, com o objetivo de assegurar a qualidade dos testes.
+Devido à adaptação feita pela equipe à metodologia de desenvolvimento orientado a testes, a não-obrigatoriedade de escrever os testes antes do código, tornou-se necessária a utilização de uma métrica para analisar se os casos de teste escritos cobrem a maior parte do código escrito possível, com o objetivo de assegurar a qualidade dos testes.
 
 Para analisar a cobertura dos testes escritos, a ferramenta \emph{Cobertura} foi utilizada, a qual é discutida em maiores detalhes na seção \ref{met:Cobertura}.
 
