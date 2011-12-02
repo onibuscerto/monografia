@@ -15,35 +15,35 @@ Porém antes deste passo é necessário definir o processo que será utilizado d
 Este capítulo é dividido em duas seções principais: a primeira procura descrever o processo de desenvolvimento de \emph{software} estabelecido pela equipe, enquanto que a segunda apresenta as ferramentas utilizadas durante a fase de implementação.
 
 
-\section{Processo de Desenvolvimento do Software}
+\section{Processo de Desenvolvimento do \emph{Software}}
 
-Tendo em vista que a equipe foi composta por apenas três integrantes, foi adotado um processo de desenvolvimento de software inspirado em Métodos Ágeis, prezando mais pela simplicidade e por um software funcional do que uma documentação extensa.
+Tendo em vista que a equipe foi composta por apenas três integrantes, foi adotado um processo de desenvolvimento de \emph{software} inspirado em Métodos Ágeis, prezando mais pela simplicidade e por um \emph{software} funcional do que uma documentação extensa.
 
-Para garantir a funcionalidade do software, foram periodicamente estabelecidas \emph{milestones} (ou metas) através de reuniões da equipe, cada uma destas correspondendo à uma funcionalidade específica do software.
+Para garantir a funcionalidade do \emph{software}, foram periodicamente estabelecidas \emph{milestones} (ou metas) através de reuniões da equipe, cada uma destas correspondendo à uma funcionalidade específica do \emph{software}.
 Além disso, estas reuniões foram utilizadas para analisar a qualidade do código que havia sido escrito até então, em um processo chamado de \emph{code review} (ou revisão de código), bem como o cumprimento das \emph{milestones} previamente estabelecidas.
-Ao estabelecer novas metas, cada integrante da equipe se responsabilizava por um sub-conjunto destas, de forma que cada um desenvolva uma parte do software que seja, de preferência, do seu interesse.
+Ao estabelecer novas metas, cada integrante da equipe se responsabilizava por um sub-conjunto destas, de forma que cada um desenvolva uma parte do \emph{software} que seja, de preferência, do seu interesse.
 
 Para assegurar a qualidade do código escrito, foram utilizadas, além do processo de \emph{code review}, ferramentas de desenvolvimento orientado a testes e de cobertura dos testes, as quais são discutidas em maiores detalhes na seção a seguir.
 
 \subsection{Desenvolvimento Orientado a Testes}
 
-Para reforçar a ideia de qualidade do código do software, minimizar os \emph{bugs} e manter a simplicidade do código, optou-se por utilizar uma adaptação do processo de desenvolvimento de software orientado a testes.
+Para reforçar a ideia de qualidade do código do \emph{software}, minimizar os \emph{bugs} e manter a simplicidade do código, optou-se por utilizar uma adaptação do processo de desenvolvimento de \emph{software} orientado a testes.
 
-Como mencionado na seção \ref{fun:tdd}, o processo de desenvolvimento de software orientado a testes baseia-se na repetição de um pequeno ciclo: inicialmente os desenvolvedores escrevem casos de teste nos quais o software falha, em seguida o código para que o software passe nos novos testes é escrito e, por fim, o código é refatorado para adequar-se aos padrões do projeto.
+Como mencionado na seção \ref{fun:tdd}, o processo de desenvolvimento de \emph{software} orientado a testes baseia-se na repetição de um pequeno ciclo: inicialmente os desenvolvedores escrevem casos de teste nos quais o \emph{software} falha, em seguida o código para que o \emph{software} passe nos novos testes é escrito e, por fim, o código é refatorado para adequar-se aos padrões do projeto.
 
-Neste projeto, a equipe optou por adaptar este método, de forma que não seja obrigatório escrever os casos de teste antes das funcionalidades do software, acelerando o processo de desenvolvimento.
+Neste projeto, a equipe optou por adaptar este método, de forma que não seja obrigatório escrever os casos de teste antes das funcionalidades do \emph{software}, acelerando o processo de desenvolvimento.
 No entanto, todo código escrito deve ser testado adequadamente antes de ser enviado ao sistema de controle de versão, com o objetivo de evitar que \emph{bugs} sejam introduzidos no código versionado.
 
-O processo orientado a testes também permitiu que a equipe desenvolvesse o software em passos menores sem sacrificar a eficiência do grupo.
+O processo orientado a testes também permitiu que a equipe desenvolvesse o \emph{software} em passos menores sem sacrificar a eficiência do grupo.
 Os programadores apenas tinham que se preocupar em cumprir as metas propostas na última reunião e garantir que o código passasse nos testes, focando muito mais no desenvolvimento do código em si e nas funcionalidades desejadas do projeto.
 
 Os casos de testes foram desenvolvidos por todos os membros da equipe, ou seja, não necessariamente por aqueles que desenvolveram uma determinada funcionalidade que seria testada pelos casos de teste em questão.
-Este tipo de abordagem aumenta a confiabilidade dos mesmos, fazendo com que tanto o software quanto os testes tenham sido analisados por mais de uma pessoa, diminuindo a probabilidade de que erros surjam neste processo.
+Este tipo de abordagem aumenta a confiabilidade dos mesmos, fazendo com que tanto o \emph{software} quanto os testes tenham sido analisados por mais de uma pessoa, diminuindo a probabilidade de que erros surjam neste processo.
 
 
 \subsubsection{Cobertura dos Testes}
 
-Como na metodologia de TDD os testes são usualmente escritos antes do código do software, não existe código escrito que não seja necessário para passar um teste.
+Como na metodologia de TDD os testes são usualmente escritos antes do código do \emph{software}, não existe código escrito que não seja necessário para passar um teste.
 Desta forma, os testes resultantes deste processo acabam sempre, invariavelmente, aproximando-se de 100\% de cobertura de código durante os testes.
 Ou seja, durante a execução dos testes, praticamente todo o código é percorrido pelos mesmos.
 
@@ -57,25 +57,25 @@ Para analisar a cobertura dos testes escritos, a ferramenta \emph{Cobertura} foi
 % TODO: citar wikipedia aos montes nessa seção
 
 O processo de revisão de código é a examinação sistemática do código-fonte de um programa.
-Este tem o objetivo de encontrar e corrigir erros cometidos durante o desenvolvimento, melhorando tanto a qualidade do software quanto as habilidades e conhecimentos dos programadores da equipe.
+Este tem o objetivo de encontrar e corrigir erros cometidos durante o desenvolvimento, melhorando tanto a qualidade do \emph{software} quanto as habilidades e conhecimentos dos programadores da equipe.
 
 Os processos que podem ser utilizados para revisão de código encaixam-se em três categorias principais: programação em pares, revisão de código formal e a revisão de código leve.
 
 A programação em pares, amplamente utilizada pelos métodos ágeis, corresponde à um conjunto de técnicas na quais dois programadores trabalham em uma única estação de trabalho: um dos programadores, o \emph{driver}, escreve o código, enquanto o outro, denominado \emph{observer}, revisa cada linha de código digitada.
-Apesar de uma tarefa de programação ser concluída mais rapidamente quando dois programadores colaboram, estas técnicas possuem a desvantagem de aumentar o tempo total para o desenvolvimento do software. % TODO: justificar isso
+Apesar de uma tarefa de programação ser concluída mais rapidamente quando dois programadores colaboram, estas técnicas possuem a desvantagem de aumentar o tempo total para o desenvolvimento do \emph{software}. % TODO: justificar isso
 Sendo assim, em uma equipe com menos integrantes como é o caso desta, o processo como um todo tornaria-se mais ineficiente, a equipe demoraria mais tempo para concluir o projeto e, por este motivo, a programação em pares foi descartada.
 
 As técnicas de revisão de código formais são o método mais tradicional de revisão de código.
 Estas envolvem um detalhado processo com múltiplos participantes e múltiplas fases, sendo o mais comum uma série de reuniões nas quais os desenvolvedores revisam o código linha por linha, geralmente utilizando cópias impressas.
 Apesar de exigirem um grande investimento de tempo, tanto para a organização e planejamento quanto para a execução, as técnicas de revisão de código formais são consideradas efetivas para encontrar problemas na codificação.
 
-Por fim, as técnicas de revisão de código leves possuem um \emph{overhead} menor que as inspeções formais e são geralmente conduzidas como parte normal do processo de desenvolvimento de software.
+Por fim, as técnicas de revisão de código leves possuem um \emph{overhead} menor que as inspeções formais e são geralmente conduzidas como parte normal do processo de desenvolvimento de \emph{software}.
 Entre os principais exemplos deste tipo de técnica está a revisão de código auxiliada por ferramenta, na qual autores e revisores de código utilizam ferramentas especializadas para \emph{peer code review}, ou seja, revisão de código por pares.
 
 Tendo em vista o tamanho da equipe, optou-se por utilizar a técnica de revisão de código auxiliada por ferramenta, sendo que após cada \emph{commit} no sistema de controle de versões todos os integrantes da equipe analisavam o que foi desenvolvido, fazendo comentários a respeito, sugerindo modificações e discutindo as decisões tomadas.
 Além da revisão de código após os \emph{commits}, as reuniões da equipe também foram utilizadas para revisar o código escrito antes de um grande refatoramento no código do projeto ou de dar início ao desenvolvimento de uma nova importante funcionalidade do \emph{software}.
 
-Para o processo de revisão de código, foi utilizado o serviço de hospedagem de projetos de desenvolvimento de software GitHub, o qual conta com uma ferramenta de \emph{code review} que será apresentada em maiores detalhes na seção \ref{met:git}.
+Para o processo de revisão de código, foi utilizado o serviço de hospedagem de projetos de desenvolvimento de \emph{software} GitHub, o qual conta com uma ferramenta de \emph{code review} que será apresentada em maiores detalhes na seção \ref{met:git}.
 
 
 \section{Ferramentas Utilizadas}
@@ -166,13 +166,13 @@ No entanto, estes foram desconsiderados posteriormente por não possuírem docum
 \end{table}
 
 Entre os SGBDs apresentados na Tabela \ref{tab:bancos}, todos são desenvolvidos em linguagem Java e, portanto rodam em qualquer plataforma que possua uma implementação da \sigla{JVM}{Java Virtual Machine}.
-Além disso, todos eles são disponibilizados através de uma licença de software livre.
-No entanto, os bancos de dados InfoGrid e Neo4j são também distribuídos através de licenças comerciais, sendo a versão livre destes uma versão com menos funcionalidades e sob uma licença, a \sigla{AGPLv3}{Affero General Public License Version 3}, que impede o desenvolvedor de não disponibilizar o código-fonte de um software que utilize o banco de dados. % TODO: verificar se isso que eu falei da AGPLv3 ta certo
+Além disso, todos eles são disponibilizados através de uma licença de \emph{software} livre.
+No entanto, os bancos de dados InfoGrid e Neo4j são também distribuídos através de licenças comerciais, sendo a versão livre destes uma versão com menos funcionalidades e sob uma licença, a \sigla{AGPLv3}{Affero General Public License Version 3}, que impede o desenvolvedor de não disponibilizar o código-fonte de um \emph{software} que utilize o banco de dados. % TODO: verificar se isso que eu falei da AGPLv3 ta certo
 
 Todos os bancos de dados que foram levados em consideração para este projeto apresentavam um conjunto de funcionalidades semelhantes.
 Como todos são desenvolvidos em Java, todos possuem bindings para a mesma, reforçando então ainda mais a escolha pela linguagem.
 
-Desta forma, os fatores determinantes para a decisão sobre qual banco de dados utilizar acabaram sendo o suporte dado pela comunidade do mesmo, a documentação e quão frequentes são as atualizações do software, tendo em vista que aqueles que são mais bem atualizados possuem uma comunidade mais ativa.
+Desta forma, os fatores determinantes para a decisão sobre qual banco de dados utilizar acabaram sendo o suporte dado pela comunidade do mesmo, a documentação e quão frequentes são as atualizações do \emph{software}, tendo em vista que aqueles que são mais bem atualizados possuem uma comunidade mais ativa.
 O HyperGraphDB foi desconsiderado por não ser atualizado com frequência, dado que sua última versão estável era de Dezembro de 2010, muito anterior com relação às dos demais bancos.
 
 Já a documentação e suporte da comunidade dos bancos OrientDB e Neo4j mostrou-se muito superior à do InfoGrid, tendo em vista que estes possuem um volume maior de emails nas suas listas de discussões e, portanto, uma comunidade mais ativa.
@@ -216,10 +216,10 @@ Dadas estas características, esta ferramenta mostrou-se ideal para o desenvolvi
 
 O gerenciamento e monitoramento de modificações em documentos, programas e outras informações armazenadas como arquivos de computador é conhecido como controle de versão ou, ainda, controle de revisão.
 
-Durante o processo de desenvolvimento de software, é comum que múltiplas versões de um mesmo software sejam utilizadas em diferentes locais e que os desenvolvedores trabalhem simultaneamente em partes distintas do software.
+Durante o processo de desenvolvimento de \emph{software}, é comum que múltiplas versões de um mesmo \emph{software} sejam utilizadas em diferentes locais e que os desenvolvedores trabalhem simultaneamente em partes distintas do \emph{software}.
 Novas funcionalidades ou até mesmo \emph{bugs} muitas vezes estão presentes apenas em determinadas versões.
 Portanto, para organizar o desenvolvimento, bem como facilitar a localização e correção de \emph{bugs}, é de vital importância determinar em quais versões do \emph{software} os problemas ocorrem.
-Inclusive, muitas vezes é necessário desenvolver duas ou mais versões do mesmo software em paralelo como, por exemplo, uma na qual os problemas sejam corrigidos sem a criação de novas funcionalidades, enquanto que em outra versão novas funcionalidades são inseridas na aplicação, sendo estas comumente denominadas \emph{branch} e \emph{trunk}, respectivamente.
+Inclusive, muitas vezes é necessário desenvolver duas ou mais versões do mesmo \emph{software} em paralelo como, por exemplo, uma na qual os problemas sejam corrigidos sem a criação de novas funcionalidades, enquanto que em outra versão novas funcionalidades são inseridas na aplicação, sendo estas comumente denominadas \emph{branch} e \emph{trunk}, respectivamente.
 
 Enquanto os desenvolvedores poderiam simplesmente manter múltiplas cópias das diferentes versões do projeto no sistema de arquivos, este processo é extremamente ineficiente pois muitas versões praticamente idênticas do \emph{software} teriam que ser mantidas, tornando a tarefa de determinar as modificações entre uma versão e outra difícil, tediosa e sujeita à erros.
 Por este motivo, diversos sistemas para automatizar o processo de controle de versão surgiram.
@@ -336,7 +336,7 @@ Apesar de tornar a equipe mais eficiente como um todo e permitir que cada integr
 Para resolver este problema, o uso de revisão de código e desenvolvimento orientado a testes mostrou ser de vital importância, evitando com que novos \emph{bugs} sejam introduzidos em código já testado e também evitando com que novos problemas ainda não cobertos por testes sejam criados, através de uma cuidadosa revisão.
 % ^ vital importância? thanks julio!
 
-Assim como o conjunto de práticas de desenvolvimento de software estabelecidas, as ferramentas utilizadas proporcionaram um ambiente de desenvolvimento ágil e padronizado.
+Assim como o conjunto de práticas de desenvolvimento de \emph{software} estabelecidas, as ferramentas utilizadas proporcionaram um ambiente de desenvolvimento ágil e padronizado.
 O uso de um sistema de controle de versão distribuído reforçou ainda mais a característica procurada através do processo de desenvolvimento.
 Ferramentas como o Maven tornaram a codificação independente de IDE, permitindo que cada desenvolvedor utilize o editor de sua preferência.
 Por fim, nota-se também que todas as ferramentas utilizadas reforçam o caráter de \emph{software} livre deste projeto, de forma que todos os aplicativos utilizados estão disponíveis sob licenças livres. 
