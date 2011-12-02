@@ -18,7 +18,7 @@ O objetivo deste capítulo é descrever os resultados da revisão bibliográfica
 O problema de realizar o planejamento de rota em uma rede de transporte público é bastante semelhante ao conhecido problema de caminho mínimo em grafos, porém com a adição de duas restrições importantes.
 A primeira é que, como se trata de uma rede de transporte urbana, existe mais de uma maneira de de percorrer um trecho da rede, como por exemplo, utilizando o transporte público (ônibus, metro, etc) ou não (caminhada, bicicleta, etc).
 Esses diferentes modos tem características distintas e portanto precisam ser tratados separadamente.
-A segunda restrição é a de itinerário, pois o transporte público das cidades obedecem horários, e o planejamento de rota precisa levar isto em consideração.
+A segunda restrição é a de itinerário, pois o transporte público das cidades obedece horários, e o planejamento de rota precisa levar isto em consideração.
 
 Nesta seção primeiro será apresentado o problema clássico do caminho mínimo em grafos, seguido do modelo utilizado no trabalho e o algoritmo de roteamento.
 
@@ -54,7 +54,7 @@ Para contemplar essas restrições, o modelo precisa ser alterado.
 
 Uma rede multi-modal é uma em que cada aresta tem um modo associado. 
 No caso da rede de transporte, esse modo determina que tipo de meio transporte foi utilizado para percorrer esse trecho.
-Foram definidos dois modos, público, se a aresta representa um caminho percorrido com transporte público, como ônibus; ou privado, no caso de trecho percorrido a pé.
+Foram definidos dois modos: público, se a aresta representa um caminho percorrido com transporte público, como ônibus; ou privado, no caso de trecho percorrido a pé.
 Além disso, para realizar o roteamento, é necessário saber a qual serviço a aresta pertence, no caso de ser do modo privado, pois uma troca de serviço normalmente leva algum tempo que precisa ser considerado. Essa folga impede que o algoritmo forneça uma rota que, na prática, não pode ser executada por incluir descer de um ônibus e subir em outro no mesmo minuto, por exemplo. Uma folga ajuda a levar em conta os ocasionais atrasos no transporte público.
 Cada serviço representa uma viagem completa de um veículo, do seu ponto inicial até o final. Por mais que o mesmo veículo realize o percurso contrário, ou o mesmo percurso várias vezes, cada viagem é considerada um serviço separado.
 
@@ -150,7 +150,7 @@ Esses sistemas usualmente permitem que dados sejam armazenados de forma menos r�
 O objetivo desses sistemas é proporcionar um melhor desempenho em algumas aplicações específicas, por exemplo em situações onde existe um grande volume de dados ou de requisições. Esse ganho de desempenho decorre da boa escalabilidade horizontal desses sistemas, ou do fato de eles evitarem junções (produtos cartesianos) entre tabelas.
 
 Existem várias categorias de sistemas NoSQL, de acordo com a implementação e o modo como os dados são armazenados, como por exemplo bancos de dados de documentos, bancos de dados orientados a objetos ou bancos de dados de grafos.
-Destes, apenas os bancos de dados de grafos faz parte do escopo do trabalho.
+Destes, apenas os bancos de dados de grafos fazem parte do escopo do trabalho.
 
 \subsection{Bancos de Dados de Grafos}
 
@@ -168,7 +168,7 @@ No entanto, sua maior vantagem é que, devido à sua estrutura, são capazes de 
 
 \section{Métodos Ágeis}
 
-Métodos ágeis são um conjunto de práticas e métodos de desenvolvimento de \emph{software} que se consolidaram na década de 90 e que visavam superar alguns problemas que foram identificados nos métodos de desenvolvimento tradicionais, que são mais focados em planejamentos, com ênfase numa abordagem "racional, de engenharia" \cite{Dyba:2008:ESA:1379905.1379989}. Por outro lado, os métodos ágeis partem do princípio que o andamento dos projetos costuma ser bastante imprevisível, e portanto tem um foco maior nas "pessoas e sua criatividade".
+Métodos ágeis são um conjunto de práticas e métodos de desenvolvimento de \emph{software} que se consolidaram na década de 1990 e que visavam superar alguns problemas que foram identificados nos métodos de desenvolvimento tradicionais, que são mais focados em planejamentos, com ênfase numa abordagem "racional, de engenharia" \cite{Dyba:2008:ESA:1379905.1379989}. Por outro lado, os métodos ágeis partem do princípio que o andamento dos projetos costuma ser bastante imprevisível, e portanto tem um foco maior nas "pessoas e sua criatividade".
 
 Em 2001, defensores dos métodos ágeis escreveram um documento curto listando os 4 valores centrais do desenvolvimento ágil:
 
@@ -192,7 +192,7 @@ Alguns dos métodos de desenvolvimento dentro dos métodos ágeis são o Extreme
 
 \section{Desenvolvimento Orientado a Testes}\label{fun:tdd}
 
-Desenvolvimento orientado a testes, ou \sigla{TDD}{Desenvolvimento Orientado a Testes} na sigla em inglês, é um processo de desenvolvimento de \emph{software} que utiliza testes automatizados para realizar um desenvolvimento incremental do \emph{software}. O código resultante geralmente é bastante confiável devido à abundante cobertura de testes.
+Desenvolvimento orientado a testes, ou \sigla{TDD}{Desenvolvimento Orientado a Testes} na sigla em inglês, é um processo de desenvolvimento de \emph{software} que utiliza testes automatizado. O código resultante geralmente é bastante confiável devido à abundante cobertura de testes, e é produzido de maneira incremental.
 
 O processo pode ser descrito nas seguintes etapas:
 \begin{itemize}
@@ -212,7 +212,7 @@ Testes de \emph{software} são uma atividade no processo de desenvolvimento que 
 
 Dois níveis em que os testes de \emph{software} podem ser realizados são os testes de unidade e os testes de integração. Testes de unidade testam funcionalidades específicas do programa, isoladamente, e normalmente são automatizados, ou seja, uma ferramenta é utilizada para que todos os testes sejam executados em sequência, e o resultado apresentado ao programador. Então, sempre que uma tarefa é concluída e o código é compilado, o programador executa os testes para verificar que tudo está funcionando corretamente, e caso não esteja, é capaz de identificar exatamente qual unidade está apresentando erros.
 
-Já os testes de integração testam as interfaces entre as interfaces das diferentes componentes do programa, já que estas normalmente são desenvolvidas separadamente. Esses testes testes podem ser realizados de forma gradativa, adicionando uma componente de cada vez e testando se todas as partes se comunicam corretamente entre si, ou pode-se simplesmente unir todas as componentes e realizar os testes do conjunto todo, o que é conhecido como método Big Bang.
+Já os testes de integração testam as interfaces entre as diferentes componentes do programa, já que estas normalmente são desenvolvidas separadamente. Esses testes testes podem ser realizados de forma gradativa, adicionando uma componente de cada vez e testando se todas as partes se comunicam corretamente entre si, ou pode-se simplesmente unir todas as componentes e realizar os testes do conjunto todo, o que é conhecido como método Big Bang.
 
 %\section{Arquitetura Cliente-Servidor}
 
@@ -235,7 +235,7 @@ Quando o usuário adquire uma cópia do \emph{software}, esta costuma vir acompa
 
 Softwares livres e de código aberto são aqueles distribuídos com uma licença que permite que o usuário possa, além de utilizar, também analisar e melhorar o \emph{software}, através do código fonte. Licenças de \emph{software} livre e de código aberto tem duas definições diferentes, baseadas em conceitos parecidos, o de \emph{software} livre e o de \emph{software} de código aberto. Neste trabalho utilizaremos o o conceito de \emph{software} livre.
 
-Software livre, como definido pela \sigla{FSF}{Free Software Foundation}, é aquele cuja licença dá ao usuário 4 liberdades básicas\cite{GNUFreeSoftware}:
+Software livre, como definido pela \sigla{FSF}{Free Software Foundation}(Free Software Foundation), é aquele cuja licença dá ao usuário 4 liberdades básicas\cite{GNUFreeSoftware}:
 
 \begin{itemize}
 
