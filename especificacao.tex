@@ -24,12 +24,12 @@ Quanto à interface do sistema:
 \end{itemize}
 
 \subsection{Requisitos Não-Funcionais}
-Os requisitos não-funcionais referem-se a aspectos não-funcionais do sistema, como restrições nas quais o sistema deve operar.
+Os requisitos não-funcionais referem-se aos outros aspectos do /emph{software}, como restrições nas quais o sistema deve operar.
 Estes são disponibilizados a seguir.
 
 Quanto a distribuição do software:
 \begin{itemize}
-	\item O software deverá ser disponibilizado como livre, possibilitando futuras contribuições.
+	\item O software deverá ser distribuído em uma licença livre, possibilitando futuras contribuições.
 	\item O software deverá ser disponibilizado no formato de um serviço web.
 \end{itemize}
 
@@ -70,7 +70,7 @@ Feito isso, os dados coletados são enviados ao \emph{Web Service} para que este
 Esta busca é realizada através das funcionalidades contidas no \emph{Core} do sistema e tem como objetivo encontrar a rota de caminho mínimo entre os pontos informados.
 Ao terminar de executar a \emph{query} no banco, o \emph{Web Service} responde ao Cliente as informações sobre a rota resultante sendo estas por fim mostradas ao usuário de duas formas: uma sequência de passos em formato texto e um desenho da rota no mapa.
 
-Para que qualquer consulta seja bem sucedida, é necessário que o banco de dados esteja populado com as informações dos arquivos no padrão GTFS, esta a qual é realizada através do núcleo \emph{GTFS Importer}.
+Para que qualquer consulta seja bem sucedida, é necessário que o banco de dados esteja populado com as informações dos arquivos no padrão GTFS, tarefa que é realizada através do núcleo \emph{GTFS Importer}.
 A seguir uma explicação detalhada de cada módulo do sistema.
 
 \subsection{Core}
