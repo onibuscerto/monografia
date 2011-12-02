@@ -43,7 +43,7 @@ Este tipo de abordagem aumenta a confiabilidade dos mesmos, fazendo com que tant
 
 \subsubsection{Cobertura dos Testes}
 
-Como no TDD os testes são usualmente escritos antes do código do software, não existe código escrito que não seja necessário para passar um teste.
+Como na metodologia de TDD os testes são usualmente escritos antes do código do software, não existe código escrito que não seja necessário para passar um teste.
 Desta forma, os testes resultantes deste processo acabam sempre, invariavelmente, aproximando-se de 100\% de cobertura de código durante os testes.
 Ou seja, durante a execução dos testes, praticamente todo o código é percorrido pelos mesmos.
 
@@ -63,17 +63,17 @@ Os processos que podem ser utilizados para revisão de código encaixam-se em tr
 
 A programação em pares, amplamente utilizada pelos métodos ágeis, corresponde à um conjunto de técnicas na quais dois programadores trabalham em uma única estação de trabalho: um dos programadores, o \emph{driver}, escreve o código, enquanto o outro, denominado \emph{observer}, revisa cada linha de código digitada.
 Apesar de uma tarefa de programação ser concluída mais rapidamente quando dois programadores colaboram, estas técnicas possuem a desvantagem de aumentar o tempo total para o desenvolvimento do software. % TODO: justificar isso
-Sendo assim, em uma equipe com menos integrantes como é o caso desta, o processo como um todo tornaria-se mais ineficiente, a equipe demoraria mais tempo para concluir o projeto e, por este motivo, a técnica de programação em pares não foi utilizada neste.
+Sendo assim, em uma equipe com menos integrantes como é o caso desta, o processo como um todo tornaria-se mais ineficiente, a equipe demoraria mais tempo para concluir o projeto e, por este motivo, a programação em pares foi descartada.
 
 As técnicas de revisão de código formais são o método mais tradicional de revisão de código.
 Estas envolvem um detalhado processo com múltiplos participantes e múltiplas fases, sendo o mais comum uma série de reuniões nas quais os desenvolvedores revisam o código linha por linha, geralmente utilizando cópias impressas.
-Apesar de exigirem um grande investimento de tempo, tanto para a organização e planejamento quanto para a execução, as técnicas de revisão de código formais são consideradas efetivas para encontrar problemas no código sob revisão.
+Apesar de exigirem um grande investimento de tempo, tanto para a organização e planejamento quanto para a execução, as técnicas de revisão de código formais são consideradas efetivas para encontrar problemas na codificação.
 
 Por fim, as técnicas de revisão de código leves possuem um \emph{overhead} menor que as inspeções formais e são geralmente conduzidas como parte normal do processo de desenvolvimento de software.
 Entre os principais exemplos deste tipo de técnica está a revisão de código auxiliada por ferramenta, na qual autores e revisores de código utilizam ferramentas especializadas para \emph{peer code review}, ou seja, revisão de código por pares.
 
 Tendo em vista o tamanho da equipe, optou-se por utilizar a técnica de revisão de código auxiliada por ferramenta, sendo que após cada \emph{commit} no sistema de controle de versões todos os integrantes da equipe analisavam o que foi desenvolvido, fazendo comentários a respeito, sugerindo modificações e discutindo as decisões tomadas.
-Além da revisão de código após os \emph{commits}, as reuniões da equipe também foram utilizadas para revisar o código escrito antes de um grande refatoramento no código do projeto ou de dar início ao desenvolvimento de uma nova importante funcionalidade do software.
+Além da revisão de código após os \emph{commits}, as reuniões da equipe também foram utilizadas para revisar o código escrito antes de um grande refatoramento no código do projeto ou de dar início ao desenvolvimento de uma nova importante funcionalidade do \emph{software}.
 
 Para o processo de revisão de código, foi utilizado o serviço de hospedagem de projetos de desenvolvimento de software GitHub, o qual conta com uma ferramenta de \emph{code review} que será apresentada em maiores detalhes na seção \ref{met:git}.
 
