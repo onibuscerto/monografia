@@ -1,10 +1,10 @@
 %----------- Capítulo 3: Especificação do Software -------------
 
-\chapter{Especificação do Software}
+\chapter{Especificação do \emph{Software}}
 \label{specs}
 % TODO: talvez seja bom mudar o nome desse capítulo para Especificação e Arquitetura do software
 % vide http://pt.wikipedia.org/wiki/Processo_de_desenvolvimento_de_software
-O software em questão consiste em um serviço web que tem como principal funcionalidade responder a rota entre dois pontos informados com menor tempo de viagem utilizando o sistema de transporte público. 
+O \emph{software} em questão consiste em um serviço web que tem como principal funcionalidade responder a rota entre dois pontos informados com menor tempo de viagem utilizando o sistema de transporte público. 
 Nas subseções a seguir são apresentados os requisitos do sistema bem como o projeto de sua arquitetura.
 
 \section{Requisitos do Sistema}
@@ -17,27 +17,27 @@ A seguir encontra-se a lista completa de requisitos funcionais deste projeto.
 
 Quanto à interface do sistema:
 \begin{itemize}
-	\item O software deverá retornar para o usuário a rota com menor tempo de viagem entre dois pontos informados.
-	\item O software deverá mostrar a rota resultante desenhada em um mapa, diferenciando as linhas de transporte por cor, e também no formato texto como uma sequência de passos.
-	\item O software deverá receber do usuário os pontos de partida/destino no formato de endereço ou marcando-os no mapa.
+	\item O \emph{software} deverá retornar para o usuário a rota com menor tempo de viagem entre dois pontos informados.
+	\item O \emph{software} deverá mostrar a rota resultante desenhada em um mapa, diferenciando as linhas de transporte por cor, e também no formato texto como uma sequência de passos.
+	\item O \emph{software} deverá receber do usuário os pontos de partida/destino no formato de endereço ou marcando-os no mapa.
 	\item O sistema deverá ser acessado através de um navegador web.
 \end{itemize}
 
 \subsection{Requisitos Não-Funcionais}
-Os requisitos não-funcionais referem-se aos outros aspectos do /emph{software}, como restrições nas quais o sistema deve operar.
+Os requisitos não-funcionais referem-se aos outros aspectos do \emph{software}, como restrições nas quais o sistema deve operar.
 Estes são disponibilizados a seguir.
 
-Quanto a distribuição do software:
+Quanto a distribuição do \emph{software}:
 \begin{itemize}
-	\item O software deverá ser distribuído em uma licença livre, possibilitando futuras contribuições.
-	\item O software deverá ser disponibilizado no formato de um serviço web.
+	\item O \emph{software} deverá ser distribuído em uma licença livre, possibilitando futuras contribuições.
+	\item O \emph{software} deverá ser disponibilizado no formato de um serviço web.
 \end{itemize}
 
 Quanto à fonte de dados:
 \begin{itemize}
-	\item O software deverá funcionar independente de qual fonte de dados for escolhida, contudo que esta respeite o padrão GTFS.
-	\item O software deverá utilizar um banco de dados de grafos para armazenamento das rotas do sistema de transporte público.
-	\item O software deverá ter seu banco de dados populado com um mínimo de informações sobre as rotas do serviço de transporte público, sendo estas:
+	\item O \emph{software} deverá funcionar independente de qual fonte de dados for escolhida, contudo que esta respeite o padrão GTFS.
+	\item O \emph{software} deverá utilizar um banco de dados de grafos para armazenamento das rotas do sistema de transporte público.
+	\item O \emph{software} deverá ter seu banco de dados populado com um mínimo de informações sobre as rotas do serviço de transporte público, sendo estas:
 	\begin{itemize}
 		\item As rotas existentes no serviço de transporte público.
 		\item As paradas ou estações existentes.
@@ -49,7 +49,7 @@ Quanto à fonte de dados:
 Quanto às ferramentas:
 \begin{itemize}
 	\item O sistema gerenciador de banco de dados deverá responder à consultas rapidamente.
-	\item O software deverá ser hospedado em um servidor que suporte todas as ferramentas computacionais utilizadas.
+	\item O \emph{software} deverá ser hospedado em um servidor que suporte todas as ferramentas computacionais utilizadas.
 \end{itemize}
 
 
