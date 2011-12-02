@@ -170,9 +170,9 @@ Além disso, todos eles são disponibilizados através de uma licença de softwa
 No entanto, os bancos de dados InfoGrid e Neo4j são também distribuídos através de licenças comerciais, sendo a versão livre destes uma versão com menos funcionalidades e sob uma licença, a \sigla{AGPLv3}{Affero General Public License Version 3}, que impede o desenvolvedor de não disponibilizar o código-fonte de um software que utilize o banco de dados. % TODO: verificar se isso que eu falei da AGPLv3 ta certo
 
 Todos os bancos de dados que foram levados em consideração para este projeto apresentavam um conjunto de funcionalidades semelhantes.
-Como todos são desenvolvidos em linguagem Java, todos possuem bindings para esta linguagem, reforçando então ainda mais a escolha por esta linguagem.
+Como todos são desenvolvidos em Java, todos possuem bindings para a mesma, reforçando então ainda mais a escolha pela linguagem.
 
-Desta forma, os fatores determinantes para a decisão sobre qual banco de dados utilizar, acabaram sendo o suporte dado pela comunidade do mesmo, a documentação e quão frequentes são as atualizações do software, tendo em vista que aqueles que são mais bem atualizados possuem uma comunidade mais ativa.
+Desta forma, os fatores determinantes para a decisão sobre qual banco de dados utilizar acabaram sendo o suporte dado pela comunidade do mesmo, a documentação e quão frequentes são as atualizações do software, tendo em vista que aqueles que são mais bem atualizados possuem uma comunidade mais ativa.
 O HyperGraphDB foi desconsiderado por não ser atualizado com frequência, dado que sua última versão estável era de Dezembro de 2010, muito anterior com relação às dos demais bancos.
 
 Já a documentação e suporte da comunidade dos bancos OrientDB e Neo4j mostrou-se muito superior à do InfoGrid, tendo em vista que estes possuem um volume maior de emails nas suas listas de discussões e, portanto, uma comunidade mais ativa.
@@ -204,7 +204,7 @@ Projetos maiores, como é o caso deste, podem ser divididos em diversos módulos
 Um projeto principal (ou raiz) é criado, através do qual é possível compilar todos os demais módulos com um único comando.
 Os POMs dos sub-projetos podem ainda herdar configurações do projeto principal, tornando possível manter uma padronização entre os projetos e sub-projetos da aplicação com facilidade.
 
-Dadas estas características, esta ferramenta mostrou-se ideal para o desenvolvimento deste projeto, tendo em vista a grande variedade de dependências que compõem este, tais como bibliotecas para acesso ao SGBD, serialização e deserialização de dados, assim como os diversos módulos pelos quais a aplicação é composta.
+Dadas estas características, esta ferramenta mostrou-se ideal para o desenvolvimento deste projeto, tendo em vista a grande variedade de dependências que o compõem, tais como bibliotecas para acesso ao SGBD, serialização e deserialização de dados, assim como os diversos módulos pelos quais a aplicação é composta.
 
 % TODO: talvez seja interessante ampliar essa seção, dando um exemplo de pom.xml, mais detalhes sobre a ferramenta e tal
 
