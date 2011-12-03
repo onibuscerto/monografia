@@ -2,9 +2,12 @@
 \chapter{Resultados}
 \label{chap:result}
 % TODO: introduzir a seção de resultados
+O último passo presente em todo projeto é a análise dos resultados obtidos, ou seja, quais foram os produtos de todo o processo de desenvolvimento e se os mesmos estão com qualidade dentro do esperado no início do processo. 
+
+O capítulo é dividido em três subseções: Metodologia Empregada (seção \ref{sec:metod}), Performance do Sistema (seção \ref{sec:perf}) e Considerações (seção \ref{sec:consid}). A primeira consiste numa análise dos resultados obtidos ao se empregar a metodologia definida no capítulo \ref{metod}, como verificar se a mesma se mostrou eficiente através da análise de estatísticas de rendimento coletadas ao longo do projeto. A segunda mostra o estudo feito em relação a performance do sistema desenvolvido, principalmente quanto ao tempo de resposta do mesmo a requisições concorrentes. Por fim é realizada na última seção uma crítica quanto aos resultados alcançados no processo de desenvolvimento do presente projeto.
 
 \section{Metodologia Empregada}
-
+\label{sec:metod}
 % TODO: escrever texto e referencias as figuras
 Como anteriormente apresentado no capítulo \ref{metod}, a metodologia empregada baseou-se em distribuir o processo de desenvolvimento do \emph{software}, com o objetivo de acelerar este processo, permitindo ao mesmo tempo que a equipe fosse capaz de trabalhar de forma distribuída, sendo necessário reuniões periódicas para discussão de novas funcionalidades e refatoramento do código.
 
@@ -59,7 +62,7 @@ Aliada à arquitetura modular que foi proposta para o \emph{software}, esta meto
 Além disso, a escolha de ferramentas como, por exemplo, o uso do sistema de controle de versão git e do serviço de hospedagem de repositórios GitHub, reforçaram ainda mais a metodologia empregada, já que tais ferramentas forneceram meios para estabelecimento de metas e estatísticas de desempenho de cada desenvolvedor, técnicas fundamentais para acompanhar o desenvolvimento do projeto e o rendimento da equipe.
 
 \section{Performance do Sistema}
-
+\label{sec:perf}
 Como métrica para analisar a performance do sistema, optou-se por utilizar testes de \emph{stress} no \emph{Web Service}, ou seja, executar uma série de consultas simultaneamente e avaliar o impacto no tempo de resposta do mesmo.
 
 Para tanto, foram realizados testes com o auxílio da ferramenta ApacheBench \cite{apachebench}.
@@ -92,5 +95,5 @@ Para melhorar a performance do sistema em um ambiente com uma grande quantidade 
 Vale notar também que o caso de 20 requisições por segundo é um teste de \emph{stress} do sistema, o que não corresponde necessariamente à um caso de uso real.
 
 \section{Considerações}
-
+\label{sec:consid}
 % TODO
