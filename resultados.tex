@@ -6,11 +6,13 @@
 \section{Metodologia Empregada}
 
 % TODO: escrever texto e referencias as figuras
-A metodologia empregada mencionada no capítulo \ref{metod} se mostrou bem eficiente ao longo do projeto.
-A arquitetura do projeto possibilitou o desenvolvimento distribuído entre os integrantes, o que acelerou o processo de implementação efetiva do software.
-Aliado a isto, utilizou-se a ferramenta GitHub, a qual facilitou ainda mais a metodologia empregada, já que tal ferramenta além de utilizada para controle de versionamento de código, forneceu meios para estabelecimento de metas e estatísticas de desempenho de cada desenvolvedor, técnicas fundamentais para gerenciamento do projeto.
+Como anteriormente apresentado no capítulo \ref{metod}, a metodologia empregada baseou-se em distribuir o processo de desenvolvimento do \emph{software}, com o objetivo de acelerar este processo, permitindo ao mesmo tempo que a equipe fosse capaz de trabalhar de forma distribuída, sendo necessário reuniões periódicas para discussão de novas funcionalidades e refatoramento do código.
 
-Uma das estatísticas geradas é a evolução do número de linhas de código do projeto ao longo do tempo de desenvolvimento, mostrada na figura \ref{fig:linesofcode}.
+Entre os resultados da metodologia empregada, estão estatísticas que indicam o número de linhas de código criadas por cada programador.
+A figura \ref{fig:linesofcode} apresenta um gráfico do número de linhas de código do projeto em função do tempo.
+A partir deste gráfico, observa-se que o processo de codificação foi realizado entre o dia 14 de Julho e o dia 25 de Outubro de 2011, totalizando cerca de 6000 linhas de código.
+O maior salto de produtividade aconteceu durante o período de 24 de Julho e 9 de Agosto, período no qual foram criadas e implementadas grande parte das entidades do \emph{Core} do sistema.
+Neste mesmo período, foram também realizados refatoramentos no código, resultando no rápido crescimento de linhas de código escritas que pode ser visto através do gráfico.
 
 \begin{figure}[!htb]
 	\centering
@@ -20,7 +22,11 @@ Uma das estatísticas geradas é a evolução do número de linhas de código do
 	\label{fig:linesofcode}
 \end{figure}
 
-Ao se observar a figura, percebe-se que a implementação efetiva do projeto foi iniciada dia 14 de julho e terminada em 25 de outubro do ano de 2011 com cerca de 6000 linhas de código. O maior salto de produtividade deu-se entre 24 de julho e 9 de agosto, período o qual foram criadas e implementadas grande parte das entidades do \emph{Core} do sistema. 
+Através do histórico dos \emph{commits} feitos com as contas de cada programador no sistema de controle de versão, foi possível também estimar a contribuição, em linhas de código, de cada desenvolvedor.
+A figura \ref{fig:linesofcodebyauthor} apresenta um gráfico que relaciona o numéro de linhas de código contribuídas por cada desenvolvedor ao longo do tempo.
+Vale notar que estes valores são cumulativos, ou seja, mesmo que uma linha criada por um programador tenha sido deletada, esta continua sendo levada em conta como uma linha escrita pelo programador que a criou.
+
+% TODO: tirar mais conclusões desse gráfico, talvez explicar que algumas integrações e refatoramentos grandes do projeto foram feitas em conjunto, mas commitadas com a minh a conta
 
 \begin{figure}[!htb]
 	\centering
@@ -29,6 +35,9 @@ Ao se observar a figura, percebe-se que a implementação efetiva do projeto foi
 	\fonte{Autoria Própria}
 	\label{fig:linesofcodebyauthor}
 \end{figure}
+
+As figuras \ref{fig:dayofweek} e \ref{fig:hourofday}, por sua vez, apresentam estatísticas com relação ao número de \emph{commits} no sistema de controle de versão em função do dia da semana e do horário.
+Através destes gráficos é possível notar que, graças à característica de desenvolvimento distribuído da metologia empregada, o processo de codificação aconteceu durante vários horários distintos: mesmo que um desenvolvedor não fosse capaz de trabalhar em um determinado horário, muito provavelmente outro seria, resultando em um impacto positivo sobre o rendimento do processo de desenvolvimento.
 
 \begin{figure}[!htb]
 	\centering
@@ -45,6 +54,9 @@ Ao se observar a figura, percebe-se que a implementação efetiva do projeto foi
 	\fonte{Autoria Própria}
 	\label{fig:hourofday}
 \end{figure}
+
+Aliada à arquitetura modular que foi proposta para o \emph{software}, esta metodologia mostrou-se eficiente ao longo do projeto, tendo em vista que muitas vezes os horários dos integrantes da equipe eram incompatíveis entre si, sendo de grande importância a possibilidade dos mesmos trabalharem de forma independente.
+Além disso, a escolha de ferramentas como, por exemplo, o uso do sistema de controle de versão git e do serviço de hospedagem de repositórios GitHub, reforçaram ainda mais a metodologia empregada, já que tais ferramentas forneceram meios para estabelecimento de metas e estatísticas de desempenho de cada desenvolvedor, técnicas fundamentais para acompanhar o desenvolvimento do projeto e o rendimento da equipe.
 
 \section{Performance do Sistema}
 
