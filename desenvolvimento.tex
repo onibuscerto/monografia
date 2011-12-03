@@ -90,9 +90,9 @@ Como esta também é representada por coordenadas geográficas então optou-se p
 
 Como uma \emph{Stop} é uma especificação de \emph{Location}, utiliza-se a mesma \emph{LocationFactory}, porém neste caso com as seguintes funcionalidades:
 \begin{itemize}
-	\item além de criar \emph{Locations}, utiliza-se esta \emph{factory} também para criar entidades \emph{Stop} e adicioná-las a seus respectivos índices no banco 		de dados, com o intuito de facilitar futuras buscas.
-	\item retornar todas as \emph{Stops} do sistema em forma de uma coleção, através de simples uma busca no grafo do sistema.
-	\item retornar uma determinada \emph{Stop} com base em sua ID utilizando o índice referente a este tipo de entidade.
+	\item Além de criar \emph{Locations}, utiliza-se esta \emph{factory} também para criar entidades \emph{Stop} e adicioná-las a seus respectivos índices no banco 		de dados, com o intuito de facilitar futuras buscas.
+	\item Retornar todas as \emph{Stops} do sistema em forma de uma coleção, através de simples uma busca no grafo do sistema.
+	\item Retornar uma determinada \emph{Stop} com base em sua ID utilizando o índice referente a este tipo de entidade.
 \end{itemize}
 
 A informação de todas as \emph{Stops} é essencial para o funcionamento do sistema, pois sem as localizações das paradas de veículos é impossível fornecer uma rota entre dois pontos utilizando transporte público.
@@ -130,9 +130,9 @@ Desta forma, este tipo de entidade contém as seguintes propriedades:
 
 A \emph{factory} atribuída a uma \emph{Route} é denominada \emph{RouteFactory}, e tem as seguintes funcionalidades:
 \begin{itemize}
-	\item criar entidades do tipo \emph{Route} e adicioná-las a seus respectivos índices no banco de dados, com o intuito de facilitar futuras buscas.
-	\item retornar todas as \emph{Routes} do sistema em forma de uma coleção, através de simples uma busca no grafo do sistema.
-	\item retornar uma determinada \emph{Route} com base em sua ID utilizando o índice referente a este tipo de entidade.
+	\item Criar entidades do tipo \emph{Route} e adicioná-las a seus respectivos índices no banco de dados, com o intuito de facilitar futuras buscas.
+	\item Retornar todas as \emph{Routes} do sistema em forma de uma coleção, através de simples uma busca no grafo do sistema.
+	\item Retornar uma determinada \emph{Route} com base em sua ID utilizando o índice referente a este tipo de entidade.
 \end{itemize}
 
 Esta entidade é essencial para o funcionamento do sistema pois contém todas as informações a respeito das linhas de transporte público da cidade em questão.
@@ -154,9 +154,9 @@ Para cumprir tal objetivo, este tipo de entidade contém os seguintes atributos:
 
 A \emph{factory} atribuída a uma \emph{Trip} é denominada \emph{TripFactory}, e tem as seguintes funcionalidades:
 \begin{itemize}
-	\item criar entidades do tipo \emph{Trip} e adicioná-las a seus respectivos índices no banco de dados.
-	\item retornar todas as \emph{Trips} do sistema em forma de uma coleção, através de simples uma busca no grafo do sistema.
-	\item retornar uma determinada \emph{Trip} com base em sua ID utilizando o índice referente a este tipo de entidade.
+	\item Criar entidades do tipo \emph{Trip} e adicioná-las a seus respectivos índices no banco de dados.
+	\item Retornar todas as \emph{Trips} do sistema em forma de uma coleção, através de simples uma busca no grafo do sistema.
+	\item Retornar uma determinada \emph{Trip} com base em sua ID utilizando o índice referente a este tipo de entidade.
 \end{itemize}
 
 A entidade \emph{Trip} é primordial para o funcionamento do sistema pois reune informações como nome do trajeto e horários de chegada e partida de veículos em cada parada ou estação que compõe determinada linha, as quais são base de qualquer sistema de transporte público.
