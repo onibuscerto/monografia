@@ -96,4 +96,9 @@ Vale notar também que o caso de 20 requisições por segundo é um teste de \em
 
 \section{Considerações}
 \label{sec:consid}
-% TODO
+A metodologia idealizada só foi possível de ser empregada devido a característica modular do sistema, visto que proporcionou o desenvolvimento paralelo pelos integrantes da equipe.
+Geralmente os horários dos mesmos eram incompatíveis e, desta forma se outra metodologia que exigisse reuniões frequentes fosse utilizada, o desenvolvimento teria sido ineficiente.
+Aliado a este fator estão as técnicas de gerência de projeto, como estabelecimento de metas e análise de desempenho por desenvolvedor, possíveis somente devido ao uso das ferramentas como o sistema controlador de versão git juntamente com o site de hospedagem de repositório Github.
+
+Quanto ao desempenho do sistema como um todo, deve-se ressaltar o uso de somente um servidor para a coleta das estatísticas de performance quanto ao tempo de resposta de requisições concorrentes.
+Para o caso de 20 requisições por segundo aparentemente este tempo pode ser considerado alto, porém vale lembrar que este é somente um teste de estresse do sistema, não considerando necessariamente um caso real. Contudo, para empregar o sistema futuramente considera-se a utilização de mais servidores para atender a demanda dos usuários, aliada a um sistema de escalonamento com o intuito de distribuir as requisições entre os mesmos de acordo com suas respectivas taxas de ocupação da CPU.
