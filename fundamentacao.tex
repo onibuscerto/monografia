@@ -7,14 +7,6 @@ O objetivo deste capítulo é descrever os resultados da revisão bibliográfica
 
 \section{O Problema do Menor Caminho Multi-Modal com Restrição de Itinerário}
 
-%O problema do menor caminho multi-modal consiste em, dada uma rede multi-modal e dois nós nessa rede, a origem e o destino, %encontrar o caminho entre a origem e o destino que totaliza o menor custo.
-%Em uma rede de transporte multi-modal, os nós correspondem às paradas do sistema de transporte, ou aos pontos de origem de destino do trajeto. As arestas correspondem aos deslocamentos entre os nós da rede, e tem associado um custo em tempo e um modo. Os modem correspondem aos serviços ou meios de deslocamento na rede, como por exemplo caminhada ou uma determinada linha de ônibus.
-%Os serviços de transporte operam segundo tabelas de horários, e portanto para resolver o problema também é necessária a informação do horário de partida no nó de origem.
-%Uma rede multi-modal pode ser vista como a superposição de diversas redes mono-modais, com a adição de arestas entre elas para representar o tempo de espera associado à troca de serviços.
-
-% vou escrever mais do multi-objetivo depois
-%Esse problema pode ser generalizado para o caso onde o interessa não é apenas minimizar o tempo de chegada ao destino, mas também minimizar outros objetivos como o custo total do transporte e o número de trocas de serviços. Esta generalização é o problema do menor caminho multi-objetivo.
-
 O problema de realizar o planejamento de rota em uma rede de transporte público é bastante semelhante ao conhecido problema de caminho mínimo em grafos, porém com a adição de duas restrições importantes.
 A primeira é que, como se trata de uma rede de transporte urbana, existe mais de uma maneira de de percorrer um trecho da rede, como por exemplo, utilizando o transporte público (ônibus, metro, etc) ou não (caminhada, bicicleta, etc).
 Esses diferentes modos tem características distintas e portanto precisam ser tratados separadamente.
@@ -139,13 +131,12 @@ O pseudo-código a seguir descreve o algoritmo em mais detalhes:
 \RETURN $C(v_d), p$
 \end{algorithmic}
 
-Além do trabalho de \cite{kao2008}, há outros trabalhos que sugerem soluções para cenários semelhantes, como as redes de transporte de cargas em \cite{Ziliaskopoulos2000486}, ou para redes multi-modais com outras características e restrições, como \cite{Lozano2001225} e \cite{Lozano2002853}. Entretanto, como é comentado em \cite{Lozano2001225}, apesar das redes multi-modais com restrições adicionais aparecerem com frequência em problemas que envolvem redes de transporte, não há muitos artigos discutindo o problema de caminho mínimo nesse tipo de rede. 
+Além do trabalho de \cite{kao2008}, há outros trabalhos que sugerem soluções para cenários semelhantes, como as redes de transporte de cargas em \cite{Ziliaskopoulos2000486}, ou para redes multi-modais com outras características e restrições, como \cite{Lozano2001225} e \cite{Lozano2002853}. Em um artigo mais recente, Abbaspour e Samadzadegan propõe uma solução utilizando um algoritmo genético \cite{abbaspour2009}. Entretanto, como é comentado em \cite{Lozano2001225}, apesar das redes multi-modais com restrições adicionais aparecerem com frequência em problemas que envolvem redes de transporte, não há muitos artigos discutindo o problema de caminho mínimo nesse tipo de rede. 
 
 
 \section{NoSQL}
-%TODO: citar wikipedia =p
 
-NoSQL, ou ``not only SQL'' (não apenas SQL), é uma classe que agrega vários \sigla{SGBD}{Sistema Gerenciador de Banco de Dados}s com características que os diferem dos SGBDs relacionais comuns.
+NoSQL, ou ``not only SQL'' (não apenas SQL), é uma classe que agrega vários \sigla{SGBD}{Sistema Gerenciador de Banco de Dados}s com características que os diferem dos SGBDs relacionais comuns \cite{wikinosql}.
 Esses sistemas usualmente permitem que dados sejam armazenados de forma menos rígida em comparação a um esquema de tabelas do modelo relacional, e também nem sempre procuram garantir as propriedades ACID (Atomicidade, Consistência, Isolamento e Durabilidade) comuns nas transações de bancos de dados.
 O objetivo desses sistemas é proporcionar um melhor desempenho em algumas aplicações específicas, por exemplo em situações onde existe um grande volume de dados ou de requisições. Esse ganho de desempenho decorre da boa escalabilidade horizontal desses sistemas, ou do fato de eles evitarem junções (produtos cartesianos) entre tabelas.
 
@@ -156,7 +147,7 @@ Destes, apenas os bancos de dados de grafos fazem parte do escopo do trabalho.
 
 %TODO: referências(wiki)
 
-Bancos de dados de grafos são bancos de dados que armazenam os dados na forma de um grafo. Existem diversos modelos de grafos que podem ser utilizados para este propósito, um exemplo de modelo que bastante utilizado é o dos grafos de propriedades, ou seja, grafos que possuem vértices, arestas e que tanto os vértices quanto as arestas podem possuir propriedades.
+Bancos de dados de grafos são bancos de dados que armazenam os dados na forma de um grafo. Existem diversos modelos de grafos que podem ser utilizados para este propósito, um exemplo de modelo que bastante utilizado é o dos grafos de propriedades, ou seja, grafos que possuem vértices, arestas e que tanto os vértices quanto as arestas podem possuir propriedades \cite{wikigraphdb}.
 Assim, ao modelar os dados de um sistema em um banco de dados de grafos, os nós representam as entidades do sistema, enquanto as arestas representam as relações entre essas entidades, e as propriedades contém as demais informações sobre essas entidades e suas relações.
 
 %inserir figura e um exemplo
@@ -192,7 +183,7 @@ Alguns dos métodos de desenvolvimento dentro dos métodos ágeis são o Extreme
 
 \section{Desenvolvimento Orientado a Testes}\label{fun:tdd}
 
-Desenvolvimento orientado a testes, ou \sigla{TDD}{Test-Driven Development} na sigla em inglês, é um processo de desenvolvimento de \emph{software} que utiliza testes automatizado. O código resultante geralmente é bastante confiável devido à abundante cobertura de testes, e é produzido de maneira incremental.
+Desenvolvimento orientado a testes, ou \sigla{TDD}{Test-Driven Development} na sigla em inglês, é um processo de desenvolvimento de \emph{software} que utiliza testes automatizados. O código resultante geralmente é bastante confiável devido à abundante cobertura de testes, e é produzido de maneira incremental, em passos pequenos \cite{beck2003}.
 
 O processo pode ser descrito nas seguintes etapas:
 \begin{itemize}
@@ -218,7 +209,7 @@ Já os testes de integração testam as interfaces entre as diferentes component
 
 \section{Licenciamento de \emph{Software}}
 
-Licenças de \emph{software} são instrumentos legais que regulam como um determinado \emph{software} pode ser distribuído e utilizado.
+Licenças de \emph{software} são instrumentos legais que regulam como um determinado \emph{software} pode ser distribuído e utilizado \cite{wikilicense}.
 Softwares, usualmente, não são vendidos, apenas tem seu uso licenciado, então a menos que o \emph{software} seja colocado em domínio público, os direitos do usuário que licenciou o \emph{software} e os do dono dos direitos autorais precisam ser bem definidos. Portanto, para que seus direitos autorais sejam respeitados, todo desenvolvedor de \emph{software} deve se preocupar com o licenciamento de seu trabalho.
 
 Além disso, todas as ferramentas de \emph{software} citadas neste trabalho são distribuídas sob algum tipo de licença, e portanto é necessário conhecer e entender licenças de \emph{software} para que se possa fazer um uso legítimo dessas ferramentas.
@@ -276,4 +267,4 @@ Uma solução livre é o Open Trip Planner \cite{otp}, um projeto ainda em desen
 
 \section{Considerações}
 
-Depois de percorrer a escassa porém instrutiva bibliografia sobre o problema, que ajudou a formular uma abordagem de trabalho, e de analisar como esse assunto foi tratado por outros desenvolvedores, é possível partir agora para uma especificação mais concreta de uma solução. Esse será o objetivo do próximo capítulo.
+Depois de percorrer a não muito extensa porém instrutiva bibliografia sobre o problema, que ajudou a formular uma abordagem de trabalho, e de analisar como esse assunto foi tratado por outros desenvolvedores, é possível partir agora para uma especificação mais concreta de uma solução. Esse será o objetivo do próximo capítulo.
