@@ -43,9 +43,9 @@ Este tipo de abordagem aumenta a confiabilidade dos mesmos, fazendo com que tant
 
 \subsubsection{Cobertura dos Testes}
 
-Como na metodologia de TDD os testes são usualmente escritos antes do código do \emph{software}, não existe código escrito que não seja necessário para passar um teste.
+Como na metodologia de \sigla{TDD}{\emph{Test-Driven Development}} os testes são usualmente escritos antes do código do \emph{software}, não existe código escrito que não seja necessário para passar um teste.
 Desta forma, os testes resultantes deste processo acabam sempre, invariavelmente, aproximando-se de 100\% de cobertura de código durante os testes.
-Ou seja, durante a execução dos testes, praticamente todo o código é percorrido pelos mesmos.
+Ou seja, durante a execução dos testes, praticamente todo o código é percorrido pelos mesmos \cite{wikitdd}.
 
 Devido à adaptação feita pela equipe à metodologia de desenvolvimento orientado a testes, a não-obrigatoriedade de escrever os testes antes do código, tornou-se necessária a utilização de uma métrica para analisar se os casos de teste escritos cobrem a maior parte do código escrito possível, com o objetivo de assegurar a qualidade dos testes.
 
@@ -57,25 +57,25 @@ Para analisar a cobertura dos testes escritos, a ferramenta \emph{Cobertura} foi
 % TODO: citar wikipedia aos montes nessa seção
 
 O processo de revisão de código é a examinação sistemática do código-fonte de um programa.
-Este tem o objetivo de encontrar e corrigir erros cometidos durante o desenvolvimento, melhorando tanto a qualidade do \emph{software} quanto as habilidades e conhecimentos dos programadores da equipe.
+Este tem o objetivo de encontrar e corrigir erros cometidos durante o desenvolvimento, melhorando tanto a qualidade do \emph{software} quanto as habilidades e conhecimentos dos programadores da equipe \cite{wikicodereview}.
 
 Os processos que podem ser utilizados para revisão de código encaixam-se em três categorias principais: programação em pares, revisão de código formal e a revisão de código leve.
 
 A programação em pares, amplamente utilizada pelos métodos ágeis, corresponde à um conjunto de técnicas na quais dois programadores trabalham em uma única estação de trabalho: um dos programadores, o \emph{driver}, escreve o código, enquanto o outro, denominado \emph{observer}, revisa cada linha de código digitada.
-Apesar de uma tarefa de programação ser concluída mais rapidamente quando dois programadores colaboram, estas técnicas possuem a desvantagem de aumentar o tempo total para o desenvolvimento do \emph{software}. % TODO: justificar isso
+Apesar de uma tarefa de programação ser concluída mais rapidamente quando dois programadores colaboram, estas técnicas possuem a desvantagem de aumentar o tempo total para o desenvolvimento do \emph{software} \cite{wikicodereview}.
 Sendo assim, em uma equipe com menos integrantes como é o caso desta, o processo como um todo tornaria-se mais ineficiente, a equipe demoraria mais tempo para concluir o projeto e, por este motivo, a programação em pares foi descartada.
 
-As técnicas de revisão de código formais são o método mais tradicional de revisão de código.
+As técnicas de revisão de código formais são o método mais tradicional de revisão de código \cite{wikicodereview}.
 Estas envolvem um detalhado processo com múltiplos participantes e múltiplas fases, sendo o mais comum uma série de reuniões nas quais os desenvolvedores revisam o código linha por linha, geralmente utilizando cópias impressas.
-Apesar de exigirem um grande investimento de tempo, tanto para a organização e planejamento quanto para a execução, as técnicas de revisão de código formais são consideradas efetivas para encontrar problemas na codificação.
+Apesar de exigirem um grande investimento de tempo, tanto para a organização e planejamento quanto para a execução, as técnicas de revisão de código formais são consideradas efetivas para encontrar problemas na codificação \cite{wikicodereview}.
 
 Por fim, as técnicas de revisão de código leves possuem um \emph{overhead} menor que as inspeções formais e são geralmente conduzidas como parte normal do processo de desenvolvimento de \emph{software}.
-Entre os principais exemplos deste tipo de técnica está a revisão de código auxiliada por ferramenta, na qual autores e revisores de código utilizam ferramentas especializadas para \emph{peer code review}, ou seja, revisão de código por pares.
+Entre os principais exemplos deste tipo de técnica está a revisão de código auxiliada por ferramenta, na qual autores e revisores de código utilizam ferramentas especializadas para \emph{peer code review}, ou seja, revisão de código por pares \cite{wikicodereview}.
 
 Tendo em vista o tamanho da equipe, optou-se por utilizar a técnica de revisão de código auxiliada por ferramenta, sendo que após cada \emph{commit} no sistema de controle de versões todos os integrantes da equipe analisavam o que foi desenvolvido, fazendo comentários a respeito, sugerindo modificações e discutindo as decisões tomadas.
 Além da revisão de código após os \emph{commits}, as reuniões da equipe também foram utilizadas para revisar o código escrito antes de um grande refatoramento no código do projeto ou de dar início ao desenvolvimento de uma nova importante funcionalidade do \emph{software}.
 
-Para o processo de revisão de código, foi utilizado o serviço de hospedagem de projetos de desenvolvimento de \emph{software} GitHub, o qual conta com uma ferramenta de \emph{code review} que será apresentada em maiores detalhes na seção \ref{met:git}.
+Para o processo de revisão de código, foi utilizado o serviço de hospedagem de projetos de desenvolvimento de \emph{software} GitHub{\textsuperscript\textregistered}, o qual conta com uma ferramenta de \emph{code review} que será apresentada em maiores detalhes na seção \ref{met:git}.
 
 
 \section{Ferramentas Utilizadas}
@@ -90,19 +90,19 @@ Desta forma, as linguagens que foram consideradas para este projeto foram: C++, 
 
 % TODO: colocar uma tabela comparativa das linguagens C++, Java e Python
 
-A linguagem C++ foi criada por Bjarne Stroustrup em 1979 no Bell Labs.
+A linguagem C++ foi criada por Bjarne Stroustrup em 1979 no Bell Labs \cite{wikicpp}.
 Originalmente, esta foi criada como uma extensão que insere diversas funcionalidades à linguagem C, tais como classes, sobrecarga de operadores, herança múltipla, \emph{templates} e tratamento de exceções.
-Atualmente, C++ é uma das linguagems mais populares, com domínios de aplicações que incluem sistemas operacionais, aplicativos para \emph{desktops}, \emph{drivers} para dispositivos de hardware, sistemas embarcados e aplicações de servidores e clientes que exigem alta performance.
+Atualmente, C++ é uma das linguagens mais populares, com domínios de aplicações que incluem sistemas operacionais, aplicativos para \emph{desktops}, \emph{drivers} para dispositivos de hardware, sistemas embarcados e aplicações de servidores e clientes que exigem alta performance \cite{wikicpp}.
 % TODO: talvez falar um pouco sobre a performance de C++ ser bem melhor que a de Python e Java
 
 O principal motivo pelo qual a equipe optou por descartar a linguagem C++ foi a ausência de um sistema de \emph{garbage collection}, o que torna mais difícil a manutenção da base de código e aumenta a probabilidade de erros de programação relacionados com \emph{memory leaks} (ou ``vazamentos de memória''), que são um problema comum quando uma porção de memória alocada para uma determinada operação não é liberada quando não é mais necessária.
 Além disso, ao contrário da linguagem C++, as linguagens Java e Python possuem ferramentas para desenvolvimento de aplicações web amplamente utilizadas e documentadas, como os \emph{frameworks} Django e Pylons da linguagem Python e a plataforma J2EE da linguagem Java.
 
-A linguagem Python, por sua vez, foi criada por Guido van Rossum no fim da década de 80, sendo que a primeira implementação do interpretador CPython, a implementação referência da linguagem, começou a ser desenvolvida em Dezembro de 1989.
+A linguagem Python, por sua vez, foi criada por Guido van Rossum no fim da década de 80, sendo que a primeira implementação do interpretador CPython, a implementação referência da linguagem, começou a ser desenvolvida em Dezembro de 1989 \cite{wikipython}.
 A filosofia desta linguagem enfatiza a legibilidade do código, reforçando uma sintaxe clara e de fácil entendimento até mesmo para aqueles que não conhecem a linguagem.
-Python também possui uma biblioteca padrão bastante completa, que é considerada como um de seus pontos mais fortes, com módulos que vão desde aritmética com precisão arbitrária até expressões regulares, interfaces com bancos de dados relacionais e execução de testes unitários.
+Python também possui uma biblioteca padrão bastante completa, que é considerada como um de seus pontos mais fortes, com módulos que vão desde aritmética com precisão arbitrária até expressões regulares, interfaces com bancos de dados relacionais e execução de testes unitários \cite{wikipython}.
 
-A linguagem Java foi criada por James Gosling enquanto trabalhava na Sun Microsystems.
+A linguagem Java foi criada por James Gosling enquanto trabalhava na Sun Microsystems \cite{wikijava}.
 Lançada em 1995 como um dos principais componentes da plataforma Java, a linguagem teve sua sintaxe inspirada na de C++, compartilhando diversas características com a mesma.
 Ao contrário de C++, os aplicativos desenvolvidos em Java são compilados na forma de \emph{bytecode} e podem, portanto, ser executados em qualquer computador que possua uma máquina virtual Java instalada, independente de arquitetura ou sistema operacional.
 Assim como Python, a linguagem Java possui uma extensa biblioteca padrão, também contando com módulos para acesso à bancos de dados relacionais, \emph{toolkits} para a confecção de interfaces gráficas, \emph{sockets}, \emph{threads}, entre outros.
@@ -120,12 +120,12 @@ A principal desvantagem de se utilizar Applets Java para a interface do cliente 
 Além disso, devido ao \emph{overhead} imposto pela máquina virtual, os Applets Java tendem a demorar mais tempo para carregar no navegador Web, prejudicando a experiência do usuário.
 Sendo assim, esta opção foi descartada pela equipe e optou-se por desenvolver o cliente Web utilizando apenas páginas HTML e JavaScript.
 
-A linguagem JavaScript foi desenvolvida por Brendan Eich durante a década de 90, enquanto trabalhava na Netscape.
+A linguagem JavaScript foi desenvolvida por Brendan Eich durante a década de 90, enquanto trabalhava na Netscape \cite{wikijs}.
 Apesar do nome, a linguagem não possui grande relação com Java, excetuando-se o fato de que aquela foi influenciada por esta em alguns aspectos como, por exemplo, as convenções de nome e a de sintaxe.
-Atualmente, JavaScript é amplamente utilizada para o desenvolvimento de interfaces de usuário para a \emph{Web} e \emph{websites} dinâmicos.
+Atualmente, JavaScript é amplamente utilizada para o desenvolvimento de interfaces de usuário para a \emph{Web} e \emph{websites} dinâmicos \cite{wikijs}.
 
 Com o crescimento da demanda por aplicações escritas em JavaScript, uma série de bibliotecas para facilitar o desenvolvimento deste tipo de aplicação surgiu.
-Entre estas destaca-se a biblioteca jQuery que, por ser a mais popular, contém uma extensa documentação e diversas funcionalidades, que vão desde efeitos e animações, até manipulação de folhas de estilo e métodos para comunicação assíncrona com servidores de aplicações Web.
+Entre estas destaca-se a biblioteca jQuery \cite{jquery} que, por ser a mais popular, contém uma extensa documentação e diversas funcionalidades, que vão desde efeitos e animações, até manipulação de folhas de estilo e métodos para comunicação assíncrona com servidores de aplicações Web.
 Por estes motivos, optou-se por utilizar também esta biblioteca para o desenvolvimento do cliente Web.
 
 \subsection{Sistema Gerenciador de Banco de Dados}
@@ -136,7 +136,7 @@ Como citado anteriormente, os SGBDs NoSQL permitem que os dados sejam armazenado
 Por este motivo, os bancos de dados NoSQL apresentam uma grande vantagem com relação aos demais para armazenar e extrair informações rapidamente de bases de dados que possam ser modeladas como grafos. % TODO: citar algo
 
 Dada a natureza do problema sendo estudado, naturalmente a equipe optou por utilizar um dos bancos de dados NoSQL que enfatizam em grafos.
-Entre as principais opções disponíveis que foram consideradas para este projeto estão o HyperGraphDB, desenvolvido pela Kobrix Software Inc., o InfoGrid, desenvolvido pela NetMesh Inc., o Neo4j, desenvolvido pela Neo Technology Inc. e o OrientDB, desenvolvido pela Orient Technologies.
+Entre as principais opções disponíveis que foram consideradas para este projeto estão o HyperGraphDB, desenvolvido pela Kobrix Software Inc. \cite{hypergraphdb}, o InfoGrid, desenvolvido pela NetMesh Inc. \cite{infogrid}, o Neo4j, desenvolvido pela Neo Technology Inc. \cite{neo4j} e o OrientDB, desenvolvido pela Orient Technologies \cite{orientdb}.
 Estes bancos de dados são apresentados na Tabela \ref{tab:bancos}.
 
 Outros bancos de dados disponíveis na Internet também foram inicialmente analisados, como o FlockDB, desenvolvido pela Twitter Inc..
@@ -185,7 +185,7 @@ Outro ponto positivo com relação ao Neo4j é que ele é mantido por uma grande
 
 Tendo em vista a arquitetura em módulos proposta para este projeto, mostrou-se interessante o uso de uma ferramenta capaz de facilitar o processo de \emph{build}, ou seja, compilação e integração dos diferentes módulos da aplicação.
 
-Para tanto, optou-se por utilizar o Apache Maven, o qual é uma ferramenta desenvolvida em linguagem Java para facilitar o gerenciamento de projetos nesta e em outras linguagens de programação.
+Para tanto, optou-se por utilizar o Apache Maven, o qual é uma ferramenta desenvolvida em linguagem Java para facilitar o gerenciamento de projetos nesta e em outras linguagens de programação \cite{maven}.
 
 Entre as principais vantagens de se utilizar o Maven para o gerenciamento de um projeto, estão:
 \begin{itemize}
@@ -219,17 +219,17 @@ O gerenciamento e monitoramento de modificações em documentos, programas e out
 Durante o processo de desenvolvimento de \emph{software}, é comum que múltiplas versões de um mesmo \emph{software} sejam utilizadas em diferentes locais e que os desenvolvedores trabalhem simultaneamente em partes distintas do \emph{software}.
 Novas funcionalidades ou até mesmo \emph{bugs} muitas vezes estão presentes apenas em determinadas versões.
 Portanto, para organizar o desenvolvimento, bem como facilitar a localização e correção de \emph{bugs}, é de vital importância determinar em quais versões do \emph{software} os problemas ocorrem.
-Inclusive, muitas vezes é necessário desenvolver duas ou mais versões do mesmo \emph{software} em paralelo como, por exemplo, uma na qual os problemas sejam corrigidos sem a criação de novas funcionalidades, enquanto que em outra versão novas funcionalidades são inseridas na aplicação, sendo estas comumente denominadas \emph{branch} e \emph{trunk}, respectivamente.
+Inclusive, muitas vezes é necessário desenvolver duas ou mais versões do mesmo \emph{software} em paralelo como, por exemplo, uma na qual os problemas sejam corrigidos sem a criação de novas funcionalidades, enquanto que em outra versão novas funcionalidades são inseridas na aplicação, sendo estas comumente denominadas \emph{branch} e \emph{trunk}, respectivamente \cite{visualguidevcs}.
 
 Enquanto os desenvolvedores poderiam simplesmente manter múltiplas cópias das diferentes versões do projeto no sistema de arquivos, este processo é extremamente ineficiente pois muitas versões praticamente idênticas do \emph{software} teriam que ser mantidas, tornando a tarefa de determinar as modificações entre uma versão e outra difícil, tediosa e sujeita à erros.
-Por este motivo, diversos sistemas para automatizar o processo de controle de versão surgiram.
+Por este motivo, diversos sistemas para automatizar o processo de controle de versão surgiram \cite{visualguidevcs}.
 
 Tradicionalmente, os sistemas de controle de versão mais comuns utilizam um modelo centralizado, no qual todas as funções são desempenhadas em um servidor compartilhado por todos os desenvolvedores.
 Sistemas como estes vêm sendo utilizados desde a década de 70 e foram considerados padrão na indústria por muitos anos.
-Diversos sistemas de controle de versão livres enquadram-se neste modelo como, por exemplo, o \sigla{CVS}{Concurrent Versions System}, lançado em 1990, e o Subversion, lançado em 2004.
+Diversos sistemas de controle de versão livres enquadram-se neste modelo como, por exemplo, o \sigla{CVS}{Concurrent Versions System}, lançado em 1990, e o Subversion, lançado em 2004 \cite{visualguidevcs}.
 
 % citar a lista de falhas apontadas por http://www.infoq.com/articles/dvcs-guide
-Apesar de muito utilizados, os sistemas de controle de versão centralizados possuem algumas falhas, entre elas:
+Apesar de muito utilizados, os sistemas de controle de versão centralizados possuem algumas falhas, entre elas \cite{introdvcs} \cite{dvcsnotsoquick}:
 
 \begin{itemize}
 	\item Criar novos \emph{branches} é fácil de ser feito. No entanto, os \emph{merges}, ou mesclagens, não são.
@@ -239,16 +239,16 @@ Apesar de muito utilizados, os sistemas de controle de versão centralizados pos
 	\item Impossibilidade de fazer \emph{commits} enquanto não há acesso ao servidor central.
 \end{itemize}
 
-Estes problemas são, em grande parte, solucionados pelos modernos sistemas de controle de versão distribuídos (ou \sigla{DVCS}{Distributed Version Control System}, \emph{Distributed Version Control System}).
+Estes problemas são, em grande parte, solucionados pelos modernos sistemas de controle de versão distribuídos (ou \sigla{DVCS}{Distributed Version Control System}, \emph{Distributed Version Control System}) \cite{dvcsnotsoquick}.
 % TODO: explicar melhor o que são os DVCS
 
 O primeiro destes sistemas, o BitKeeper, é desenvolvido pela BitMover Inc. e teve sua primeira versão estável disponibilizada para o público em Maio de 2000.
 Este tornou-se muito conhecido quando, em 2002, Linus Torvalds decidiu que esta seria a melhor ferramenta para ser utilizada no desenvolvimento do kernel Linux.
-Até então, Linus aplicava cada \emph{patch} submetido pela comunidade manualmente.
+Até então, Linus aplicava cada \emph{patch} submetido pela comunidade manualmente \cite{dvcsnotsoquick}.
 
 Em Abril de 2005, a BitMover Inc. anunciou que não iria mais fornecer uma versão gratuita do BitKeeper para a comunidade.
 Com isso, apenas os desenvolvedores do Linux que tivessem acesso à uma versão comercial do BitKeeper poderiam ter acesso ao histórico de versões, por exemplo.
-Este evento levou à criação do projeto git, pelo próprio Linus Torvalds, que rapidamente substituiu o BitKeeper como sistema de controle de versão do Linux.
+Este evento levou à criação do projeto git, pelo próprio Linus Torvalds, que rapidamente substituiu o BitKeeper como sistema de controle de versão do Linux \cite{git}.
 
 Dada a origem dos sistemas de controle de versão distribuídos, é notável a sua importância para muitos \emph{softwares} livres.
 Devido à sua característica de distribuir e permitir a colaboração de diversas pessoas em um mesmo projeto com facilidade, estes sistemas são amplamente utilizados pela grande maioria dos projetos livres.
@@ -266,8 +266,8 @@ Os principais motivos pelos quais a equipe optou por este sistema foram:
 
 \subsubsection{Hospedagem do Repositório}
 
-De acordo com uma pesquisa realizada entre os usuários do git em 2010 \cite{gitus2010}, o \emph{site} de hospedagem de repositórios git mais popular é o GitHub, com mais de 77\% dos usuários de git hospedando seus projetos neste.
-Atualmente, o serviço conta com mais de um milhão de usuários e dois milhões de projetos hospedados. % TODO: cite
+De acordo com uma pesquisa realizada entre os usuários do git em 2010 \cite{gitus2010}, o \emph{site} de hospedagem de repositórios git mais popular é o GitHub \cite{github}, com mais de 77\% dos usuários de git hospedando seus projetos neste.
+Atualmente, o serviço conta com mais de um milhão de usuários e dois milhões de projetos hospedados \cite{wikigithub}.
 
 Diversas características destacam o GitHub com relação aos demais serviços de hospedagem, entre as principais estão as suas ferramentas para gerência de projeto:
 
